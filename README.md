@@ -67,7 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 "# MedTechForms" 
 "# MedtechForms" 
 
-##About the Project
+-----ABOUT THE PROJECT-----
 
 This project was made using LARAVEL framework.
 Changelogs can be found in the file README-OUTPUTS.txt 

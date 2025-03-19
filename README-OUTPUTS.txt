@@ -74,4 +74,18 @@ changelog 3-17-25
 -valid user inputs on AC# or any patient selected will now automatically fill other parameters (age,sex, etc)
 -'Requested by' parameter is static - user must specify name on the text input
 
-
+changelog 3-19-25
+-added functionality for:
+PHYSICAL CHARACTERISTIC
+	-color
+	-Transparency
+	-pH
+	-Specific Gravity
+MICROSCOPIC FINDINGS
+	-RBC
+	-WBC
+	-Squamous Epithelial Cells
+	-mucus threads
+	-Bacteria
+-all inputs can now be uploaded in database
+-RBC & WBC are restricted using integer inputs

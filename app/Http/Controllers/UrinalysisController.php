@@ -34,19 +34,40 @@ public function store(Request $request)
     // Validate input (optional, since fields are nullable)
     $request->validate([
         'or' => 'required|string',
-        'date' => 'required|date', // ✅ Ensure the date is valid
+        'date' => 'required|date', // Ensure the date is valid
         'requested_by' => 'required|string', // Add validation for 'requested_by'
+        'color' => 'nullable|string', // Validate color input
+        'transparency' => 'nullable|string', // Validate transparency input
+        'ph' => 'nullable|string', // Validate pH input
+        'gravity' => 'nullable|string', // Validate gravity input
+        'rbc' => 'nullable|numeric', // Validate RBC input as numeric
+        'wbc' => 'nullable|numeric', // Validate WBC input as numeric
+        'SEC' => 'nullable|string', // Validate Squamous Epithelial Cells input
+        'Thread' => 'nullable|string', // Validate Mucus Threads input
+        'bacteria' => 'nullable|string', // Validate Bacteria input
     ]);
 
     // Save to database
     Urinalysis::create([
         'OR' => $request->or,
-        'Date' => $request->date, // ✅ Fix: Save date correctly
+        'Date' => $request->date, // Save date correctly
         'ReqBy' => $request->requested_by, // Save 'Requested by' input to 'ReqBy'
+        'color' => $request->color, // Save color input
+        'transparency' => $request->transparency, // Save transparency input
+        'ph' => $request->ph, // Save pH input
+        'gravity' => $request->gravity, // Save gravity input
+        'rbc' => $request->rbc, // Save RBC input
+        'wbc' => $request->wbc, // Save WBC input
+        'SEC' => $request->SEC, // Save Squamous Epithelial Cells input
+        'Thread' => $request->Thread, // Save Mucus Threads input
+        'bacteria' => $request->bacteria, // Save Bacteria input
     ]);
 
     return redirect()->route('urinalysis.create')->with('success', 'Data saved successfully.');
 }
+
+
+
 
 
 

@@ -9,14 +9,13 @@ class Urinalysis extends Model
 {
     use HasFactory;
 
-protected $fillable = [
-    'ReqBy', 'Date', 'OR', 'color', 'transparency', 'ph', 'gravity', 
-    'rbc', 'wbc', 'SEC', 'Thread', 'bacteria', 'protein', 'glucose', 
-    'ketones', 'pregnancy_test', 'au', 'ap', 'ua', 'co', 'tp', 
-    'hyaline', 'granular', 'wbc2', 'rbc2'
-];
+    protected $fillable = [
+        'ReqBy', 'Date', 'OR', 'color', 'transparency', 'ph', 'gravity', 
+        'rbc', 'wbc', 'SEC', 'Thread', 'bacteria', 'protein', 'glucose', 
+        'ketones', 'pregnancy_test', 'au', 'ap', 'ua', 'co', 'tp', 
+        'hyaline', 'granular', 'wbc2', 'rbc2', 'Medtech', 'Pathologist'
+    ];
 
-    // 🔴 TEMPORARY: Making all attributes nullable (Remove this when validation is implemented)
     protected $casts = [
         'ReqBy' => 'string',
         'Date' => 'date',
@@ -43,5 +42,7 @@ protected $fillable = [
         'granular' => 'string',
         'wbc2' => 'string',
         'rbc2' => 'string',
+        'Medtech' => 'string',
+        'Pathologist' => 'string',
     ];
 }

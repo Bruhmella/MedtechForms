@@ -22,14 +22,14 @@
             if (patient) {
                 document.getElementById("age").value = patient.Page;
                 document.getElementById("sex").value = patient.Psex;
-                document.getElementById("ac").value = patient.Poc; // Auto-fill AC#
+                document.getElementById("ac").value = patient.Poc;
                 document.getElementById("date").value = new Date().toISOString().split('T')[0];
             }
         }
 
         function fillByAC() {
             var enteredAC = document.getElementById("ac").value.trim();
-            var patient = patients.find(p => p.Poc == enteredAC); // Match AC#
+            var patient = patients.find(p => p.Poc == enteredAC);
 
             if (patient) {
                 document.getElementById("patientSelect").value = patient.id;
@@ -46,7 +46,7 @@
     <h2>Patients' Data</h2>
 
     <form action="{{ route('urinalysis.store') }}" method="POST">
-        @csrf <!-- Laravel security token -->
+        @csrf 
 
         <label for="patientSelect">Select Patient:</label>
         <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
@@ -56,18 +56,26 @@
             @endforeach
         </select>
 
-        <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" oninput="fillByAC()"></p> <!-- ✅ Editable AC# -->
+        <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" oninput="fillByAC()"></p>
         <p>Age: <input type="text" id="age" readonly></p>
         <p>Sex: <input type="text" id="sex" readonly></p>
         <p>Date: <input type="date" id="date" name="date" readonly></p>
         <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
+        <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
 
-		<!-- Requested by field (editable) -->
-		<p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
-
-
-
-        <!-- Submit Button -->
+        <h2>Physical Characteristics</h2>
+        <p>Color: <input type="text" name="color"></p>
+        <p>Transparency: <input type="text" name="transparency"></p>
+        <p>pH: <input type="text" name="ph"></p>
+        <p>Specific Gravity: <input type="text" name="gravity"></p>
+        
+        <h2>Microscopic Findings</h2>
+        <p>RBC: <input type="number" name="rbc" min="0" step="1" placeholder="Enter RBC count"></p>
+        <p>WBC: <input type="number" name="wbc" min="0" step="1" placeholder="Enter WBC count"></p>
+        <p>Squamous Epithelial Cells: <input type="text" name="SEC"></p>
+        <p>Mucus Threads: <input type="text" name="Thread"></p>
+        <p>Bacteria: <input type="text" name="bacteria"></p>
+        
         <button type="submit">Save</button>
     </form>
 </body>

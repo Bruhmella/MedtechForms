@@ -24,18 +24,14 @@ return new class extends Migration {
             $table->string('protein')->nullable();
             $table->string('glucose')->nullable();
             $table->string('ketones')->nullable();
+            $table->string('bilirubin')->nullable();
             $table->string('pregnancy_test')->nullable();
+            $table->string('others')->nullable();
             $table->string('au')->nullable();
             $table->string('ap')->nullable();
             $table->string('ua')->nullable();
             $table->string('co')->nullable();
             $table->string('tp')->nullable();
-            $table->string('hyaline')->nullable();
-            $table->string('granular')->nullable();
-            $table->string('wbc2')->nullable();
-            $table->string('rbc2')->nullable();
-            $table->string('Medtech')->nullable();
-            $table->string('Pathologist')->nullable();
             $table->timestamps();
         });
     }
@@ -45,4 +41,3 @@ return new class extends Migration {
         Schema::dropIfExists('urinalyses');
     }
 };
-

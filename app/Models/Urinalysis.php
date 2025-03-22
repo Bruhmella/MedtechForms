@@ -13,7 +13,8 @@ class Urinalysis extends Model
         'ReqBy', 'Date', 'OR', 'color', 'transparency', 'ph', 'gravity', 
         'rbc', 'wbc', 'SEC', 'Thread', 'bacteria', 'protein', 'glucose', 
         'ketones', 'pregnancy_test', 'au', 'ap', 'ua', 'co', 'tp', 
-        'hyaline', 'granular', 'wbc2', 'rbc2', 'Medtech', 'Pathologist'
+        'hyaline', 'granular', 'wbc2', 'rbc2', 'Medtech', 'Pathologist',
+        'others', 'bilirubin'
     ];
 
     protected $casts = [
@@ -44,5 +45,7 @@ class Urinalysis extends Model
         'rbc2' => 'string',
         'Medtech' => 'string',
         'Pathologist' => 'string',
+        'others' => 'string',
+        'bilirubin'=> 'string'
     ];
 }

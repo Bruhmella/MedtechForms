@@ -37,6 +37,7 @@
                 document.getElementById("sex").value = patient.Psex;
             }
         }
+
     </script>
 </head>
 <body>
@@ -85,22 +86,99 @@
         <p><b>OTHER/S: </b><input type="text" name="others" style="height: 100px; width: 300px;"></p>
 
         <h2>Crystals</h2>
-<p>Amorphous Urates: <input type="text" name="au" placeholder="Enter Amorphous Urates level"></p>
-<p>Amorphous Phosphates: <input type="text" name="ap" placeholder="Enter Amorphous Phosphates level"></p>
-<p>Uric Acid: <input type="text" name="ua" placeholder="Enter Uric Acid level"></p>
-<p>Calcium Oxalate: <input type="text" name="co" placeholder="Enter Calcium Oxalate level"></p>
-<p>Triple Phosphate: <input type="text" name="tp" placeholder="Enter Triple Phosphate level"></p>
+        <p>Amorphous Urates: <input type="text" name="au" placeholder="Enter Amorphous Urates level"></p>
+        <p>Amorphous Phosphates: <input type="text" name="ap" placeholder="Enter Amorphous Phosphates level"></p>
+        <p>Uric Acid: <input type="text" name="ua" placeholder="Enter Uric Acid level"></p>
+        <p>Calcium Oxalate: <input type="text" name="co" placeholder="Enter Calcium Oxalate level"></p>
+        <p>Triple Phosphate: <input type="text" name="tp" placeholder="Enter Triple Phosphate level"></p>
 
-<h2>Casts</h2>
-<p>Hyaline: <input type="number" name="hyaline" min="0" step="0.1" placeholder="Enter Hyaline count"></p>
-<p>Granular: <input type="number" name="granular" min="0" step="0.1" placeholder="Enter Granular count"></p>
-<p>WBC: <input type="number" name="wbc2" min="0" step="0.1" placeholder="Enter WBC count"></p>
-<p>RBC: <input type="number" name="rbc2" min="0" step="0.1" placeholder="Enter RBC count"></p>
+        <h2>Casts</h2>
+        <p>Hyaline: <input type="number" name="hyaline" min="0" step="0.1" placeholder="Enter Hyaline count"></p>
+        <p>Granular: <input type="number" name="granular" min="0" step="0.1" placeholder="Enter Granular count"></p>
+        <p>WBC: <input type="number" name="wbc2" min="0" step="0.1" placeholder="Enter WBC count"></p>
+        <p>RBC: <input type="number" name="rbc2" min="0" step="0.1" placeholder="Enter RBC count"></p>
 
-<h3>Medical Technologist: </h3>
-<h3>Pathologist: </h3>
+<h2>Medical Technologist:</h2>
 
-        <button type="submit">Save</button>
-    </form>
+@if($medtech)
+    <input type="text" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+    <input type="text" value="{{ $medtech->LicNo ?? '' }}" />
+
+@elseif($pathologist)
+    <select id="medtechDropdown">
+        @foreach($medtechs as $medtech)
+            <option value="{{ $medtech->id }}" data-licno="{{ $medtech->LicNo }}">
+                {{ $medtech->fname . ' ' . $medtech->lname }}
+            </option>
+        @endforeach
+    </select>
+
+    <input type="text" id="medtechLicNo" value="" readonly />
+@endif
+
+<h3>Pathologist:</h3>
+
+@if($pathologist)
+    <input type="text" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+    <input type="text" value="{{ $pathologist->LicNo ?? '' }}" />
+@elseif($medtech)
+    <select id="pathologistDropdown">
+        @foreach($pathologists as $pathologist)
+            <option value="{{ $pathologist->id }}" data-licno="{{ $pathologist->LicNo }}">
+                {{ $pathologist->fname . ' ' . $pathologist->lname }}
+            </option>
+        @endforeach
+    </select>
+
+    <input type="text" id="pathologistLicNo" value="" readonly />
+@endif
+
+<button type="submit">Save</button>
+
+<script>
+    // JavaScript to update the LicNo textbox based on dropdown selection
+    document.getElementById('pathologistDropdown')?.addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var licNo = selectedOption.getAttribute('data-licno'); // Get the LicNo from the selected option
+        
+        // Fill the textbox with the selected pathologist's LicNo
+        document.getElementById('pathologistLicNo').value = licNo;
+    });
+
+    document.getElementById('medtechDropdown')?.addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var licNo = selectedOption.getAttribute('data-licno'); // Get the LicNo from the selected option
+        
+        // Fill the textbox with the selected medtech's LicNo
+        document.getElementById('medtechLicNo').value = licNo;
+    });
+
+    // Trigger the change event to autofill the LicNo for the selected medtech or pathologist on page load
+    window.addEventListener('load', function() {
+        // Check if we're logged in as a pathologist and medtech dropdown exists
+        if (document.getElementById('medtechDropdown')) {
+            var medtechDropdown = document.getElementById('medtechDropdown');
+            // If the dropdown has a selected option, set the LicNo
+            if (medtechDropdown.selectedIndex >= 0) {
+                var selectedOption = medtechDropdown.options[medtechDropdown.selectedIndex];
+                var licNo = selectedOption.getAttribute('data-licno');
+                document.getElementById('medtechLicNo').value = licNo;
+            }
+        }
+
+        // Check if we're logged in as a medtech and pathologist dropdown exists
+        if (document.getElementById('pathologistDropdown')) {
+            var pathologistDropdown = document.getElementById('pathologistDropdown');
+            // If the dropdown has a selected option, set the LicNo
+            if (pathologistDropdown.selectedIndex >= 0) {
+                var selectedOption = pathologistDropdown.options[pathologistDropdown.selectedIndex];
+                var licNo = selectedOption.getAttribute('data-licno');
+                document.getElementById('pathologistLicNo').value = licNo;
+            }
+        }
+    });
+</script>
+
+ 
 </body>
 </html>

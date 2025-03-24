@@ -89,3 +89,26 @@ MICROSCOPIC FINDINGS
 	-Bacteria
 -all inputs can now be uploaded in database
 -RBC & WBC are restricted using integer inputs
+
+changelog 3-24-25
+added functionality for:
+CHEMICAL TEST
+	-Protein
+	-glucose
+	-ketones
+	-bilirubin
+	-pregnancy test
+	-other/s
+CRYSTALS
+	-Amorphous Urates
+	-Amorphous Phosphates
+	-uric acid
+	-calcium oxalate
+	-triple phosphate
+CASTS
+	-hyaline
+	-granular
+	-WBC
+	-RBC
+system now detects whether user is a medical technologist or pathologist, and automatically fills up either 'medical technologist' or 'pathologist' parameter. the other parameter is a dropdown of names associated with their role, eg. if the user is a medical technologist, the 'medical technologist' will be automatically filled with their credentials (name, license number & role). *Then, in this case, the user can pick a name from the dropdown menu consisting of user/s with the 'pathologist' role, automatically filling up their user credentials as well.*
+*optional - if name is not present in database, user may leave it blank.

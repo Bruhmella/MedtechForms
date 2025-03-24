@@ -5,28 +5,47 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Urinalysis;
 use App\Models\BasicPatData;
+use App\Models\Account; // Added this line for the Account model
+use Illuminate\Support\Facades\DB;
 
 class UrinalysisController extends Controller
 {
     public function create()
-    {
-        $user = session('user');
+{
+    $user = session('user');
 
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'Please log in first.');
-        }
-
-        $patients = BasicPatData::all();
-
-        if ($patients->isEmpty()) {
-            dd("No patients found in database");
-        }
-
-        $latestRecord = Urinalysis::latest()->first();
-        $orNumber = $this->generateOrNumber($latestRecord);
-
-        return view('urinalysis', compact('patients', 'user', 'orNumber'));
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please log in first.');
     }
+    
+
+    $patients = BasicPatData::all();
+    $latestRecord = Urinalysis::latest()->first();
+    $orNumber = $this->generateOrNumber($latestRecord);
+
+    $pathologists = Account::where('Pos', 'P')->get();
+    $medtechs = Account::where('Pos', 'MT')->get();
+
+    $pathologist = null;
+    $medtech = null;
+
+    if ($user->Pos === 'MT') {
+        $medtech = $user;
+    } elseif ($user->Pos === 'P') {
+        $pathologist = $user;
+    }
+
+    return view('urinalysis', [
+        'patients' => $patients,
+        'orNumber' => $orNumber,
+        'user' => $user,
+        'pathologists' => $pathologists,
+        'pathologist' => $pathologist,
+        'medtechs' => $medtechs,
+        'medtech' => $medtech,
+    ]);
+}
+
 
     public function store(Request $request)
     {
@@ -54,10 +73,10 @@ class UrinalysisController extends Controller
             'ua' => 'nullable|string',
             'co' => 'nullable|string',
             'tp' => 'nullable|string',
-                    'hyaline' => 'nullable|numeric',
-        'granular' => 'nullable|numeric',
-        'wbc2' => 'nullable|numeric',
-        'rbc2' => 'nullable|numeric',
+            'hyaline' => 'nullable|numeric',
+            'granular' => 'nullable|numeric',
+            'wbc2' => 'nullable|numeric',
+            'rbc2' => 'nullable|numeric',
         ]);
 
         Urinalysis::create($request->all());
@@ -77,6 +96,3 @@ class UrinalysisController extends Controller
         return "UR" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
 }
-
-
-

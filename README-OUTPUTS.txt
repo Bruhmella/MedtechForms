@@ -112,3 +112,7 @@ CASTS
 	-RBC
 system now detects whether user is a medical technologist or pathologist, and automatically fills up either 'medical technologist' or 'pathologist' parameter. the other parameter is a dropdown of names associated with their role, eg. if the user is a medical technologist, the 'medical technologist' will be automatically filled with their credentials (name, license number & role). *Then, in this case, the user can pick a name from the dropdown menu consisting of user/s with the 'pathologist' role, automatically filling up their user credentials as well.*
 *optional - if name is not present in database, user may leave it blank.
+
+changelog 3-25-25
+-fixed an issue where some parameters are returned null in the database.
+-started setting up from home->fecalysis [no page has been made yet]

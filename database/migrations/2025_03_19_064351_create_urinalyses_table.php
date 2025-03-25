@@ -32,6 +32,12 @@ return new class extends Migration {
             $table->string('ua')->nullable();
             $table->string('co')->nullable();
             $table->string('tp')->nullable();
+            $table->string('hyaline')->nullable(); // Added from $fillable
+            $table->string('granular')->nullable(); // Added from $fillable
+            $table->string('wbc2')->nullable(); // Added from $fillable
+            $table->string('rbc2')->nullable(); // Added from $fillable
+            $table->string('Medtech')->nullable(); // Added from $fillable
+            $table->string('Pathologist')->nullable(); // Added from $fillable
             $table->timestamps();
         });
     }

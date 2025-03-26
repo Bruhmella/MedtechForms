@@ -55,7 +55,16 @@
         <a href="{{ route('Urinalysis.create')}}"><button>Urinalysis</button></a>
         </div>
     </div>
+<!---Fecalysis--->
+    <div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('Fecalysis.create')}}"><BUTTON>Fecalysis</BUTTON></a>
+    </div>
+
 </div>
+
+
 
 <script>
 function w3_open() {

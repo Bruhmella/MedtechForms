@@ -12,6 +12,7 @@
             font-family: Calibri;
         }
     </style>
+<!--- script to get patient data from dropdown---->
     <script>
         let patients = @json($patients);
 
@@ -48,7 +49,7 @@
 
     <form action="{{ route('urinalysis.store') }}" method="POST">
         @csrf 
-
+<!---script for dropdown autofill--->
         <label for="patientSelect">Select Patient:</label>
         <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
             <option value="">-- Select a Patient --</option>
@@ -63,7 +64,7 @@
         <p>Date: <input type="date" id="date" name="date" readonly></p>
         <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
         <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
-
+<!----script ends---->
         <h2>Physical Characteristics</h2>
         <p>Color: <input type="text" name="color"></p>
         <p>Transparency: <input type="text" name="transparency"></p>
@@ -98,6 +99,7 @@
         <p>WBC: <input type="number" name="wbc2" min="0" step="0.1" placeholder="Enter WBC count"></p>
         <p>RBC: <input type="number" name="rbc2" min="0" step="0.1" placeholder="Enter RBC count"></p>
 
+<!---check if user is medtech/pathologist w script--->
 <h2>Medical Technologist:</h2>
 
 @if($medtech)
@@ -178,6 +180,7 @@
         }
     });
 </script>
+<!-----check acc/script ends--->
 
  
 </body>

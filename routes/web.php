@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasicPatController;
 use App\Http\Controllers\UrinalysisController;
+use App\Http\Controllers\FecalysisController;
 
 
 // Show login form (GET request to / or /login)
@@ -76,3 +77,5 @@ Route::get('/Urinalysis/create', [UrinalysisController::class, 'create'])->name(
 
 Route::get('/urinalysis', [UrinalysisController::class, 'create'])->name('urinalysis.create');
 Route::post('/urinalysis', [UrinalysisController::class, 'store'])->name('urinalysis.store');
+
+Route::get('/Fecalysis/create', [FecalysisController::class, 'create'])->name('Fecalysis.create');

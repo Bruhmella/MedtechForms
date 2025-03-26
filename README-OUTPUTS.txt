@@ -116,3 +116,8 @@ system now detects whether user is a medical technologist or pathologist, and au
 changelog 3-25-25
 -fixed an issue where some parameters are returned null in the database.
 -started setting up from home->fecalysis [no page has been made yet]
+
+changelog 3-26-25
+-created fecalysis page from home
+-added basic functions (session & back-to-home button)
+-added migrations for database upload of data & fetching

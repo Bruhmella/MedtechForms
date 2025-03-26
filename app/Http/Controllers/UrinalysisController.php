@@ -12,6 +12,7 @@ class UrinalysisController extends Controller
 {
     public function create()
     {
+        //session
         $user = session('user');
 
         if (!$user) {

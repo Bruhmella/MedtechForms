@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up()
+    {
+        Schema::create('fecalyses', function (Blueprint $table) {
+            $table->id();
+            $table->string('Pname');
+            $table->integer('Page')->nullable();
+            $table->string('Psex')->nullable();
+            $table->string('Poc')->nullable()->unique();
+
+            // Physical & Chemical Characteristics
+            $table->string('color')->nullable();
+            $table->string('consistency')->nullable();
+            $table->string('occult_blood')->nullable();
+            $table->string('sudan_stain')->nullable();
+            $table->string('bacteria')->nullable();
+            $table->string('yeast')->nullable();
+            $table->string('fat_globules')->nullable();
+            $table->string('others')->nullable();
+
+            // Medical Personnel
+            $table->string('medtech')->nullable();
+            $table->string('pathologist')->nullable();
+
+            // Microscopic Analysis
+            $table->integer('wbc')->nullable();
+            $table->integer('rbc')->nullable();
+
+            $table->timestamps(); // Adds created_at and updated_at timestamps
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('fecalyses');
+    }
+};

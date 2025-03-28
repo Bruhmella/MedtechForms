@@ -8,11 +8,12 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('fecalyses', function (Blueprint $table) {
-            $table->id();
-            $table->string('Pname');
+            $table->id()->nullable();
+            $table->string('Pname')->nullable();
             $table->integer('Page')->nullable();
             $table->string('Psex')->nullable();
-            $table->string('Poc')->nullable()->unique();
+            $table->string('Poc')->nullable();
+            $table->string('OR')->nullable();
 
             // Physical & Chemical Characteristics
             $table->string('color')->nullable();

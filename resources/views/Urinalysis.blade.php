@@ -40,6 +40,7 @@
         }
 
     </script>
+<!---script ends here--->
 </head>
 <body>
     <h1>Urinalysis Form</h1>

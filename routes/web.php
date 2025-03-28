@@ -79,3 +79,4 @@ Route::get('/urinalysis', [UrinalysisController::class, 'create'])->name('urinal
 Route::post('/urinalysis', [UrinalysisController::class, 'store'])->name('urinalysis.store');
 
 Route::get('/Fecalysis/create', [FecalysisController::class, 'create'])->name('Fecalysis.create');
+Route::post('/fecalysis/store', [FecalysisController::class, 'store'])->name('fecalysis.store');

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fecalysis;
 use Illuminate\Http\Request;
+use App\Models\Fecalysis;
 use App\Models\BasicPatData;
 use App\Models\Account;
 use Illuminate\Support\Facades\DB;
@@ -25,14 +25,8 @@ class FecalysisController extends Controller
         $pathologists = Account::where('Pos', 'P')->get();
         $medtechs = Account::where('Pos', 'MT')->get();
 
-        $pathologist = null;
-        $medtech = null;
-
-        if ($user->Pos === 'MT') {
-            $medtech = $user;
-        } elseif ($user->Pos === 'P') {
-            $pathologist = $user;
-        }
+        $pathologist = $user->Pos === 'P' ? $user : null;
+        $medtech = $user->Pos === 'MT' ? $user : null;
 
         return view('fecalysis', [
             'patients' => $patients,
@@ -46,74 +40,63 @@ class FecalysisController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'Pname' => 'required|string',
-            'Page' => 'nullable|integer',
-            'Psex' => 'nullable|string',
-            'Poc' => 'nullable|string|unique:fecalysis',
-            'color' => 'nullable|string',
-            'consistency' => 'nullable|string',
-            'occult_blood' => 'nullable|string',
-            'sudan_stain' => 'nullable|string',
-            'bacteria' => 'nullable|string',
-            'yeast' => 'nullable|string',
-            'fat_globules' => 'nullable|string',
-            'others' => 'nullable|string',
-            'medtech' => 'nullable|string',
-            'pathologist' => 'nullable|string',
-            'wbc' => 'nullable|integer',
-            'rbc' => 'nullable|integer',
-        ]);
+{
+    // Validate the data from the form
+    $request->validate([
+        'patient_id' => 'required|exists:patients,id', // Ensure patient exists
+        'color' => 'nullable|string',
+        'consistency' => 'nullable|string',
+        'occult_blood' => 'nullable|string',
+        'sudan_stain' => 'nullable|string',
+        'bacteria' => 'nullable|string',
+        'yeast' => 'nullable|string',
+        'fat_globules' => 'nullable|string',
+        'others' => 'nullable|string',
+        'wbc' => 'nullable|numeric',
+        'rbc' => 'nullable|numeric',
+        'medtech' => 'nullable|string',
+        'pathologist' => 'nullable|string',
+        // Other validation rules
+    ]);
 
-        $fecalysis = Fecalysis::create($validatedData);
-        return response()->json($fecalysis, 201);
-    }
+    // Store fecalysis data
+    Fecalysis::create([
+        'OR' => $request->or,
+        'patient_id' => $request->patient_id, // Ensure this is the patient ID being passed
+        'color' => $request->color,
+        'consistency' => $request->consistency,
+        'occult_blood' => $request->occult_blood,
+        'sudan_stain' => $request->sudan_stain,
+        'bacteria' => $request->bacteria,
+        'yeast' => $request->yeast,
+        'fat_globules' => $request->fat_globules,
+        'others' => $request->others,
+        'wbc' => $request->wbc,
+        'rbc' => $request->rbc,
+        'medtech' => $request->medtech,
+        'pathologist' => $request->pathologist,
+        'Poc' => $request->ac, // If this is the account number
+        'Pname' => $request->Pname, // Assuming patient name is passed as Pname
+        'Page' => $request->Page, // Assuming patient age
+        'Psex' => $request->Psex, // Assuming patient sex
+        'date' => $request->date, // Assuming date is passed
+        'or' => $request->or, // OR number
+        'requested_by' => $request->requested_by, // Requester's name
+    ]);
 
-    public function show(Fecalysis $fecalysis)
-    {
-        return response()->json($fecalysis);
-    }
+    return redirect()->route('Fecalysis.create')->with('success', 'Data saved successfully.');
+}
 
-    public function edit(Fecalysis $fecalysis)
-    {
-        return view('fecalysis_edit', compact('fecalysis'));
-    }
-
-    public function update(Request $request, Fecalysis $fecalysis)
-    {
-        $validatedData = $request->validate([
-            'Pname' => 'sometimes|string',
-            'Page' => 'nullable|integer',
-            'Psex' => 'nullable|string',
-            'Poc' => 'nullable|string|unique:fecalysis,Poc,' . $fecalysis->id,
-            'color' => 'nullable|string',
-            'consistency' => 'nullable|string',
-            'occult_blood' => 'nullable|string',
-            'sudan_stain' => 'nullable|string',
-            'bacteria' => 'nullable|string',
-            'yeast' => 'nullable|string',
-            'fat_globules' => 'nullable|string',
-            'others' => 'nullable|string',
-            'medtech' => 'nullable|string',
-            'pathologist' => 'nullable|string',
-            'wbc' => 'nullable|integer',
-            'rbc' => 'nullable|integer',
-        ]);
-
-        $fecalysis->update($validatedData);
-        return response()->json($fecalysis);
-    }
-
-    public function destroy(Fecalysis $fecalysis)
-    {
-        $fecalysis->delete();
-        return response()->json(['message' => 'Fecalysis record deleted']);
-    }
 
     private function generateOrNumber($latestRecord)
     {
-        $lastNumber = $latestRecord ? intval($latestRecord->orNumber) : 0;
-        return str_pad($lastNumber + 1, 6, '0', STR_PAD_LEFT);
+        $datePart = now()->format('mdY');
+        $lastNumber = 1;
+
+        if ($latestRecord && str_starts_with($latestRecord->Poc, "FC$datePart")) {
+            $lastNumber = (int) substr($latestRecord->Poc, -4) + 1;
+        }
+
+        return "FC" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
 }

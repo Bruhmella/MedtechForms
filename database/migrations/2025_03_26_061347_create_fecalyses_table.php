@@ -30,8 +30,9 @@ return new class extends Migration {
             $table->string('pathologist')->nullable();
 
             // Microscopic Analysis
-            $table->integer('wbc')->nullable();
-            $table->integer('rbc')->nullable();
+           $table->decimal('wbc', 10, 2)->nullable();
+            $table->decimal('rbc', 10, 2)->nullable();
+    
 
             $table->timestamps(); // Adds created_at and updated_at timestamps
         });

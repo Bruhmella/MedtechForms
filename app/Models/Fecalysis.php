@@ -9,6 +9,8 @@ class Fecalysis extends Model
 {
         use HasFactory;
 
+protected $table = 'fecalyses';
+
     protected $fillable = [
         'Pname', 'Page', 'Psex', 'Poc', 'OR',
         'color', 'consistency', 'occult_blood', 'sudan_stain',

@@ -121,3 +121,16 @@ changelog 3-26-25
 -created fecalysis page from home
 -added basic functions (session & back-to-home button)
 -added migrations for database upload of data & fetching
+
+changlog 3-28-25
+-added further functions for fecalysis [90% progress on backend]
+
+changelog 3-31-25
+-fixed the following issues on FECALYSIS module
+	-receipt number not incrementing
+	-patient data not being uploaded to fecalyses database
+	-wbc, rbc rounding off the values instead of taking the decimals as-is
+	-MedTech name (not license number) not uploading on database upon selecting from dropdown (when pathologist is logged in)
+	-pathologist name (not license number) not uploading on database upon selection from dropdown (when MedTech is logged in)
+	-license numbers unintentionally being uploaded in database
+	-

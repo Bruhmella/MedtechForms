@@ -4,6 +4,7 @@
     <title>Patient Archives</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
     h1, h2{
     font-family: Cambria;
@@ -19,6 +20,8 @@
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: auto;
+    margin-right: auto;
     }
     .patient-archive-table tr{
     border-radius: 5px;
@@ -75,14 +78,14 @@
                         <form action="{{ route('restore_patient', $patient->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
-                            <button type="submit">Restore</button>
+                            <button type="submit" class="btn btn-warning">Restore</button>
                         </form>
 
                         <!-- Permanent delete button -->
                         <form action="{{ route('permanent_delete_patient', $patient->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to permanently delete this record?')">Delete Permanently</button>
+                            <button type="submit" onclick="return confirm('Are you sure you want to permanently delete this record?')" class="btn btn-danger">Delete Permanently</button>
 
                         </form>
                     </td>

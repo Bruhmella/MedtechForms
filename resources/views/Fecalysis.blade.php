@@ -77,47 +77,48 @@
 
             <div class="form-group">
                 <label for="wbc">WBC:</label>
-                <input type="number" name="wbc" class="form-control" step="0.01" min="0" placeholder="Enter WBC count">
+                <input type="number" name="wbc" class="form-control" step="any" min="0" placeholder="Enter WBC count" pattern="^\d+(\.\d+)?$">
             </div>
 
             <div class="form-group">
                 <label for="rbc">RBC:</label>
-                <input type="number" name="rbc" class="form-control" step="0.01" min="0" placeholder="Enter RBC count">
+                <input type="number" name="rbc" class="form-control" step="any" min="0" placeholder="Enter RBC count" pattern="^\d+(\.\d+)?$">
             </div>
 
-            <h2>Medical Technologist:</h2>
+         <h2>Medical Technologist:</h2>
 
-            @if($medtech)
-                <input type="text" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                <input type="text" value="{{ $medtech->LicNo ?? '' }}" />
-            @elseif($pathologist)
-                <select id="medtechDropdown">
-                    @foreach($medtechs as $medtech)
-                        <option value="{{ $medtech->id }}" data-licno="{{ $medtech->LicNo }}">
-                            {{ $medtech->fname . ' ' . $medtech->lname }}
-                        </option>
-                    @endforeach
-                </select>
+@if($medtech)
+    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+    <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+@elseif($pathologist)
+    <select id="medtechDropdown" name="medtech">
+        <option value="">Select a MedTech</option> <!-- Default option -->
+        @foreach($medtechs as $medtech)
+            <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
+                {{ $medtech->fname . ' ' . $medtech->lname }}
+            </option>
+        @endforeach
+    </select>
+    <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
+@endif
 
-                <input type="text" id="medtechLicNo" value="" readonly />
-            @endif
+<h2>Pathologist:</h2>
 
-            <h3>Pathologist:</h3>
+@if($pathologist)
+    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+@elseif($medtech)
+    <select id="pathologistDropdown" name="pathologist">
+        <option value="">Select a Pathologist</option> <!-- Default option -->
+        @foreach($pathologists as $pathologist)
+            <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
+                {{ $pathologist->fname . ' ' . $pathologist->lname }}
+            </option>
+        @endforeach
+    </select>
+    <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
+@endif
 
-            @if($pathologist)
-                <input type="text" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                <input type="text" value="{{ $pathologist->LicNo ?? '' }}" />
-            @elseif($medtech)
-                <select id="pathologistDropdown">
-                    @foreach($pathologists as $pathologist)
-                        <option value="{{ $pathologist->id }}" data-licno="{{ $pathologist->LicNo }}">
-                            {{ $pathologist->fname . ' ' . $pathologist->lname }}
-                        </option>
-                    @endforeach
-                </select>
-
-                <input type="text" id="pathologistLicNo" value="" readonly />
-            @endif
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -148,7 +149,14 @@
             document.getElementById('sex').value = sex;
             document.getElementById('date').value = new Date().toISOString().split('T')[0]; // Autofill today's date
         }
-
+    document.getElementById('pathologistDropdown')?.addEventListener('change', function() {
+        let selectedOption = this.options[this.selectedIndex];
+        document.getElementById('pathologistLicNo').value = selectedOption.dataset.licno || '';
+    });
+        document.getElementById('medtechDropdown')?.addEventListener('change', function() {
+        let selectedOption = this.options[this.selectedIndex];
+        document.getElementById('medtechLicNo').value = selectedOption.dataset.licno || '';
+    });
         // JavaScript to update the LicNo textbox based on dropdown selection
         document.getElementById('pathologistDropdown')?.addEventListener('change', function() {
             var selectedOption = this.options[this.selectedIndex];

@@ -19,7 +19,7 @@ class FecalysisController extends Controller
         }
 
         $patients = BasicPatData::all();
-        $latestRecord = Fecalysis::latest()->first();
+        $latestRecord = Fecalysis::orderBy('OR', 'desc')->first();
         $orNumber = $this->generateOrNumber($latestRecord);
 
         $pathologists = Account::where('Pos', 'P')->get();
@@ -40,61 +40,79 @@ class FecalysisController extends Controller
     }
 
     public function store(Request $request)
-{
-    // Validate the data from the form
-    $request->validate([
-        'patient_id' => 'required|exists:patients,id', // Ensure patient exists
-        'color' => 'nullable|string',
-        'consistency' => 'nullable|string',
-        'occult_blood' => 'nullable|string',
-        'sudan_stain' => 'nullable|string',
-        'bacteria' => 'nullable|string',
-        'yeast' => 'nullable|string',
-        'fat_globules' => 'nullable|string',
-        'others' => 'nullable|string',
-        'wbc' => 'nullable|numeric',
-        'rbc' => 'nullable|numeric',
-        'medtech' => 'nullable|string',
-        'pathologist' => 'nullable|string',
-        // Other validation rules
-    ]);
+    {
+        // Validate input
+        $request->validate([
+            'patient_id' => 'required|exists:patients,id',
+            'color' => 'nullable|string',
+            'consistency' => 'nullable|string',
+            'occult_blood' => 'nullable|string',
+            'sudan_stain' => 'nullable|string',
+            'bacteria' => 'nullable|string',
+            'yeast' => 'nullable|string',
+            'fat_globules' => 'nullable|string',
+            'others' => 'nullable|string',
+            'wbc' => 'nullable|numeric',
+            'rbc' => 'nullable|numeric',
+            'requested_by' => 'nullable|string',
+            'medtech' => 'nullable|string',
+            'medtech_licno' => 'nullable|string',
+            'pathologist' => 'nullable|string',
+            'pathologist_licno' => 'nullable|string',
+        ]);
 
-    // Store fecalysis data
-    Fecalysis::create([
-        'OR' => $request->or,
-        'patient_id' => $request->patient_id, // Ensure this is the patient ID being passed
-        'color' => $request->color,
-        'consistency' => $request->consistency,
-        'occult_blood' => $request->occult_blood,
-        'sudan_stain' => $request->sudan_stain,
-        'bacteria' => $request->bacteria,
-        'yeast' => $request->yeast,
-        'fat_globules' => $request->fat_globules,
-        'others' => $request->others,
-        'wbc' => $request->wbc,
-        'rbc' => $request->rbc,
-        'medtech' => $request->medtech,
-        'pathologist' => $request->pathologist,
-        'Poc' => $request->ac, // If this is the account number
-        'Pname' => $request->Pname, // Assuming patient name is passed as Pname
-        'Page' => $request->Page, // Assuming patient age
-        'Psex' => $request->Psex, // Assuming patient sex
-        'date' => $request->date, // Assuming date is passed
-        'or' => $request->or, // OR number
-        'requested_by' => $request->requested_by, // Requester's name
-    ]);
+        // Debugging: Log all request data
+        \Log::info('Request Data: ', $request->all());
 
-    return redirect()->route('Fecalysis.create')->with('success', 'Data saved successfully.');
-}
+        // Fetch selected MedTech and Pathologist
+        $medtech = $request->medtech ?? 'Not Assigned';
+        $medtechLicNo = $request->medtech_licno ?? '';
 
+        $pathologist = $request->pathologist ?? 'Not Assigned';
+        $pathologistLicNo = $request->pathologist_licno ?? '';
+
+        \Log::info('MedTech: ' . $medtech . ' | LicNo: ' . $medtechLicNo);
+        \Log::info('Pathologist: ' . $pathologist . ' | LicNo: ' . $pathologistLicNo);
+
+        // Fetch patient details
+        $patient = BasicPatData::findOrFail($request->patient_id);
+
+        // Store data in fecalysis table
+        Fecalysis::create([
+            'OR' => $request->or,
+            'Pname' => $patient->Pname,
+            'Page' => $patient->Page,
+            'Psex' => $patient->Psex,
+            'Poc' => $patient->Poc,
+            'color' => $request->color,
+            'consistency' => $request->consistency,
+            'occult_blood' => $request->occult_blood,
+            'sudan_stain' => $request->sudan_stain,
+            'bacteria' => $request->bacteria,
+            'yeast' => $request->yeast,
+            'fat_globules' => $request->fat_globules,
+            'others' => $request->others,
+            'wbc' => $request->wbc,
+            'rbc' => $request->rbc,
+            'date' => $request->date,
+            'requested_by' => $request->requested_by,
+            'medtech' => $medtech,
+            'medtech_licno' => $medtechLicNo,
+            'pathologist' => $pathologist,
+            'pathologist_licno' => $pathologistLicNo,
+        ]);
+
+        return redirect()->route('Fecalysis.create')->with('success', 'Data saved successfully.');
+    }
 
     private function generateOrNumber($latestRecord)
     {
-        $datePart = now()->format('mdY');
+        $datePart = now()->format('mdY'); // MMDDYYYY format
         $lastNumber = 1;
 
-        if ($latestRecord && str_starts_with($latestRecord->Poc, "FC$datePart")) {
-            $lastNumber = (int) substr($latestRecord->Poc, -4) + 1;
+        if ($latestRecord && isset($latestRecord->OR) && preg_match("/^FC$datePart(\d{4})$/", $latestRecord->OR, $matches)) {
+            // Extract last 4-digit number and increment
+            $lastNumber = (int) $matches[1] + 1;
         }
 
         return "FC" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);

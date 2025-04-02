@@ -133,4 +133,4 @@ changelog 3-31-25
 	-MedTech name (not license number) not uploading on database upon selecting from dropdown (when pathologist is logged in)
 	-pathologist name (not license number) not uploading on database upon selection from dropdown (when MedTech is logged in)
 	-license numbers unintentionally being uploaded in database
-	-
+-finalized fecalysis backend, frontend developer can now design this page as well

@@ -61,8 +61,16 @@
         <div class="container">
         <a href="{{ route('Fecalysis.create')}}"><BUTTON>Fecalysis</BUTTON></a>
     </div>
-
 </div>
+
+    <div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('hematology.create')}}"><BUTTON>Hematology</BUTTON></a>
+    </div>
+</div>
+
+
 
 
 

@@ -134,3 +134,21 @@ changelog 3-31-25
 	-pathologist name (not license number) not uploading on database upon selection from dropdown (when MedTech is logged in)
 	-license numbers unintentionally being uploaded in database
 -finalized fecalysis backend, frontend developer can now design this page as well
+
+changelog 4-2-25
+-HAPPY APRIL FOOLS (added a secret button where clicking can delete all entries in the database)
+-established routes from home -> hematology, and hematology -> home
+-established basic functionality for hematology
+-established whole functionality for hematology (done during the last minute)
+-finalized hematology backend, front end can now design this page as well
+
+changelog 4-3-25
+-fixed database corruption, made easy by providing backup file beforehand
+-established route from home->chemistry, and chemistry -> home
+-established whole functionality for chemistry page
+-finalized chemistry backend funcionality, front end can now design this page
+
+changelog 4-4-25
+-established route from home -> rbs, and rbs -> home
+-establishes & finalized RBS back-end functionality. Front-end coder now given green light.
+

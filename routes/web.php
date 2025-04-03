@@ -8,6 +8,8 @@ use App\Http\Controllers\BasicPatController;
 use App\Http\Controllers\UrinalysisController;
 use App\Http\Controllers\FecalysisController;
 use App\Http\Controllers\HematologyController;
+use App\Http\Controllers\ChemistryController;
+use App\Http\Controllers\RbsController;
 
 
 // Show login form (GET request to / or /login)
@@ -84,3 +86,9 @@ Route::post('/fecalysis/store', [FecalysisController::class, 'store'])->name('fe
 
 Route::get('/Hematology/create', [HematologyController::class, 'create'])->name('hematology.create');
 Route::post('/Hematology/store', [HematologyController::class, 'store'])->name('hematology.store');
+
+Route::get('/Chemistry/create', [ChemistryController::class, 'create'])->name('chemistry.create');
+Route::post('/Chsmistry/store', [ChemistryController::class, 'store'])->name('chemistry.store');
+
+Route::get('/rbs/create', [RbsController::class, 'create'])->name('rbs.create');
+Route::post('/rbs/store', [RbsController::class, 'store'])->name('rbs.store');

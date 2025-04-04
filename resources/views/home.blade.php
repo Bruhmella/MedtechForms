@@ -3,6 +3,7 @@
 <head>
     <title>Welcome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
     h1, h2{
@@ -81,6 +82,48 @@
         <img sec='picture'>
         <div class="container">
         <a href="{{ route('rbs.create')}}"><BUTTON>RBS</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('hba1c.create')}}"><BUTTON>HbA1c</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('thyroid.create')}}"><BUTTON>Thyroid</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('hbsag.create')}}"><BUTTON>HBSAG</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('tropi.create')}}"><BUTTON>TROP I</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('tropii.create')}}"><BUTTON>TROP II</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('styphi.create')}}"><BUTTON>S. Typhi</BUTTON></a>
     </div>
 </div>
 

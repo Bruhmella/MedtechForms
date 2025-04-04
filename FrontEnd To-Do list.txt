@@ -1,0 +1,16 @@
+1. Select a color palette and stick to it
+2. pictures for home page
+3. align buttons
+4. resize polaroid class for smaller selection(?)
+5. design forms
+6. Add functionality for sidebar where clicking away closes it***
+7. improve 'manage patient data'
+8. align 'edit' & 'archive' buttons in manage patient data
+9. resize search bar in manage patient data, and improve design in the buttons
+10. Design 'edit patient data', & resize some text boxes
+11. design 'add patient data'
+12. fix design in 'view archived patients'
+13. fix bgcolor for ease of use in 'manage patient data' data table***
+14. change color in sorting in 'manage patient data'***
+15. fix urinalyses and start other forms design
+16. MISC spreadsheet is SEPARATE as per IJ

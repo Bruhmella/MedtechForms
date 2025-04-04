@@ -149,6 +149,41 @@ changelog 4-3-25
 -finalized chemistry backend funcionality, front end can now design this page
 
 changelog 4-4-25
--established route from home -> rbs, and rbs -> home
--establishes & finalized RBS back-end functionality. Front-end coder now given green light.
+BACK END PROGRESS REPORT:
+	Page last worked on: S.Typhi
+	System Progress: 11/18 forms completed
+	❌ System Testing
+Form report: HbA1c
+	✅ established routes (home -> form page, and vice versa)
+	✅ Inputs are being uploaded to its appropriate database
+	✅ Text Boxes are assigned only their appropriate Inputs
+	✅ Green light for Front-end Developer
+Form report: Thyroid
+	✅ established routes (home -> form page, and vice versa)
+	✅ Inputs are being uploaded to its appropriate database
+	✅ Text Boxes are assigned only their appropriate Inputs
+	✅ Green light for Front-end Developer
+Form report: HBSAG
+	✅ established routes (home -> form page, and vice versa)
+	✅ Inputs are being uploaded to its appropriate database
+	✅ Text Boxes are assigned only their appropriate Inputs
+	✅ Green light for Front-end Developer
+Form report: TROP I	 1 & 2
+	✅ established routes (home -> form page, and vice versa)
+	✅ Inputs are being uploaded to its appropriate database
+	✅ Text Boxes are assigned only their appropriate Inputs
+	✅ Green light for Front-end Developer
+Form report: S. Typhi
+	✅ established routes (home -> form page, and vice versa)
+	✅ Inputs are being uploaded to its appropriate database
+	✅ Text Boxes are assigned only their appropriate Inputs
+	✅ Green light for Front-end Developer
+Other changes:
+	✅ Added a txt file for to-do list
+	❌ Added documentation when anyone wants to test system as WIP state
+	✅ fixed an issue where hba1c data was being uploaded to thyroid database (i have no idea how this happened)
+Current roadmap:
+	-18/18 forms completed by April 14
+	-if first roadmap is met, will polish/add few Quality of Life functions
+
 

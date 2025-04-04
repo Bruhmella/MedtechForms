@@ -10,6 +10,14 @@ use App\Http\Controllers\FecalysisController;
 use App\Http\Controllers\HematologyController;
 use App\Http\Controllers\ChemistryController;
 use App\Http\Controllers\RbsController;
+use App\Http\Controllers\Hba1cController;
+use App\Http\Controllers\ThyroidController;
+use App\Http\Controllers\HbsagController;
+use App\Http\Controllers\TropiController;
+use App\Http\Controllers\TropiiController;
+use App\Http\Controllers\StyphiController;
+
+
 
 
 // Show login form (GET request to / or /login)
@@ -92,3 +100,21 @@ Route::post('/Chsmistry/store', [ChemistryController::class, 'store'])->name('ch
 
 Route::get('/rbs/create', [RbsController::class, 'create'])->name('rbs.create');
 Route::post('/rbs/store', [RbsController::class, 'store'])->name('rbs.store');
+
+Route::get('/hba1c/create', [Hba1cController::class, 'create'])->name('hba1c.create');
+Route::post('/hba1c/store', [Hba1cController::class, 'store'])->name('hba1c.store');
+
+Route::get('/thyroid/create', [ThyroidController::class, 'create'])->name('thyroid.create');
+Route::post('/thyroid/store', [ThyroidController::class, 'store'])->name('thyroid.store');
+
+Route::get('/hbsag/create', [HbsagController::class, 'create'])->name('hbsag.create');
+Route::post('/hbsag/store', [HbsagController::class, 'store'])->name('hbsag.store');
+
+Route::get('/tropi/create', [TropiController::class, 'create'])->name('tropi.create');
+Route::post('/tropi/store', [TropiController::class, 'store'])->name('tropi.store');
+
+Route::get('/tropii/create', [TropiiController::class, 'create'])->name('tropii.create');
+Route::post('/tropii/store', [TropiiController::class, 'store'])->name('tropii.store');
+
+Route::get('/styphi/create', [StyphiController::class, 'create'])->name('styphi.create');
+Route::post('/styphi/store', [StyphiController::class, 'store'])->name('styphi.store');

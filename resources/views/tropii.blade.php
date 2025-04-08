@@ -2,11 +2,89 @@
 <html>
 <head>
     <title>TROP II form</title>
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        h1, h2 {
+            font-family: Cambria;
+        }
+        a {
+            font-family: Calibri;
+        }
+        .topcontainer {
+        display: grid;
+        grid-template-areas:
+            "toptext image";
+        grid-template-columns: 4fr 1fr;
+        }
+        .topcontainer > div.toptext {
+        grid-area: toptext;
+        text-align: left;
+        }
+        .topcontainer > div.image {
+        grid-area: image;
+        }
+        .container {
+        width: 1200px; /* Adjust as needed */
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color:#ffffff;
+        }
+        .form-row {
+        display: flex;
+        margin-bottom: 5px;
+        }
+        .form-label {
+        width: 200px; /* Adjust label width */
+        text-align: right;
+        padding-right: 10px;
+        }
+        .form-input {
+        width: 250px; /* Adjust input width */
+        }
+        /* Style for the table-like structure */
+        .table-like {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 10px; /* Spacing between items */
+        }
+
+        .table-like-section {
+        border: 1px solid #ccc;
+        padding: 10px;
+        }
+
+        .table-like-subsection {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+        .form-group{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        }
+    </style>
 </head>
 <body>
+<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+    </div>
+    <div class="w3-teal">
+        <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+    </div>
  <h2>TROP II Form</h2>
-        <a href="{{ route('home') }}"><button>Home</button></a>
-
+    <div class="container">
         <form action="{{ route('tropii.store') }}" method="POST">
             @csrf 
             
@@ -85,10 +163,11 @@
                 </select>
                 <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
             @endif
-
-
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+    </div>
+    <div class="center">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');
@@ -140,8 +219,13 @@
                 }
             }
         });
-    </script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
 
-            
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+    </script>   
 </body>
 </html>

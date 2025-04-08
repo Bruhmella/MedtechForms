@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HbA1c form</title>
+    <title>Anti-Hav form</title>
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
@@ -76,16 +76,16 @@
     </style>
 </head>
 <body>
-    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+<div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
         <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
         <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
     </div>
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h2 style="text-align:center;">HbA1c Form</h2>
+<h2>Anti-Hav Form</h2>
     <div class="container">
-        <form action="{{ route('hba1c.store') }}" method="POST">
+        <form action="{{ route('hav.store') }}" method="POST">
             @csrf 
             
             <label for="patientSelect">Name:</label>
@@ -112,10 +112,24 @@
                 <input type="text" name="Reqby" class="form-control">
             </div>
 
+            <div class="form-group">
+                <label for="kit1">Kit/Reagent Used:</label>
+                <input type="text" name="kit1" class="form-control" placeholder="for IGM Test">
+                
+            </div>
+
+            
 
             <div class="form-group">
-                <label for="result">Result:</label>
-                <input type="number" name="result" step="0.01" class="form-control">
+                <label for="lotno">Lot No:</label>
+                <input type="text" name="lotno1" class="form-control" placeholder="for IGM Test">
+                
+            </div>
+
+            <div class="form-group">
+                <label for="result1">Result:</label>
+                <input type="text" name="result1" class="form-control" placeholder="IgG">
+                
             </div>
 
              <h2>Medical Technologist:</h2>
@@ -149,13 +163,14 @@
                 </select>
                 <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
             @endif
-
-        </form>
+        
     </div>
     <div class="center">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </form>
 <script>
+
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');
             let selectedOption = patientSelect.options[patientSelect.selectedIndex];
@@ -213,6 +228,6 @@
     function w3_close() {
         document.getElementById("mySidebar").style.display = "none";
     }
-    </script>
+    </script>   
 </body>
 </html>

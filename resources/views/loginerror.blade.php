@@ -10,6 +10,7 @@
 	background: url({{ asset('img/19373.jpg') }});
 	background-repeat: no-repeat;
 	background-size: 100% 1000px;
+	overscroll-behavior: none;
 	}
 	h1 {
 	font-family: Verdana;

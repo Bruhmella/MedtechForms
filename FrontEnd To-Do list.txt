@@ -14,3 +14,11 @@
 14. change color in sorting in 'manage patient data'***
 15. fix urinalyses and start other forms design
 16. MISC spreadsheet is SEPARATE as per IJ
+17. fix sidebar in "manage patient archives" - not clickable
+18. change "Select patient" on forms with "Name:"
+19. hematology text box are greyed out, and the others are not. pick one and stick to it allthroughout
+20. RBS, hb1ac, etc has missing parameters, check excel for reference (constant text, no need for back end functionality)
+21. fix s.typhi text boxes
+22. most forms has wrong address for FEU + still no logo. ask professors for help if you need.
+23. </form> tag is outside submit button on MOST forms. dengue form is fixed, but fix the rest
+24. redesign the form - still looks way off the ones they look in excel

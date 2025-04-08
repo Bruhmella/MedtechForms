@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <style>
     h1, h2{
     font-family: Cambria;
@@ -32,6 +31,8 @@
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="{{ route('logout')}}" class="w3-bar-item w3-button">Log Out</a>
+  <!---manage patient data---->
+  <a href="{{ route('PatDataManage')}}" class="w3-bar-item w3-button">Manage Patient Data</a>
 </div>
 <div class="w3-teal">
   <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
@@ -41,14 +42,7 @@
 <!---Welcome, [user] message--->
 <h2>Welcome, {{ $user->fname }}!</h2>
 
-<!---manage patient data---->
 <div class="grid">
-    <div class="polaroid">
-        <img src="{{ asset('img/patientdataworksheet.png') }}" style="width:100%">
-        <div class="container">
-        <a href="{{ route('PatDataManage')}}"><button>Manage Patient Data</button></a>
-        </div>
-    </div>
 <!---Urinalysis--->
     <div class="polaroid">
         <img src="{{ asset('img/Urianalysis img.png') }}" style="width:100%">
@@ -127,6 +121,33 @@
     </div>
 </div>
 
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('dengue.create')}}"><BUTTON>Dengue DUO & NS1 Ag</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('hav.create')}}"><BUTTON>Anti-Hav</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('tp.create')}}"><BUTTON>Anti-TP</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('misc1.create')}}"><BUTTON>placeholder</BUTTON></a>
+    </div>
+</div>
 
 
 

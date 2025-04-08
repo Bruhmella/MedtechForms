@@ -10,6 +10,7 @@
 	background: url({{ asset('img/19373.jpg') }});
 	background-repeat: no-repeat;
 	background-size: 100% 1000px;
+	overscroll-behavior: none;
 	}
 	h1 {
 	font-family: Verdana;
@@ -34,7 +35,7 @@
 	.border2 {
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
-	padding: 50px 0;
+	padding: 30px 0;
 	margin: auto;
 	width: 450px;
 	height: 400px;
@@ -63,7 +64,7 @@
 	<div class="border2">
 	<form method="POST" action="{{ route('login.submit') }}">
     	@csrf
-		<h1>LOGIN</h1>
+		<h1 style="font-size: 30px;">LOGIN</h1>
 		<p>Email: </p><input type="email" name="email" placeholder="Enter Email here" style="min-width: 100px; height: 25px; padding: 10px 15px; border-radius: 5px; font-family: Verdana;">
 		<p>Password: </p> <input type="password" name="password" placeholder="Enter password here" style="min-width: 100px; height: 25px; padding: 10px 15px; border-radius: 5px; font-family: Verdana;">
 

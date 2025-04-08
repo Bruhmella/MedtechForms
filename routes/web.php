@@ -16,6 +16,11 @@ use App\Http\Controllers\HbsagController;
 use App\Http\Controllers\TropiController;
 use App\Http\Controllers\TropiiController;
 use App\Http\Controllers\StyphiController;
+use App\Http\Controllers\DengueController;
+use App\Http\Controllers\HavController;
+use App\Http\Controllers\TpController;
+use App\Http\Controllers\Misc1Controller;
+
 
 
 
@@ -118,3 +123,15 @@ Route::post('/tropii/store', [TropiiController::class, 'store'])->name('tropii.s
 
 Route::get('/styphi/create', [StyphiController::class, 'create'])->name('styphi.create');
 Route::post('/styphi/store', [StyphiController::class, 'store'])->name('styphi.store');
+
+Route::get('/dengue/create', [DengueController::class, 'create'])->name('dengue.create');
+Route::post('/dengue/store', [DengueController::class, 'store'])->name('dengue.store');
+
+Route::get('/hav/create', [HavController::class, 'create'])->name('hav.create');
+Route::post('/hav/store', [HavController::class, 'store'])->name('hav.store');
+
+Route::get('/tp/create', [TpController::class, 'create'])->name('tp.create');
+Route::post('/tp/store', [TpController::class, 'store'])->name('tp.store');
+
+Route::get('/misc1/create', [Misc1Controller::class, 'create'])->name('misc1.create');
+Route::post('/misc1/store', [Misc1Controller::class, 'store'])->name('misc1.store');

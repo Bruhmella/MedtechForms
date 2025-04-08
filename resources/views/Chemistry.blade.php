@@ -3,14 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <title>Chemistry Form</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        h1, h2 {
+            font-family: Cambria;
+        }
+        a {
+            font-family: Calibri;
+        }
+        .topcontainer {
+        display: grid;
+        grid-template-areas:
+            "toptext image";
+        grid-template-columns: 4fr 1fr;
+        }
+        .topcontainer > div.toptext {
+        grid-area: toptext;
+        text-align: left;
+        }
+        .topcontainer > div.image {
+        grid-area: image;
+        }
+        .container {
+        width: 1200px; /* Adjust as needed */
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color:#ffffff;
+        }
+        .form-row {
+        display: flex;
+        margin-bottom: 5px;
+        }
+        .form-label {
+        width: 200px; /* Adjust label width */
+        text-align: right;
+        padding-right: 10px;
+        }
+        .form-input {
+        width: 250px; /* Adjust input width */
+        }
+        /* Style for the table-like structure */
+        .table-like {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 10px; /* Spacing between items */
+        }
+
+        .table-like-section {
+        border: 1px solid #ccc;
+        padding: 10px;
+        }
+
+        .table-like-subsection {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+        .form-group{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        }
+    </style>
 </head>
 <body>
+    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+    </div>
+    <div class="w3-teal">
+        <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+    </div>
+    <h2 style="text-align: center;">Chemistry Form</h2>
     <div class="container">
-        <h2>Chemistry Form</h2>
-        <a href="{{ route('home') }}"><button>Home</button></a>
-        
+        <div class="topcontainer">
+            <div class="toptext">
+            <h1>Far Eastern University - Cavite</h1>
+            <p>Kapt. Isko Street Brgy. 2 Lian, Batangas<br>
+            Contact No(s): 123-456-789 | 098-765-432<br>
+            Email Address: labcondiagnosticcenter@gmail.com</p>
+            </div>
+            <div class="image">
+            <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center;">
+            </div>
+        </div>
         <form action="{{ route('chemistry.store') }}" method="POST">
             @csrf 
             
@@ -26,188 +114,194 @@
                     </option>
                 @endforeach
             </select>
-
+            <div class="form-row">
             <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
             <p>Age: <input type="text" id="age" readonly name="Page"></p>
             <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+            </div>
+            <div class="form-row">
             <p>Date: <input type="date" id="date" name="date" readonly></p>
             <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-
+            <p>Requested by: <input type="text" id="Reqby" name="requested_by" placeholder="Enter requester name"></p>
+            </div>
             <!-- Chemistry Fields -->
-            <div class="form-group">
-                <label for="Reqby">Requested By:</label>
-                <input type="text" name="Reqby" class="form-control">
+            <div class="table-like">
+                <div class="table-like-section">
+                    <div class="form-group">
+                        <label for="glucose">Glucose:</label>
+                        <input type="number" name="glucose" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="urea_nitrogen">Urea Nitrogen:</label>
+                        <input type="number" name="urea_nitrogen" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="creatine">Creatine:</label>
+                        <input type="number" name="creatine" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="uric_acid">Uric Acid:</label>
+                        <input type="number" name="uric_acid" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total_cholesterol">Total Cholesterol:</label>
+                        <input type="number" name="total_cholesterol" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="triglyceride">Triglyceride:</label>
+                        <input type="number" name="triglyceride" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hdl">HDL:</label>
+                        <input type="number" name="hdl" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ldl">LDL:</label>
+                        <input type="number" name="ldl" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vldl">VLDL:</label>
+                        <input type="number" name="vldl" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ratio">Ratio:</label>
+                        <input type="number" name="ratio" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ast">SGOT (AST):</label>
+                        <input type="number" name="ast" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alt">SGOT (ALT):</label>
+                        <input type="number" name="alt" step="0.01" class="form-control">
+                    </div>
+                </div>
+                <div class="table-like-section">
+                    <div class="form-group">
+                        <label for="sodium">Sodium:</label>
+                        <input type="number" name="sodium" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="potassium">Potassium:</label>
+                        <input type="number" name="potassium" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chloride">Chloride:</label>
+                        <input type="number" name="chloride" step="0.01" class="form-control">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="ionized_calcium">Ionized calcium:</label>
+                        <input type="number" name="ionized_calcium" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="protein">Protein:</label>
+                        <input type="number" name="protein" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="albumin">Albumin:</label>
+                        <input type="number" name="albumin" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="globulin">Globulin:</label>
+                        <input type="number" name="globulin" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ag_ratio">A/G Ratio:</label>
+                        <input type="number" name="ag_ratio" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alkaline">Alkaline:</label>
+                        <input type="number" name="alkaline" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bilirubin">Bilirubin:</label>
+                        <input type="number" name="bilirubin" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b2">Indirect Bilirubin:</label>
+                        <input type="number" name="b2" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="b1">Direct Bilirubin:</label>
+                        <input type="number" name="b1" step="0.01" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="others">Others:</label>
+                        <input type="text" name="others" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remarks">Remarks:</label>
+                        <input type="text" name="remarks" class="form-control">
+                    </div>
+                </div>
             </div>
-
-
-            <div class="form-group">
-                <label for="glucose">Glucose:</label>
-                <input type="number" name="glucose" step="0.01" class="form-control">
+            <br>
+            <div class="table-like">
+                <div class="table-like-section">
+                    <h2>Medical Technologist:</h2>
+                    @if($medtech)
+                        <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                        <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                    @elseif($pathologist)
+                        <select id="medtechDropdown" name="medtech">
+                            <option value="">Select a MedTech</option> <!-- Default option -->
+                            @foreach($medtechs as $medtech)
+                                <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
+                                    {{ $medtech->fname . ' ' . $medtech->lname }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
+                    @endif
+                </div>
+                <div class="table-like-section">
+                    <h2>Pathologist:</h2>
+                    @if($pathologist)
+                        <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                        <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+                    @elseif($medtech)
+                        <select id="pathologistDropdown" name="pathologist">
+                            <option value="">Select a Pathologist</option> <!-- Default option -->
+                            @foreach($pathologists as $pathologist)
+                                <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
+                                    {{ $pathologist->fname . ' ' . $pathologist->lname }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
+                    @endif
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="urea_nitrogen">Urea Nitrogen:</label>
-                <input type="number" name="urea_nitrogen" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="creatine">Creatine:</label>
-                <input type="number" name="creatine" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="uric_acid">Uric Acid:</label>
-                <input type="number" name="uric_acid" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="total_cholesterol">Total Cholesterol:</label>
-                <input type="number" name="total_cholesterol" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="triglyceride">Triglyceride:</label>
-                <input type="number" name="triglyceride" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="hdl">HDL:</label>
-                <input type="number" name="hdl" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="ldl">LDL:</label>
-                <input type="number" name="ldl" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="vldl">VLDL:</label>
-                <input type="number" name="vldl" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="ratio">Ratio:</label>
-                <input type="number" name="ratio" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="ast">SGOT (AST):</label>
-                <input type="number" name="ast" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="alt">SGOT (ALT):</label>
-                <input type="number" name="alt" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="sodium">Sodium:</label>
-                <input type="number" name="sodium" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="potassium">Potassium:</label>
-                <input type="number" name="potassium" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="chloride">Chloride:</label>
-                <input type="number" name="chloride" step="0.01" class="form-control">
-            </div>
-
-
-			<div class="form-group">
-                <label for="ionized_calcium">Ionized calcium:</label>
-                <input type="number" name="ionized_calcium" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="protein">Protein:</label>
-                <input type="number" name="protein" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="albumin">Albumin:</label>
-                <input type="number" name="albumin" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="globulin">Globulin:</label>
-                <input type="number" name="globulin" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="ag_ratio">A/G Ratio:</label>
-                <input type="number" name="ag_ratio" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="alkaline">Alkaline:</label>
-                <input type="number" name="alkaline" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="bilirubin">Bilirubin:</label>
-                <input type="number" name="bilirubin" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="b2">Indirect Bilirubin:</label>
-                <input type="number" name="b2" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="b1">Direct Bilirubin:</label>
-                <input type="number" name="b1" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="others">Others:</label>
-                <input type="text" name="others" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="remarks">Remarks:</label>
-                <input type="text" name="remarks" class="form-control">
-            </div>
-
-              <h2>Medical Technologist:</h2>
-            @if($medtech)
-                <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
-            @elseif($pathologist)
-                <select id="medtechDropdown" name="medtech">
-                    <option value="">Select a MedTech</option> <!-- Default option -->
-                    @foreach($medtechs as $medtech)
-                        <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
-                            {{ $medtech->fname . ' ' . $medtech->lname }}
-                        </option>
-                    @endforeach
-                </select>
-                <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
-            @endif
-
-            <h2>Pathologist:</h2>
-            @if($pathologist)
-                <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
-            @elseif($medtech)
-                <select id="pathologistDropdown" name="pathologist">
-                    <option value="">Select a Pathologist</option> <!-- Default option -->
-                    @foreach($pathologists as $pathologist)
-                        <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
-                            {{ $pathologist->fname . ' ' . $pathologist->lname }}
-                        </option>
-                    @endforeach
-                </select>
-                <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
-            @endif
-
-
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-
+    <div class="center">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
     <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');
@@ -259,6 +353,13 @@
                 }
             }
         });
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
     </script>
 </body>
 </html>

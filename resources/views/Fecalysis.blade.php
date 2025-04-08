@@ -3,17 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <title>Fecalysis Form</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        h1, h2 {
+            font-family: Cambria;
+        }
+        a {
+            font-family: Calibri;
+        }
+        .topcontainer {
+        display: grid;
+        grid-template-areas:
+            "toptext image";
+        grid-template-columns: 4fr 1fr;
+        }
+        .topcontainer > div.toptext {
+        grid-area: toptext;
+        text-align: left;
+        }
+        .topcontainer > div.image {
+        grid-area: image;
+        }
+        .container {
+        width: 1200px; /* Adjust as needed */
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color:#ffffff;
+        }
+        .form-row {
+        display: flex;
+        margin-bottom: 5px;
+        }
+        .form-label {
+        width: 200px; /* Adjust label width */
+        text-align: right;
+        padding-right: 10px;
+        }
+        .form-input {
+        width: 250px; /* Adjust input width */
+        }
+        /* Style for the table-like structure */
+        .table-like {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        gap: 10px; /* Spacing between items */
+        }
+
+        .table-like-section {
+        border: 1px solid #ccc;
+        padding: 10px;
+        }
+
+        .table-like-subsection {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+
+        .table-like-label {
+        text-align: right;
+        padding-right: 5px;
+        }
+        .table-like2 {
+        display: grid;
+        grid-template-columns: repeat(1fr);
+        gap: 10px;
+        }
+        .table-like2-section {
+        border: 1px solid #ccc;
+        padding: 10px;
+        }
+        .form-group{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+        .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        }
+    </style>
 </head>
 <body>
+    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+        <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+    </div>
+    <div class="w3-teal">
+        <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+    </div>
+    <h2 style="text-align:center;">Fecalysis Form</h2>
     <div class="container">
-        <h2>Fecalysis Form</h2>
-        <a href="{{ route('home') }}"><button>Home</button></a>
-        
+        <div class="topcontainer">
+            <div class="toptext">
+            <h1>Far Eastern University - Cavite</h1>
+            <p>Kapt. Isko Street Brgy. 2 Lian, Batangas<br>
+            Contact No(s): 123-456-789 | 098-765-432<br>
+            Email Address: labcondiagnosticcenter@gmail.com</p>
+            </div>
+            <div class="image">
+            <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center;">
+            </div>
+        </div>
         <form action="{{ route('fecalysis.store') }}" method="POST">
             @csrf <!-- CSRF Token -->
-            
+
             <label for="patientSelect">Name:</label>
             <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
                 <option value="">-- Select a Patient --</option>
@@ -26,104 +128,119 @@
                     </option>
                 @endforeach
             </select>
-
-            <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" oninput="fillByAC()"></p>
-            <p>Age: <input type="text" id="age" readonly></p>
-            <p>Sex: <input type="text" id="sex" readonly></p>
-            <p>Date: <input type="date" id="date" name="date" readonly></p>
-            <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
-            <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
-
+            <div class="form-row">
+                <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" oninput="fillByAC()"></p>
+                <p>Age: <input type="text" id="age" readonly></p>
+                <p>Sex: <input type="text" id="sex" readonly></p>
+            </div>
+            <div class="form-row">
+                <p>Date: <input type="date" id="date" name="date" readonly></p>
+                <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
+                <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
+            </div>
             <!-- Fecalysis Fields -->
-            <div class="form-group">
-                <label for="color">Color:</label>
-                <input type="text" name="color" class="form-control">
+            <div class="table-like2">
+                <div class="table-like2-section">
+                <h2>Consistency</h2>
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <input type="text" name="color" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consistency">Consistency:</label>
+                        <input type="text" name="consistency" class="form-control">
+                    </div>
+                </div>
+                <div class="table-like2-section">
+                <h2>Miscellaneous</h2>
+                    <div class="form-group">
+                        <label for="occult_blood">Occult Blood:</label>
+                        <input type="text" name="occult_blood" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sudan_stain">Sudan Stain:</label>
+                        <input type="text" name="sudan_stain" class="form-control">
+                    </div>
+                </div>
+                <div class="table-like2-section">
+                <h2>Microscopic Findings</h2>
+                    <div class="form-group">
+                        <label for="bacteria">Bacteria:</label>
+                        <input type="text" name="bacteria" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="yeast">Yeast:</label>
+                        <input type="text" name="yeast" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fat_globules">Fat Globules:</label>
+                        <input type="text" name="fat_globules" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="others">Others:</label>
+                        <input type="text" name="others" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wbc">WBC:</label>
+                        <input type="number" name="wbc" class="form-control" step="any" min="0" placeholder="Enter WBC count" pattern="^\d+(\.\d+)?$">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rbc">RBC:</label>
+                        <input type="number" name="rbc" class="form-control" step="any" min="0" placeholder="Enter RBC count" pattern="^\d+(\.\d+)?$">
+                    </div>
+                </div>
             </div>
+        <br>
+        <div class="table-like">
+            <div class="table-like-section">
+            <h2>Medical Technologist:</h2>
 
-            <div class="form-group">
-                <label for="consistency">Consistency:</label>
-                <input type="text" name="consistency" class="form-control">
+            @if($medtech)
+                <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+            @elseif($pathologist)
+                <select id="medtechDropdown" name="medtech">
+                    <option value="">Select a MedTech</option> <!-- Default option -->
+                    @foreach($medtechs as $medtech)
+                        <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
+                            {{ $medtech->fname . ' ' . $medtech->lname }}
+                        </option>
+                    @endforeach
+                </select>
+                <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
+            @endif
             </div>
+            <div class="table-like-section">
+            <h2>Pathologist:</h2>
 
-            <div class="form-group">
-                <label for="occult_blood">Occult Blood:</label>
-                <input type="text" name="occult_blood" class="form-control">
+            @if($pathologist)
+                <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+            @elseif($medtech)
+                <select id="pathologistDropdown" name="pathologist">
+                    <option value="">Select a Pathologist</option> <!-- Default option -->
+                    @foreach($pathologists as $pathologist)
+                        <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
+                            {{ $pathologist->fname . ' ' . $pathologist->lname }}
+                        </option>
+                    @endforeach
+                </select>
+                <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
+            @endif
             </div>
-
-            <div class="form-group">
-                <label for="sudan_stain">Sudan Stain:</label>
-                <input type="text" name="sudan_stain" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="bacteria">Bacteria:</label>
-                <input type="text" name="bacteria" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="yeast">Yeast:</label>
-                <input type="text" name="yeast" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="fat_globules">Fat Globules:</label>
-                <input type="text" name="fat_globules" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="others">Others:</label>
-                <input type="text" name="others" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="wbc">WBC:</label>
-                <input type="number" name="wbc" class="form-control" step="any" min="0" placeholder="Enter WBC count" pattern="^\d+(\.\d+)?$">
-            </div>
-
-            <div class="form-group">
-                <label for="rbc">RBC:</label>
-                <input type="number" name="rbc" class="form-control" step="any" min="0" placeholder="Enter RBC count" pattern="^\d+(\.\d+)?$">
-            </div>
-
-         <h2>Medical Technologist:</h2>
-
-@if($medtech)
-    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-    <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
-@elseif($pathologist)
-    <select id="medtechDropdown" name="medtech">
-        <option value="">Select a MedTech</option> <!-- Default option -->
-        @foreach($medtechs as $medtech)
-            <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
-                {{ $medtech->fname . ' ' . $medtech->lname }}
-            </option>
-        @endforeach
-    </select>
-    <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
-@endif
-
-<h2>Pathologist:</h2>
-
-@if($pathologist)
-    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
-@elseif($medtech)
-    <select id="pathologistDropdown" name="pathologist">
-        <option value="">Select a Pathologist</option> <!-- Default option -->
-        @foreach($pathologists as $pathologist)
-            <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
-                {{ $pathologist->fname . ' ' . $pathologist->lname }}
-            </option>
-        @endforeach
-    </select>
-    <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
-@endif
-
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            </form>
+        </div>
     </div>
-
+    <div class="center">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
     <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');
@@ -198,6 +315,13 @@
                 }
             }
         });
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
     </script>
 </body>
 </html>

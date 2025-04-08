@@ -3,13 +3,39 @@
 <head>
     <title>Add Patient Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
+    body {
+    overscroll-behavior: none;
+    }
     h1, h2{
     font-family: Cambria;
     }
     a {
     font-family: Calibri;
+    }
+    .border {
+    width: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    }
+    .outerborder {
+	width: 600px;
+  	height: auto;
+	margin: auto;
+ 	display: flex;
+	align-items: center;
+	justify-content: center;
+	}
+    .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
     }
     </style>
 </head>
@@ -21,29 +47,36 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-<h1>Add Patient Data</h1>
+<h1 style="text-align: center;">Add Patient Data</h1>
+<a href="{{ route('PatDataManage')}}"><button>Back</button></a>
+<div class="outerborder">
+    <div class="border">
+        <form action="{{ route('store_patient') }}" method="POST">
+            @csrf
 
-<form action="{{ route('store_patient') }}" method="POST">
-    @csrf
+            <p>Full Name: </p>
+            <input type="text" name="Pname" placeholder="Enter name here" required>
 
-    <p>Full Name: </p>
-    <input type="text" name="Pname" placeholder="Enter name here" required>
+            <p>Age: </p>
+            <input type="number" name="Page" placeholder="Enter age here" required>
 
-    <p>Age: </p>
-    <input type="number" name="Page" placeholder="Enter age here" required>
-
-    <p>Sex: </p>
-<select name="Psex" required>
-    <option value="">Select</option>
-    <option value="M">Male (M)</option>
-    <option value="F">Female (F)</option>
-</select>
+            <p>Sex: </p>
+        <select name="Psex" required>
+            <option value="">Select</option>
+            <option value="M">Male (M)</option>
+            <option value="F">Female (F)</option>
+        </select>
 
 
-    <br><br>
-    <button type="submit">Submit</button>
-</form>
-    <a href="{{ route('home')}}"><button>Back</button></a>
+            <br>
+            <br>
+            <div class="center">
+            <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+    
 <script>
 function w3_open() {
   document.getElementById("mySidebar").style.display = "block";

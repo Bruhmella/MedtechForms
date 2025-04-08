@@ -3,7 +3,7 @@
 <head>
     <title>Patient Archives</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
     h1, h2{
@@ -23,7 +23,7 @@
     margin-left: auto;
     margin-right: auto;
     }
-    .patient-archive-table tr{
+    .patient-archive-table thead tr{
     border-radius: 5px;
     background-color: teal;
     color: #ffffff;
@@ -44,6 +44,12 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     }
+    .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    }
     </style>
 </head>
 <body>
@@ -54,7 +60,7 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h1>Archived Patient Data</h1>
+    <h1 style="text-align:center;">Archived Patient Data</h1>
 
     <table class="patient-archive-table">
         <thead>
@@ -95,6 +101,8 @@
     </table>
 
     <br>
-    <a href="{{ route('PatDataManage') }}"><button>Back</button></a>
+    <div class="center">
+    <a href="{{ route('PatDataManage') }}" style="text-align:center; align-items: center;"><button class="btn btn-primary">Back</button></a>
+    </div>
 </body>
 </html>

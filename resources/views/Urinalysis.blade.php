@@ -3,7 +3,7 @@
 <head>
     <title>Urinalysis Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
         h1, h2 {
@@ -116,9 +116,9 @@
 <div class="container">
     <div class="topcontainer">
         <div class="toptext">
-        <h1>Labcon Diagnostic Center</h1>
+        <h1>Far Eastern University - Cavite</h1>
         <p>Kapt. Isko Street Brgy. 2 Lian, Batangas<br>
-        Contact No(s): 0927-801-01-54/0921-782-55-56<br>
+        Contact No(s): 123-456-789 | 098-765-432<br>
         Email Address: labcondiagnosticcenter@gmail.com</p>
         </div>
         <div class="image">
@@ -258,6 +258,7 @@
 
                 <input type="text" id="medtechLicNo" value="" readonly />
             @endif
+            <br>
         </div>
         <div class="table-like-section">
             <h2>Pathologist:</h2>
@@ -276,6 +277,7 @@
 
                 <input type="text" id="pathologistLicNo" value="" readonly />
             @endif
+            <p style="font-size: 10px; text-align: right; color: grey">*for academic purposes only</p>
         </div>
     </div>
 </div>

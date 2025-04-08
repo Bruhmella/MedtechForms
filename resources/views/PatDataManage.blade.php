@@ -3,9 +3,12 @@
 <head>
     <title>Manage Patient Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
+    body {
+    overscroll-behavior: none;
+    }
     h1, h2{
     font-family: Cambria;
     }
@@ -28,7 +31,7 @@
     height: 30px;
     width: auto;
     position: absolute;
-    right: 0px;
+    right: 10px;
     }
     .patient-table {
     border-collapse: collapse;
@@ -72,7 +75,7 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h1>Manage Patient Data</h1>
+    <h1 style="text-align:center">Manage Patient Data</h1>
     <div class="outerborder">
         <div class="border">
         <a href="{{ route('AddPatData') }}"><button type="button" class="btn btn-primary">Add Patient Data</button></a>
@@ -80,7 +83,7 @@
         </div>
         <div class="borderRight">
             <form action="{{ route('search.patient') }}" method="GET">
-                <input type="text" name="query" placeholder="Search by name, age, or account number" required>
+                <input type="text" style="min-width: 200px; height: 35.35px; padding: 10px 15px; border-radius: 5px; font-family: Verdana;" name="query" placeholder="Search by name, age, or account number" required>
                 <button type="submit" class="btn btn-primary">Search</button>
                 <a href="{{ route('PatDataManage')}}"><button type="button" class="btn btn-primary">Clear Search Criteria</button></a>
             </form>
@@ -119,12 +122,12 @@
                     <td>{{ $patient->Poc }}</td>
                     <td>
                         <a href="{{ route('edit_patient', ['id' => $patient->id]) }}">
-                            <button  type="button" class="btn btn-warning">Edit</button>
+                            <button  type="button" class="btn btn-warning" style="font-family: Calibri;">Edit</button>
                         </a>
                         <form action="{{ route('archive_patient', ['id' => $patient->id]) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to archive this patient?')"  class="btn btn-danger">Archive</button>
+                            <button type="submit" onclick="return confirm('Are you sure you want to archive this patient?')"  class="btn btn-danger" style="font-family: Calibri;">Archive</button>
                         </form>
                     </td>
                 </tr>

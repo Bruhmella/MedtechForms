@@ -21,6 +21,7 @@ use App\Http\Controllers\HavController;
 use App\Http\Controllers\TpController;
 use App\Http\Controllers\Misc1Controller;
 use App\Http\Controllers\Misc2Controller;
+use App\Http\Controllers\Misc3Controller;
 
 
 
@@ -139,3 +140,6 @@ Route::post('/misc1/store', [Misc1Controller::class, 'store'])->name('misc1.stor
 
 Route::get('/misc2/create', [Misc2Controller::class, 'create'])->name('misc2.create');
 Route::post('/misc2/store', [Misc2Controller::class, 'store'])->name('misc2.store');
+
+Route::get('/misc3/create', [Misc3Controller::class, 'create'])->name('misc3.create');
+Route::post('/misc3/store', [Misc3Controller::class, 'store'])->name('misc3.store');

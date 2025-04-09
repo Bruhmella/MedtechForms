@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>[placeholder2]</title>
+    <title>[placeholder3]</title>
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
@@ -83,9 +83,9 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-<h2>[placeholder2] form</h2>
+<h2>[placeholder3] form</h2>
     <div class="container">
-        <form action="{{ route('misc2.store') }}" method="POST">
+        <form action="{{ route('misc3.store') }}" method="POST">
             @csrf 
             
             <label for="patientSelect">Name:</label>
@@ -113,21 +113,54 @@
             </div>
 
             <div class="form-group">
-                <label for="exam">Examination:</label>
-                <input type="text" name="exam" class="form-control">
-            
-            </div>
-
-            
-
-            <div class="form-group">
-                <label for="specimen">Specimen:</label>
-                <input type="text" name="specimen" class="form-control">
+                <label for="timec">Time Collected:</label>
+                <input type="time" name="timec" class="form-control"> 
             </div>
 
             <div class="form-group">
-                <label for="result">Result:</label>
-                <input type="text" name="result" class="form-control">
+                <label for="timer">Time Recieved:</label>
+                <input type="time" name="timer" class="form-control"> 
+            </div>
+
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" name="color" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="viscocity">Viscocity:</label>
+                <input type="text" name="viscocity" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="volume">Volume:</label>
+                <input type="text" name="volume" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="motile">Motile:</label>
+                <input type="number" name="motile" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+            </div>
+
+            <div class="form-group">
+                <label for="nonmotile">Non-Motile:</label>
+                <input type="number" name="nonmotile" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+            </div>
+
+            <div class="form-group">
+                <label for="motilegrade">Motility Grading:</label>
+                <input type="text" name="motilegrade" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="normal">Morphology:</label>
+                <input type="number" name="normal" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+                <input type="number" name="abnormal" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+                <input type="number" name="Thead" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+                <input type="number" name="Ghead" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+                <input type="number" name="Phead" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+                <input type="number" name="Ctail" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
+                <input type="number" name="Chead" class="form-control" step="0.01" min="0" placeholder="Enter in percentage value">
             </div>
 
              <h2>Medical Technologist:</h2>

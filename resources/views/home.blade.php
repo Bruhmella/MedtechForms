@@ -156,6 +156,13 @@
     </div>
 </div>
 
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('misc3.create')}}"><BUTTON>placeholder3</BUTTON></a>
+    </div>
+</div>
+
 
 
 

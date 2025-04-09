@@ -11,11 +11,11 @@ This project was made using LARAVEL framework.
 
 ## Versions
 
--PHP:			8.2.12
--Composer:		2.8.5
--Laravel Installer:	5.11.2
--Node:			22.13.1
--NPM:			10.9.2
+- PHP:			8.2.12
+- Composer:		2.8.5
+- Laravel Installer:	5.11.2
+- Node:			22.13.1
+- NPM:			10.9.2
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>

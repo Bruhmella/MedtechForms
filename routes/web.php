@@ -20,6 +20,7 @@ use App\Http\Controllers\DengueController;
 use App\Http\Controllers\HavController;
 use App\Http\Controllers\TpController;
 use App\Http\Controllers\Misc1Controller;
+use App\Http\Controllers\Misc2Controller;
 
 
 
@@ -135,3 +136,6 @@ Route::post('/tp/store', [TpController::class, 'store'])->name('tp.store');
 
 Route::get('/misc1/create', [Misc1Controller::class, 'create'])->name('misc1.create');
 Route::post('/misc1/store', [Misc1Controller::class, 'store'])->name('misc1.store');
+
+Route::get('/misc2/create', [Misc2Controller::class, 'create'])->name('misc2.create');
+Route::post('/misc2/store', [Misc2Controller::class, 'store'])->name('misc2.store');

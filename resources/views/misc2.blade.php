@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>[placeholder1]</title>
+    <title>[placeholder2]</title>
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
@@ -83,9 +83,9 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-<h2>[placeholder1] form</h2>
+<h2>[placeholder2] form</h2>
     <div class="container">
-        <form action="{{ route('misc1.store') }}" method="POST">
+        <form action="{{ route('misc2.store') }}" method="POST">
             @csrf 
             
             <label for="patientSelect">Name:</label>
@@ -113,26 +113,21 @@
             </div>
 
             <div class="form-group">
-                <label for="kit1">Kit/Reagent Used:</label>
-                <input type="text" name="kit1" class="form-control" placeholder="for 1st method">
-                <input type="text" name="kit2" class="form-control" placeholder="for 2nd method">
-                <input type="text" name="kit3" class="form-control" placeholder="for 3rd method">
+                <label for="exam">Examination:</label>
+                <input type="text" name="exam" class="form-control">
+            
             </div>
 
             
 
             <div class="form-group">
-                <label for="lotno">Lot No:</label>
-                <input type="text" name="lotno1" class="form-control" placeholder="for 1st method">
-                <input type="text" name="lotno2" class="form-control" placeholder="for 2nd method">
-                <input type="text" name="lotno3" class="form-control" placeholder="for 3rd method">
+                <label for="specimen">Specimen:</label>
+                <input type="text" name="specimen" class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="result1">Result:</label>
-                <input type="text" name="result1" class="form-control" placeholder="for 1st method">
-                <input type="text" name="result2" class="form-control" placeholder="for 2nd method">
-                <input type="text" name="result3" class="form-control" placeholder="for 3rd method">
+                <label for="result">Result:</label>
+                <input type="text" name="result" class="form-control" placeholder="for 1st method">
             </div>
 
              <h2>Medical Technologist:</h2>

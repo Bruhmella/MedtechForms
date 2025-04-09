@@ -145,7 +145,14 @@
 <div class="polaroid">
         <img sec='picture'>
         <div class="container">
-        <a href="{{ route('misc1.create')}}"><BUTTON>placeholder</BUTTON></a>
+        <a href="{{ route('misc1.create')}}"><BUTTON>placeholder1</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('misc2.create')}}"><BUTTON>placeholder2</BUTTON></a>
     </div>
 </div>
 

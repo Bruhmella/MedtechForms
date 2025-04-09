@@ -1,3 +1,15 @@
+## About the Project
+
+
+Changelogs can be found in the file README-OUTPUTS.txt 
+
+The main purpose of this system is for users to easily put data into a form to be ready for printing.
+Available forms can be found in 'form excel file.xlsx'
+
+Please be informed that this project is still a WORK IN PROGRESS. most functions are yet to be implemented/furnished.
+
+This project was made using LARAVEL framework.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -67,12 +79,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 "# MedTechForms" 
 "# MedtechForms" 
 
------ABOUT THE PROJECT-----
 
-This project was made using LARAVEL framework.
-Changelogs can be found in the file README-OUTPUTS.txt 
-
-The main purpose of this system is for users to easily put data into a form to be ready for printing.
-Available forms can be found in 'form excel file.xlsx'
-
-Please be informed that this project is still a WORK IN PROGRESS. most functions are yet to be implemented/furnished.

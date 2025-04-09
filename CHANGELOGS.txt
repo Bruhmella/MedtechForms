@@ -227,18 +227,17 @@ Current roadmap:
 
 changelog 4-10-25
 BACK END PROGRESS REPORT:
-	Page last worked on: Misc2
-	System Progress: 14.4/18 forms completed
+	Page last worked on: Misc4
+	System Progress: 15/18 forms completed
 	❌ System Testing
 Form report: "Misc"
-	✅ third part (out of 5) is done
+	✅ 5/5 misc forms done
 	✅ established routes (home -> form page, and vice versa)
 	✅ Inputs are being uploaded to its appropriate database
 	✅ Text Boxes are assigned only their appropriate Inputs
 	✅ OR# works as intended
 	✅ Green light for Front-end Developer
 Other changes:
-	✅ front-end's to-do list extended - some parts broke because of design implementation
 	❓ all "misc" form name is unknown, therefore added a placeholder name until further notice
 Current roadmap:
 	-18/18 forms completed by April 14

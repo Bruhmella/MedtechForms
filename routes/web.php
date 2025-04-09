@@ -22,6 +22,8 @@ use App\Http\Controllers\TpController;
 use App\Http\Controllers\Misc1Controller;
 use App\Http\Controllers\Misc2Controller;
 use App\Http\Controllers\Misc3Controller;
+use App\Http\Controllers\Misc4Controller;
+use App\Http\Controllers\Misc5Controller;
 
 
 
@@ -143,3 +145,9 @@ Route::post('/misc2/store', [Misc2Controller::class, 'store'])->name('misc2.stor
 
 Route::get('/misc3/create', [Misc3Controller::class, 'create'])->name('misc3.create');
 Route::post('/misc3/store', [Misc3Controller::class, 'store'])->name('misc3.store');
+
+Route::get('/misc4/create', [Misc4Controller::class, 'create'])->name('misc4.create');
+Route::post('/misc4/store', [Misc4Controller::class, 'store'])->name('misc4.store');
+
+Route::get('/misc5/create', [Misc5Controller::class, 'create'])->name('misc5.create');
+Route::post('/misc5/store', [Misc5Controller::class, 'store'])->name('misc5.store');

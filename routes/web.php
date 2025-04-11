@@ -24,6 +24,10 @@ use App\Http\Controllers\Misc2Controller;
 use App\Http\Controllers\Misc3Controller;
 use App\Http\Controllers\Misc4Controller;
 use App\Http\Controllers\Misc5Controller;
+use App\Http\Controllers\SpermcountController;
+use App\Http\Controllers\RatController;
+use App\Http\Controllers\RatiiController;
+
 
 
 
@@ -151,3 +155,12 @@ Route::post('/misc4/store', [Misc4Controller::class, 'store'])->name('misc4.stor
 
 Route::get('/misc5/create', [Misc5Controller::class, 'create'])->name('misc5.create');
 Route::post('/misc5/store', [Misc5Controller::class, 'store'])->name('misc5.store');
+
+Route::get('/spermcount/create', [SpermcountController::class, 'create'])->name('spermcount.create');
+Route::post('/spermcount/store', [SpermcountController::class, 'store'])->name('spermcount.store');
+
+Route::get('/rat/create', [RatController::class, 'create'])->name('rat.create');
+Route::post('/rat/store', [RatController::class, 'store'])->name('rat.store');
+
+Route::get('/ratii/create', [RatiiController::class, 'create'])->name('ratii.create');
+Route::post('/ratii/store', [RatiiController::class, 'store'])->name('ratii.store');

@@ -177,6 +177,27 @@
     </div>
 </div>
 
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('spermcount.create')}}"><BUTTON>Sperm Count</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('rat.create')}}"><BUTTON>Rapid Antibody Test</BUTTON></a>
+    </div>
+</div>
+
+<div class="polaroid">
+        <img sec='picture'>
+        <div class="container">
+        <a href="{{ route('ratii.create')}}"><BUTTON>Rapid Antibody Test II</BUTTON></a>
+    </div>
+</div>
+
 
 
 

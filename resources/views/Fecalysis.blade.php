@@ -8,7 +8,7 @@
     <title>Fecalysis Form</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        h1, h2 {
+        h1, h3 {
             font-family: Cambria;
         }
         a {
@@ -17,25 +17,39 @@
         .topcontainer {
         display: grid;
         grid-template-areas:
-            "toptext image";
-        grid-template-columns: 4fr 1fr;
+            "leftimage toptext rightimage";
+        grid-template-columns: 1fr 3fr 1fr;
+        }
+        .topcontainer > div.leftimage{
+        grid-area: leftimage;
         }
         .topcontainer > div.toptext {
         grid-area: toptext;
         text-align: left;
         }
-        .topcontainer > div.image {
-        grid-area: image;
+        .topcontainer > div.rightimage {
+        grid-area: rightimage;
         }
         .container {
-        width: 1200px; /* Adjust as needed */
+        width: auto; /* Adjust as needed */
         margin: 0 auto;
         border: 1px solid #ccc;
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin-bottom: 5px;
+        }
+        .form-row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         margin-bottom: 5px;
         }
         .form-label {
@@ -103,45 +117,49 @@
     <h2 style="text-align:center;">Fecalysis Form</h2>
     <div class="container">
         <div class="topcontainer">
+            <div class="leftimage">
+            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            </div>
             <div class="toptext">
             <h1>Far Eastern University - Cavite</h1>
-            <p>Kapt. Isko Street Brgy. 2 Lian, Batangas<br>
-            Contact No(s): 123-456-789 | 098-765-432<br>
-            Email Address: labcondiagnosticcenter@gmail.com</p>
+            <p>Metrogate, Silang Estates, Silang, Cavite<br>
+            Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
-            <div class="image">
-            <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center;">
+            <div class="rightimage">
+            <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center; margin-top: 10px;">
             </div>
         </div>
         <form action="{{ route('fecalysis.store') }}" method="POST">
             @csrf <!-- CSRF Token -->
-
-            <label for="patientSelect">Name:</label>
-            <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
-                <option value="">-- Select a Patient --</option>
-                @foreach ($patients as $patient)
-                    <option value="{{ $patient->id }}" 
-                            data-ac="{{ $patient->Poc ?? '' }}"
-                            data-age="{{ $patient->Page ?? '' }}" 
-                            data-sex="{{ $patient->Psex ?? '' }}">
-                        {{ $patient->Pname }}
-                    </option>
-                @endforeach
-            </select>
-            <div class="form-row">
-                <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" oninput="fillByAC()"></p>
-                <p>Age: <input type="text" id="age" readonly></p>
-                <p>Sex: <input type="text" id="sex" readonly></p>
-            </div>
-            <div class="form-row">
-                <p>Date: <input type="date" id="date" name="date" readonly></p>
-                <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
-                <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
+            <div class="innercontainer">
+                <div class="form-row">
+                <label for="patientSelect">Name:
+                <select style="height:20.7px; width: 170px;" id="patientSelect" name="patient_id" onchange="fillPatientData()">
+                    <option value="">-- Select a Patient --</option>
+                    @foreach ($patients as $patient)
+                        <option value="{{ $patient->id }}" 
+                                data-ac="{{ $patient->Poc ?? '' }}"
+                                data-age="{{ $patient->Page ?? '' }}" 
+                                data-sex="{{ $patient->Psex ?? '' }}">
+                            {{ $patient->Pname }}
+                        </option>
+                    @endforeach
+                </select>
+                </label>
+                    <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" style="width: 150px;" oninput="fillByAC()"></p>
+                    <p>Age: <input type="text" id="age" style="width: 150px;" readonly></p>
+                    <p>Sex: <input type="text" id="sex" style="width: 150px;" readonly></p>
+                </div>
+                <div class="form-row2">
+                    <p>Date: <input type="date" id="date" name="date" style="width: 150px;" readonly></p>
+                    <p>OR#: <input type="text" id="orNumber" name="or" style="width: 150px;" value="{{ $orNumber }}" readonly></p>
+                    <p>Requested by: <input type="text" name="requested_by" style="width: 150px;" placeholder="Enter requester name"></p>
+                </div>
             </div>
             <!-- Fecalysis Fields -->
             <div class="table-like2">
                 <div class="table-like2-section">
-                <h2>Consistency</h2>
+                <h3 style="text-align: center">Consistency</h3>
                     <div class="form-group">
                         <label for="color">Color:</label>
                         <input type="text" name="color" class="form-control">
@@ -153,7 +171,7 @@
                     </div>
                 </div>
                 <div class="table-like2-section">
-                <h2>Miscellaneous</h2>
+                <h3 style="text-align: center">Miscellaneous</h3>
                     <div class="form-group">
                         <label for="occult_blood">Occult Blood:</label>
                         <input type="text" name="occult_blood" class="form-control">
@@ -165,7 +183,7 @@
                     </div>
                 </div>
                 <div class="table-like2-section">
-                <h2>Microscopic Findings</h2>
+                <h3 style="text-align: center">Microscopic Findings</h3>
                     <div class="form-group">
                         <label for="bacteria">Bacteria:</label>
                         <input type="text" name="bacteria" class="form-control">
@@ -200,7 +218,7 @@
         <br>
         <div class="table-like">
             <div class="table-like-section">
-            <h2>Medical Technologist:</h2>
+            <h3>Medical Technologist:</h3>
 
             @if($medtech)
                 <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
@@ -218,7 +236,7 @@
             @endif
             </div>
             <div class="table-like-section">
-            <h2>Pathologist:</h2>
+            <h3>Pathologist:</h3>
 
             @if($pathologist)
                 <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />

@@ -89,8 +89,7 @@
             <div class="toptext">
             <h1>Far Eastern University - Cavite</h1>
             <p>Kapt. Isko Street Brgy. 2 Lian, Batangas<br>
-            Contact No(s): 123-456-789 | 098-765-432<br>
-            Email Address: labcondiagnosticcenter@gmail.com</p>
+            Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
             <div class="image">
             <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center;">

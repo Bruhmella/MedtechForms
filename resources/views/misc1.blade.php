@@ -5,7 +5,7 @@
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
-        h1, h2 {
+        h1, h3 {
             font-family: Cambria;
         }
         a {
@@ -14,25 +14,38 @@
         .topcontainer {
         display: grid;
         grid-template-areas:
-            "toptext image";
-        grid-template-columns: 4fr 1fr;
+            "leftimage toptext rightimage";
+        grid-template-columns: 1fr 3fr 1fr;
+        }
+        .topcontainer > div.leftimage{
+        grid-area: leftimage;
         }
         .topcontainer > div.toptext {
         grid-area: toptext;
         text-align: left;
         }
-        .topcontainer > div.image {
-        grid-area: image;
+        .topcontainer > div.rightimage {
+        grid-area: rightimage;
         }
         .container {
-        width: 1200px; /* Adjust as needed */
+        width: auto; /* Adjust as needed */
         margin: 0 auto;
         border: 1px solid #ccc;
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: flex;
+        margin-bottom: 5px;
+        }
+        .form-row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         margin-bottom: 5px;
         }
         .form-label {
@@ -49,12 +62,19 @@
         grid-template-columns: repeat(2, 1fr); /* Two columns */
         gap: 10px; /* Spacing between items */
         }
-
+        .table-like2 {
+        display: grid;
+        grid-template-columns: repeat(1fr);
+        gap: 10px;
+        }
         .table-like-section {
         border: 1px solid #ccc;
         padding: 10px;
         }
-
+        .table-like2-section {
+        border: 1px solid #ccc;
+        padding: 10px;
+        }
         .table-like-subsection {
         display: grid;
         grid-template-columns: 1fr 1fr; /* Label and input */
@@ -63,7 +83,7 @@
         }
         .form-group{
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Label and input */
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* Label and input */
         gap: 5px;
         margin-bottom: 3px;
         }
@@ -83,33 +103,47 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-<h2>[placeholder1] form</h2>
+<h3>[placeholder1] form</h3>
     <div class="container">
+        <div class="topcontainer">
+            <div class="leftimage">
+            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            </div>
+            <div class="toptext">
+            <h1>Far Eastern University - Cavite</h1>
+            <p>Metrogate, Silang Estates, Silang, Cavite<br>
+            Contact No(s): 123-456-789 | 098-765-432</p>
+            </div>
+            <div class="rightimage">
+            <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center; margin-top: 10px;">
+            </div>
+        </div>
         <form action="{{ route('misc1.store') }}" method="POST">
             @csrf 
-            
-            <label for="patientSelect">Name:</label>
-            <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
-                <option value="">-- Select a Patient --</option>
-                @foreach ($patients as $patient)
-                    <option value="{{ $patient->id }}" 
-                            data-ac="{{ $patient->Poc ?? '' }}"
-                            data-age="{{ $patient->Page ?? '' }}" 
-                            data-sex="{{ $patient->Psex ?? '' }}">
-                        {{ $patient->Pname }}
-                    </option>
-                @endforeach
-            </select>
-
-            <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
-            <p>Age: <input type="text" id="age" readonly name="Page"></p>
-            <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
-            <p>Date: <input type="date" id="date" name="date" readonly></p>
-            <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-
-            <div class="form-group">
-                <label for="Reqby">Requested By:</label>
-                <input type="text" name="Reqby" class="form-control">
+            <div class="innercontainer">
+                <div class="form-row">
+                    <label for="patientSelect">Name:
+                    <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
+                        <option value="">-- Select a Patient --</option>
+                        @foreach ($patients as $patient)
+                            <option value="{{ $patient->id }}" 
+                                    data-ac="{{ $patient->Poc ?? '' }}"
+                                    data-age="{{ $patient->Page ?? '' }}" 
+                                    data-sex="{{ $patient->Psex ?? '' }}">
+                                {{ $patient->Pname }}
+                            </option>
+                        @endforeach
+                    </select>
+                    </label>
+                    <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
+                    <p>Age: <input type="text" id="age" readonly name="Page"></p>
+                    <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                </div>
+                <div class="form-row2">
+                    <p>Date: <input type="date" id="date" name="date" readonly></p>
+                    <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
+                    <label for="Reqby">Requested By: <input type="text" name="Reqby" class="form-control"></label>
+                </div>
             </div>
 
             <div class="form-group">
@@ -135,7 +169,7 @@
                 <input type="text" name="result3" class="form-control" placeholder="for 3rd method">
             </div>
 
-             <h2>Medical Technologist:</h2>
+             <h3>Medical Technologist:</h3>
             @if($medtech)
                 <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
                 <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
@@ -151,7 +185,7 @@
                 <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
             @endif
 
-            <h2>Pathologist:</h2>
+            <h3>Pathologist:</h3>
             @if($pathologist)
                 <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
                 <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />

@@ -72,7 +72,7 @@
 		</div>
 	@endif
 	<br>
-	<input type="submit">
+	<input type="submit" class="btn btn-primary">
 	</form>
 	</div>
 </div>

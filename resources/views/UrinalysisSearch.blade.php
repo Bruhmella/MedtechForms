@@ -136,26 +136,18 @@
             @csrf 
             <div class="innercontainer">
                 <div class="form-row">
-                    <label for="patientSelect">Name:
-                    <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
-                        <option value="">-- Select a Patient --</option>
-                        @foreach ($patients as $patient)
-                            <option value="{{ $patient->id }}" 
-                                    data-ac="{{ $patient->Poc ?? '' }}"
-                                    data-age="{{ $patient->Page ?? '' }}" 
-                                    data-sex="{{ $patient->Psex ?? '' }}">
-                                {{ $patient->Pname }}
-                            </option>
-                        @endforeach
-                    </select>
-                    </label>
+                    
+    <label for="patientName">Name:</label>
+    <!-- Replaced the dropdown with a text input for manual entry -->
+    <input type="text" id="patientName" name="patient_name" placeholder="Enter patient name">
                     <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
                     <p>Age: <input type="text" id="age" readonly name="Page"></p>
                     <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
                 </div>
                 <div class="form-row2">
                     <p>Date: <input type="date" id="date" name="date" readonly></p>
-                    <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
+                    <input type="text" id="orNumber" name="OR" value="{{ $orNumber ?? '' }}" readonly>
+
 
                     <div class="form-group">
                         <label for="Reqby">Requested By:</label>
@@ -307,41 +299,44 @@
         <br>
         <div class="table-like">
             <div class="table-like-section">
-             <h3>Medical Technologist:</h3>
-                @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
-                @elseif($pathologist)
-                    <select id="medtechDropdown" name="medtech">
-                        <option value="">Select a MedTech</option> <!-- Default option -->
-                        @foreach($medtechs as $medtech)
-                            <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
-                                {{ $medtech->fname . ' ' . $medtech->lname }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
-                @endif
-            </div>
-            <div class="table-like-section">
-                <h3>Pathologist:</h3>
-                @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
-                @elseif($medtech)
-                    <select id="pathologistDropdown" name="pathologist">
-                        <option value="">Select a Pathologist</option> <!-- Default option -->
-                        @foreach($pathologists as $pathologist)
-                            <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
-                                {{ $pathologist->fname . ' ' . $pathologist->lname }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
-                @endif
-            </div>
-        </div>
-    </div>
+            <!-- Medical Technologist -->
+<div class="table-like-section">
+    <h3>Medical Technologist:</h3>
+    @if(isset($medtech))
+        <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname }}" />
+        <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo }}" readonly />
+    @else
+        <select id="medtechDropdown" name="medtech">
+            <option value="">Select a MedTech</option>
+            @foreach($medtechs as $m)
+                <option value="{{ $m->fname . ' ' . $m->lname }}" data-licno="{{ $m->LicNo }}">
+                    {{ $m->fname . ' ' . $m->lname }}
+                </option>
+            @endforeach
+        </select>
+        <input type="text" id="medtechLicNo" value="" readonly />
+    @endif
+</div>
+
+<!-- Pathologist -->
+<div class="table-like-section">
+    <h3>Pathologist:</h3>
+    @if(isset($pathologist))
+        <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" />
+        <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo }}" readonly />
+    @else
+        <select id="pathologistDropdown" name="pathologist">
+            <option value="">Select a Pathologist</option>
+            @foreach($pathologists as $p)
+                <option value="{{ $p->fname . ' ' . $p->lname }}" data-licno="{{ $p->LicNo }}">
+                    {{ $p->fname . ' ' . $p->lname }}
+                </option>
+            @endforeach
+        </select>
+        <input type="text" id="pathologistLicNo" value="" readonly />
+    @endif
+</div>
+
     <div class="center">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>

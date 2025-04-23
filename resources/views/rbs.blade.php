@@ -5,7 +5,7 @@
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
-        h1, h2 {
+        h1, h3 {
             font-family: Cambria;
         }
         a {
@@ -14,15 +14,18 @@
         .topcontainer {
         display: grid;
         grid-template-areas:
-            "toptext image";
-        grid-template-columns: 4fr 1fr;
+            "leftimage toptext rightimage";
+        grid-template-columns: 1fr 3fr 1fr;
+        }
+        .topcontainer > div.leftimage{
+        grid-area: leftimage;
         }
         .topcontainer > div.toptext {
         grid-area: toptext;
         text-align: left;
         }
-        .topcontainer > div.image {
-        grid-area: image;
+        .topcontainer > div.rightimage {
+        grid-area: rightimage;
         }
         .container {
         width: 1200px; /* Adjust as needed */
@@ -31,8 +34,19 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin-bottom: 5px;
+        }
+        .form-row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         margin-bottom: 5px;
         }
         .form-label {
@@ -49,7 +63,11 @@
         grid-template-columns: repeat(2, 1fr); /* Two columns */
         gap: 10px; /* Spacing between items */
         }
-
+        .table-like2 {
+        display: grid;
+        grid-template-columns: repeat(1fr);
+        gap: 10px;
+        }
         .table-like-section {
         border: 1px solid #ccc;
         padding: 10px;
@@ -63,7 +81,19 @@
         }
         .form-group{
         display: grid;
+        grid-template-columns: 1fr 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+        .form-group2{
+        display: grid;
         grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
+        .form-group3{
+        display: grid;
+        grid-template-columns: 1fr 2fr; /* Label and input */
         gap: 5px;
         margin-bottom: 3px;
         }
@@ -83,16 +113,19 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h2 style="text-align:center">RBS Form</h2>
+    <h3 style="text-align:center">RBS Form</h3>
     <div class="container">
         <div class="topcontainer">
+            <div class="leftimage">
+            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            </div>
             <div class="toptext">
             <h1>Far Eastern University - Cavite</h1>
-            <p>Kapt. Isko Street Brgy. 2 Lian, Batangas<br>
+            <p>Metrogate, Silang Estates, Silang, Cavite<br>
             Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
-            <div class="image">
-            <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center;">
+            <div class="rightimage">
+            <img src="{{ asset('img/medtech.png') }}" style="scale: 100%;width: 135px; justify-content: center; margin-top: 10px;">
             </div>
         </div>
         <form action="{{ route('rbs.store') }}" method="POST">
@@ -115,24 +148,48 @@
             <p>Age: <input type="text" id="age" readonly name="Page"></p>
             <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
             </div>
-            <div class="form-row">
+            <div class="form-row2">
             <p>Date: <input type="date" id="date" name="date" readonly></p>
             <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
             <p>Requested By: <input type="text" id="Reqby" name="Reqby"></p>
             </div>
-
-            <div class="form-group">
-                <label for="result">Result:</label>
-                <input type="number" name="result" step="0.01" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="result2">Result:</label>
-                <input type="number" name="result2" step='0.01' class="form-control">
+            <div class="table-like2">
+                <div class="table-like-section">
+                    <div class="form-group3">
+                        <h3><br>Test</h3>
+                        <div class="form-group2">
+                            <h3 style="text-align:center;">System International</h3>
+                            <h3 style="text-align:center;">Conventional</h3>
+                            <div class="form-group">
+                                <h3>Result</h3>
+                                <h3>Unit</h3>
+                                <h3>Reference</h3>
+                            </div>
+                            <div class="form-group">
+                                <h3>Result</h3>
+                                <h3>Unit</h3>
+                                <h3>Reference</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p>RBS</p>
+                        <div class="form-group">
+                            <input type="number" name="result" step="0.01" class="form-control">
+                            <p>mmol/L</p>
+                            <p>3.8 - 6.9</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="result" step="0.01" class="form-control">
+                            <p>mmol/L</p>
+                            <p>68.4 - 124.2</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         <div class="table-like">
             <div class="table-like-section">
-            <h2>Medical Technologist:</h2>
+            <h3>Medical Technologist:</h3>
             @if($medtech)
                 <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
                 <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
@@ -149,7 +206,7 @@
             @endif
             </div>
             <div class="table-like-section">
-            <h2>Pathologist:</h2>
+            <h3>Pathologist:</h3>
             @if($pathologist)
                 <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
                 <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />

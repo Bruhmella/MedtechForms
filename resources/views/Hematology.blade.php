@@ -8,7 +8,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        h1, h3 {
+         h1, h3 {
             font-family: Cambria;
         }
         a {
@@ -31,16 +31,11 @@
         grid-area: rightimage;
         }
         .container {
-        width: auto; /* Adjust as needed */
+        width: 1200px; /* Adjust as needed */
         margin: 0 auto;
         border: 1px solid #ccc;
         padding: 20px;
         background-color:#ffffff;
-        }
-        .innercontainer {
-        width: auto;
-        margin: auto auto;
-        border: 1px solid #000;
         }
         .form-row {
         display: grid;
@@ -82,20 +77,17 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         }
-
         .form-group{
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr; /* Label and input */
+        grid-template-columns: 1fr 1fr; /* Label and input */
         gap: 5px;
         margin-bottom: 3px;
         }
-
         .genderdifference{
         display: grid;
         grid-template-columns: 0.5fr 0.5fr;
         grid-template-rows: 0.5fr 0.5fr;
         }
-
         .center {
         display: flex;
         justify-content: center;
@@ -155,7 +147,6 @@
                 <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name" class="form-control"></p>
                 </div>
             </div>
-            <br>
             <!-- Hematology Fields -->
             <div class="table-like">
                 <div class="table-like-section">
@@ -343,11 +334,11 @@
                     @endif
                 </div>
             </div>
-        </form>
     </div>
     <div class="center">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </form>
     <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');

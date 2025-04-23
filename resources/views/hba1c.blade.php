@@ -5,7 +5,7 @@
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
-        h1, h3 {
+        h1, h2 {
             font-family: Cambria;
         }
         a {
@@ -28,19 +28,15 @@
         grid-area: rightimage;
         }
         .container {
-        width: auto; /* Adjust as needed */
+        width: 1200px; /* Adjust as needed */
         margin: 0 auto;
         border: 1px solid #ccc;
         padding: 20px;
         background-color:#ffffff;
         }
-        .innercontainer {
-        width: auto;
-        margin: auto auto;
-        border: 1px solid #000;
-        }
         .form-row {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         margin-bottom: 5px;
         }
         .form-row2 {
@@ -87,6 +83,12 @@
         gap: 5px;
         margin-bottom: 3px;
         }
+        .form-group2{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px;
+        }
         .center {
         display: flex;
         justify-content: center;
@@ -103,7 +105,7 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h3 style="text-align:center;">HbA1c Form</h3>
+    <h2 style="text-align:center;">HbA1c Form</h2>
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -132,7 +134,7 @@
                                     data-sex="{{ $patient->Psex ?? '' }}">
                                 {{ $patient->Pname }}
                             </option>
-                        @endforeach
+                           @endforeach
                     </select>
                     </label>
                     <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
@@ -142,7 +144,10 @@
                 <div class="form-row2">
                     <p>Date: <input type="date" id="date" name="date" readonly></p>
                     <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-                    <p>Requested By: <input type="text" name="Reqby" class="form-control"></p>
+                    <div class="form-group2">
+                        <label for="Reqby">Requested By:</label>
+                        <input type="text" name="Reqby" class="form-control">
+                    </div>
                 </div>
             </div>
             <br>
@@ -165,7 +170,7 @@
             <br>
             <div class="table-like">
                 <div class="table-like-section">
-                    <h3>Medical Technologist:</h3>
+                    <h2>Medical Technologist:</h2>
                     @if($medtech)
                         <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
                         <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
@@ -182,7 +187,7 @@
                     @endif
                 </div>
                 <div class="table-like-section">
-                    <h3>Pathologist:</h3>
+                    <h2>Pathologist:</h2>
                     @if($pathologist)
                         <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
                         <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />

@@ -104,5 +104,14 @@
     <div class="center">
     <a href="{{ route('PatDataManage') }}" style="text-align:center; align-items: center;"><button class="btn btn-primary">Back</button></a>
     </div>
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
 </body>
 </html>

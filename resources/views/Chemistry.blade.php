@@ -31,16 +31,11 @@
         grid-area: rightimage;
         }
         .container {
-        width: auto; /* Adjust as needed */
+        width: 1200px; /* Adjust as needed */
         margin: 0 auto;
         border: 1px solid #ccc;
         padding: 20px;
         background-color:#ffffff;
-        }
-        .innercontainer {
-        width: auto;
-        margin: auto auto;
-        border: 1px solid #000;
         }
         .form-row {
         display: flex;
@@ -81,7 +76,6 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         }
-
         .form-group{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr; /* Label and input */
@@ -109,7 +103,7 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h2 style="text-align: center;">Chemistry Form</h2>
+    <h3 style="text-align: center;">Chemistry Form</h3>
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -372,12 +366,12 @@
                         <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
                     @endif
                 </div>
-            </div>
-        </form>
+            </div>      
     </div>
     <div class="center">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </form>
     <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');

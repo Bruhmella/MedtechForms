@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Urinalysis;
+use App\Models\urinalysis;
 use App\Models\BasicPatData;
-use App\Models\Account; 
+use App\Models\Account;
 use Illuminate\Support\Facades\DB;
 
 class UrinalysisController extends Controller
 {
-    public function create()
+        public function create()
     {
-        //session
         $user = session('user');
 
         if (!$user) {
@@ -20,20 +19,14 @@ class UrinalysisController extends Controller
         }
 
         $patients = BasicPatData::all();
-        $latestRecord = Urinalysis::latest()->first();
+        $latestRecord = urinalysis::orderBy('OR', 'desc')->first();
         $orNumber = $this->generateOrNumber($latestRecord);
 
         $pathologists = Account::where('Pos', 'P')->get();
         $medtechs = Account::where('Pos', 'MT')->get();
 
-        $pathologist = null;
-        $medtech = null;
-
-        if ($user->Pos === 'MT') {
-            $medtech = $user;
-        } elseif ($user->Pos === 'P') {
-            $pathologist = $user;
-        }
+        $pathologist = $user->Pos === 'P' ? $user : null;
+        $medtech = $user->Pos === 'MT' ? $user : null;
 
         return view('urinalysis', [
             'patients' => $patients,
@@ -46,69 +39,92 @@ class UrinalysisController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+     public function store(Request $request)
     {
+        // Validate input
         $request->validate([
-            'or' => 'required|string',
-            'date' => 'required|date',
-            'requested_by' => 'required|string',
-            'color' => 'nullable|string',
-            'transparency' => 'nullable|string',
-            'ph' => 'nullable|string',
-            'gravity' => 'nullable|string',
-            'rbc' => 'nullable|string',
-            'wbc' => 'nullable|string',
-            'SEC' => 'nullable|string',
-            'Thread' => 'nullable|string',
-            'bacteria' => 'nullable|string',
-            'protein' => 'nullable|string',
-            'glucose' => 'nullable|string',
-            'ketones' => 'nullable|string',
-            'bilirubin' => 'nullable|string',
-            'pregnancy_test' => 'nullable|string',
-            'others' => 'nullable|string',
-            'au' => 'nullable|string',
-            'ap' => 'nullable|string',
-            'ua' => 'nullable|string',
-            'co' => 'nullable|string',
-            'tp' => 'nullable|string',
-            'hyaline' => 'nullable|numeric',
-            'granular' => 'nullable|numeric',
-            'wbc2' => 'nullable|numeric',
-            'rbc2' => 'nullable|numeric',
+            'patient_id' => 'required|exists:patients,id',
+            'OR' => 'nullable|string',
+            'Reqby' => 'nullable|string',
+            'date' => 'nullable|string',
+            
+            'color' =>'nullable|string',
+            'transparency' =>'nullable|string',
+            'ph' =>'nullable|string',
+            'gravity'=>'nullable|string',
+
+            'protein'=>'nullable|string',
+            'glucose'=>'nullable|string',
+            'ketones'=>'nullable|string',
+            'bilirubin'=>'nullable|string',
+            'pregnancy'=>'nullable|string',
+            'others'=>'nullable|string',
+
+            'rbc'=>'nullable|numeric',
+            'wbc'=>'nullable|numeric',
+            'sec'=>'nullable|string',
+            'mucus'=>'nullable|string',
+            'bacteria'=>'nullable|string',
+
+            'au'=>'nullable|string',
+            'ap'=>'nullable|string',
+            'ua'=>'nullable|string',
+            'co'=>'nullable|string',
+            'tp'=>'nullable|string',
+
+            'hyaline'=>'nullable|numeric',
+            'granular'=>'nullable|numeric',
+            'wbc2'=>'nullable|numeric',
+            'rbc2'=>'nullable|numeric',
+            
+            'medtech' => 'nullable|string',
+            'pathologist' => 'nullable|string',
         ]);
 
-        // Debugging step: Check what is received
-        // dd($request->all());
+        // Fetch patient details
+        $patient = BasicPatData::findOrFail($request->patient_id);
 
-        Urinalysis::create([
-            'OR' => $request->input('or'),  
-            'Date' => $request->input('date'),
-            'ReqBy' => $request->input('requested_by'),
-            'color' => $request->input('color'),
-            'transparency' => $request->input('transparency'),
-            'ph' => $request->input('ph'),
-            'gravity' => $request->input('gravity'),
-            'rbc' => $request->input('rbc'),
-            'wbc' => $request->input('wbc'),
-            'SEC' => $request->input('SEC'),
-            'Thread' => $request->input('Thread'),
-            'bacteria' => $request->input('bacteria'),
-            'protein' => $request->input('protein'),
-            'glucose' => $request->input('glucose'),
-            'ketones' => $request->input('ketones'),
-            'bilirubin' => $request->input('bilirubin'),
-            'pregnancy_test' => $request->input('pregnancy_test'),
-            'others' => $request->input('others'),
-            'au' => $request->input('au'),
-            'ap' => $request->input('ap'),
-            'ua' => $request->input('ua'),
-            'co' => $request->input('co'),
-            'tp' => $request->input('tp'),
-            'hyaline' => $request->input('hyaline'),
-            'granular' => $request->input('granular'),
-            'wbc2' => $request->input('wbc2'),
-            'rbc2' => $request->input('rbc2'),
+        // Store data in urinalysis table
+        urinalysis::create([
+            'OR' => $request->OR,
+            'Pname' => $patient->Pname,
+            'Page' => $patient->Page,
+            'Psex' => $patient->Psex,
+            'Poc' => $patient->Poc,
+            'Reqby' => $request->Reqby,
+            'date' => $request->date,
+
+            'color' => $request->color,
+            'transparency' => $request->transparency,
+            'ph' => $request->ph, 
+            'gravity'=> $request->gravity,
+
+            'protein'=> $request->protein,
+            'glucose'=> $request->glucose,
+            'ketones'=> $request->ketones,
+            'bilirubin'=> $request->bilirubin,
+            'pregnancy'=> $request->pregnancy,
+            'others'=> $request->others,
+
+            'rbc'=> $request->rbc,
+            'wbc'=> $request->wbc,
+            'sec'=> $request->sec,
+            'mucus'=> $request->mucus,
+            'bacteria'=> $request->bacteria,
+
+            'au'=> $request->au,
+            'ap'=> $request->ap,
+            'ua'=> $request->ua,
+            'co'=> $request->co,
+            'tp'=> $request->tp,
+
+            'hyaline'=> $request->hyaline,
+            'granular'=> $request->granular,
+            'wbc2'=> $request->wbc2,
+            'rbc2'=> $request->rbc2,
+
+            'medtech' => $request->medtech,
+            'pathologist' => $request->pathologist,
         ]);
 
         return redirect()->route('urinalysis.create')->with('success', 'Data saved successfully.');
@@ -116,13 +132,21 @@ class UrinalysisController extends Controller
 
     private function generateOrNumber($latestRecord)
     {
-        $datePart = now()->format('mdY');
+        $datePart = now()->format('mdY'); // MMDDYYYY format
         $lastNumber = 1;
 
-        if ($latestRecord && str_starts_with($latestRecord->OR, "UR$datePart")) {
-            $lastNumber = (int) substr($latestRecord->OR, -4) + 1;
+        if ($latestRecord && isset($latestRecord->OR) && preg_match("/^UR$datePart(\d{4})$/", $latestRecord->OR, $matches)) {
+            // Extract last 4-digit number and increment
+            $lastNumber = (int) $matches[1] + 1;
         }
 
         return "UR" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
+    public function search()
+{
+    return view('UrinalysisSearch');
+}
+
+
+
 }

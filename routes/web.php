@@ -5,7 +5,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasicPatController;
-use App\Http\Controllers\UrinalysisController;
 use App\Http\Controllers\FecalysisController;
 use App\Http\Controllers\HematologyController;
 use App\Http\Controllers\ChemistryController;
@@ -27,6 +26,8 @@ use App\Http\Controllers\Misc5Controller;
 use App\Http\Controllers\SpermcountController;
 use App\Http\Controllers\RatController;
 use App\Http\Controllers\RatiiController;
+use App\Http\Controllers\UrinalysisController;
+
 
 
 
@@ -97,10 +98,6 @@ Route::get('/logout', function () {
     return redirect()->route('login')->with('success', 'Logged out successfully.');
 })->name('logout');
 
-Route::get('/Urinalysis/create', [UrinalysisController::class, 'create'])->name('Urinalysis.create');
-
-Route::get('/urinalysis', [UrinalysisController::class, 'create'])->name('urinalysis.create');
-Route::post('/urinalysis', [UrinalysisController::class, 'store'])->name('urinalysis.store');
 
 Route::get('/Fecalysis/create', [FecalysisController::class, 'create'])->name('Fecalysis.create');
 Route::post('/fecalysis/store', [FecalysisController::class, 'store'])->name('fecalysis.store');
@@ -164,3 +161,8 @@ Route::post('/rat/store', [RatController::class, 'store'])->name('rat.store');
 
 Route::get('/ratii/create', [RatiiController::class, 'create'])->name('ratii.create');
 Route::post('/ratii/store', [RatiiController::class, 'store'])->name('ratii.store');
+
+Route::get('/urinalysis/create', [UrinalysisController::class, 'create'])->name('urinalysis.create');
+Route::post('/urinalysis/store', [UrinalysisController::class, 'store'])->name('urinalysis.store');
+Route::get('/urinalysis/search', [UrinalysisController::class, 'search'])->name('urinalysis.search');
+

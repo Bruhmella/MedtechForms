@@ -28,19 +28,15 @@
         grid-area: rightimage;
         }
         .container {
-        width: auto; /* Adjust as needed */
+        width: 1200px; /* Adjust as needed */
         margin: 0 auto;
         border: 1px solid #ccc;
         padding: 20px;
         background-color:#ffffff;
         }
-        .innercontainer {
-        width: auto;
-        margin: auto auto;
-        border: 1px solid #000;
-        }
         .form-row {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         margin-bottom: 5px;
         }
         .form-row2 {
@@ -62,19 +58,12 @@
         grid-template-columns: repeat(2, 1fr); /* Two columns */
         gap: 10px; /* Spacing between items */
         }
-        .table-like2 {
-        display: grid;
-        grid-template-columns: repeat(1fr);
-        gap: 10px;
-        }
+
         .table-like-section {
         border: 1px solid #ccc;
         padding: 10px;
         }
-        .table-like2-section {
-        border: 1px solid #ccc;
-        padding: 10px;
-        }
+
         .table-like-subsection {
         display: grid;
         grid-template-columns: 1fr 1fr; /* Label and input */
@@ -103,7 +92,7 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
- <h2 style="text-align:center;">Hbsag Form</h2>
+ <h3 style="text-align:center;">Hbsag Form</h3>
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -142,7 +131,11 @@
                 <div class="form-row2">
                     <p>Date: <input type="date" id="date" name="date" readonly></p>
                     <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-                    <label for="Reqby">Requested By: <input type="text" name="Reqby" class="form-control"></label>
+
+                    <div class="form-group2">
+                        <label for="Reqby">Requested By:</label>
+                        <input type="text" name="Reqby" class="form-control">
+                    </div>
                 </div>
             </div>
             <br>

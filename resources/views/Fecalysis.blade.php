@@ -31,16 +31,11 @@
         grid-area: rightimage;
         }
         .container {
-        width: auto; /* Adjust as needed */
+        width: 1200px; /* Adjust as needed */
         margin: 0 auto;
         border: 1px solid #ccc;
         padding: 20px;
         background-color:#ffffff;
-        }
-        .innercontainer {
-        width: auto;
-        margin: auto auto;
-        border: 1px solid #000;
         }
         .form-row {
         display: grid;
@@ -94,9 +89,15 @@
         }
         .form-group{
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Label and input */
+        grid-template-columns: 1fr 1fr 1fr; /* Label and input */
         gap: 5px;
         margin-bottom: 3px;
+        }
+        .form-subgroup{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Label and input */
+        gap: 5px;
+        margin-bottom: 3px; 
         }
         .center {
         display: flex;
@@ -114,7 +115,7 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h2 style="text-align:center;">Fecalysis Form</h2>
+    <h3 style="text-align:center;">Fecalysis Form</h3>
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -133,29 +134,30 @@
             @csrf <!-- CSRF Token -->
             <div class="innercontainer">
                 <div class="form-row">
-                <label for="patientSelect">Name:
-                <select style="height:20.7px; width: 170px;" id="patientSelect" name="patient_id" onchange="fillPatientData()">
-                    <option value="">-- Select a Patient --</option>
-                    @foreach ($patients as $patient)
-                        <option value="{{ $patient->id }}" 
-                                data-ac="{{ $patient->Poc ?? '' }}"
-                                data-age="{{ $patient->Page ?? '' }}" 
-                                data-sex="{{ $patient->Psex ?? '' }}">
-                            {{ $patient->Pname }}
-                        </option>
-                    @endforeach
-                </select>
-                </label>
-                    <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" style="width: 150px;" oninput="fillByAC()"></p>
-                    <p>Age: <input type="text" id="age" style="width: 150px;" readonly></p>
-                    <p>Sex: <input type="text" id="sex" style="width: 150px;" readonly></p>
+                    <label for="patientSelect">Name:
+                    <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
+                        <option value="">-- Select a Patient --</option>
+                        @foreach ($patients as $patient)
+                            <option value="{{ $patient->id }}" 
+                                    data-ac="{{ $patient->Poc ?? '' }}"
+                                    data-age="{{ $patient->Page ?? '' }}" 
+                                    data-sex="{{ $patient->Psex ?? '' }}">
+                                {{ $patient->Pname }}
+                            </option>
+                        @endforeach
+                    </select>
+                    </label>
+                    <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" oninput="fillByAC()"></p>
+                    <p>Age: <input type="text" id="age" readonly></p>
+                    <p>Sex: <input type="text" id="sex" readonly></p>
                 </div>
                 <div class="form-row2">
-                    <p>Date: <input type="date" id="date" name="date" style="width: 150px;" readonly></p>
-                    <p>OR#: <input type="text" id="orNumber" name="or" style="width: 150px;" value="{{ $orNumber }}" readonly></p>
-                    <p>Requested by: <input type="text" name="requested_by" style="width: 150px;" placeholder="Enter requester name"></p>
+                    <p>Date: <input type="date" id="date" name="date" readonly></p>
+                    <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
+                    <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
                 </div>
             </div>
+            <br>
             <!-- Fecalysis Fields -->
             <div class="table-like2">
                 <div class="table-like2-section">
@@ -185,33 +187,31 @@
                 <div class="table-like2-section">
                 <h3 style="text-align: center">Microscopic Findings</h3>
                     <div class="form-group">
-                        <label for="bacteria">Bacteria:</label>
-                        <input type="text" name="bacteria" class="form-control">
-                    </div>
-
-                    <div class="form-group">
+                        <label for="wbc">WBC:</label>
+                        <div class="form-subgroup">
+                            <input type="number" name="wbc" class="form-control" step="any" min="0" placeholder="Enter WBC count" pattern="^\d+(\.\d+)?$">
+                            <p>/hpf</p>
+                        </div>
                         <label for="yeast">Yeast:</label>
                         <input type="text" name="yeast" class="form-control">
                     </div>
 
                     <div class="form-group">
+                        <label for="rbc">RBC:</label>
+                        <div class="form-subgroup">
+                            <input type="number" name="rbc" class="form-control" step="any" min="0" placeholder="Enter RBC count" pattern="^\d+(\.\d+)?$">
+                            <p>/hpf</p>
+                        </div>
                         <label for="fat_globules">Fat Globules:</label>
                         <input type="text" name="fat_globules" class="form-control">
                     </div>
-
                     <div class="form-group">
+                        <label for="bacteria">Bacteria:</label>
+                        <input type="text" name="bacteria" class="form-control">
+                    </div>
+                    <div class="form-group2">
                         <label for="others">Others:</label>
-                        <input type="text" name="others" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="wbc">WBC:</label>
-                        <input type="number" name="wbc" class="form-control" step="any" min="0" placeholder="Enter WBC count" pattern="^\d+(\.\d+)?$">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rbc">RBC:</label>
-                        <input type="number" name="rbc" class="form-control" step="any" min="0" placeholder="Enter RBC count" pattern="^\d+(\.\d+)?$">
+                        <textarea type="text" name="others" rows="4" cols="50" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -253,12 +253,12 @@
                 <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
             @endif
             </div>
-            </form>
         </div>
     </div>
     <div class="center">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </form>
     <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');

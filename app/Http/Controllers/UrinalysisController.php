@@ -143,9 +143,20 @@ class UrinalysisController extends Controller
         return "UR" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
     public function search()
-{
-    return view('UrinalysisSearch');
-}
+    {
+        $user = session('user');
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please log in first.');
+        }
+        
+        $data = urinalysis::where('OR', request('OR'))->first();
+
+        return view('UrinalysisSearch', [
+            'data' => $data,
+            'user' => $user
+        ]);
+    }
 
 
 

@@ -115,7 +115,15 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h3 style="text-align:center;">Fecalysis Form</h3>
+
+    <h3 style="text-align:center;">Fecalysis Form - Creation</h3>
+    <p>
+  This is for data creation of the Fecalysis form.
+  If you want to search for existing fecalysis data,
+  <a href="{{ route('fecalysis.search') }}">click here</a>
+
+</p>
+
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -147,7 +155,7 @@
                         @endforeach
                     </select>
                     </label>
-                    <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" oninput="fillByAC()"></p>
+                    <p>AC#: <input type="text" id="ac" readonly name="ac" oninput="fillByAC()"></p>
                     <p>Age: <input type="text" id="age" readonly></p>
                     <p>Sex: <input type="text" id="sex" readonly></p>
                 </div>
@@ -222,7 +230,7 @@
 
             @if($medtech)
                 <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                <input type="text" id="medtechLicNo" name="mtlicno" value="{{ $medtech->LicNo ?? '' }}" readonly />
             @elseif($pathologist)
                 <select id="medtechDropdown" name="medtech">
                     <option value="">Select a MedTech</option> <!-- Default option -->
@@ -236,6 +244,7 @@
             @endif
             </div>
             <div class="table-like-section">
+
             <h3>Pathologist:</h3>
 
             @if($pathologist)
@@ -250,7 +259,7 @@
                         </option>
                     @endforeach
                 </select>
-                <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
+                <input type="text" id="pathologistLicNo" value="" readonly name="ptlicno" /> <!-- LicNo textbox -->
             @endif
             </div>
         </div>

@@ -56,7 +56,6 @@
 	<select name="Pos" required>
 		<option value="">Select</option>
 		<option value="MT">Medical Technologist</option>
-		<option value="P">Pathologist</option>
 	</select>
 	<p>License Number: </p> <input type="number" name="LicNo" placeholder="Enter License Number here" style="min-width: 100px; height: 25px; padding: 10px 15px; border-radius: 5px; font-family: Verdana;">
 	<p>Email: </p> <input type="email" name="email" placeholder="Enter email here" style="min-width: 100px; height: 25px; padding: 10px 15px; border-radius: 5px; font-family: Verdana;">

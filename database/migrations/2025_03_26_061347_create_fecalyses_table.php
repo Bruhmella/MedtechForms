@@ -13,7 +13,9 @@ return new class extends Migration {
             $table->integer('Page')->nullable();
             $table->string('Psex')->nullable();
             $table->string('Poc')->nullable();
+            $table->string('date')->nullable();
             $table->string('OR')->nullable();
+            $table->string('Reqby')->nullable();
 
             // Physical & Chemical Characteristics
             $table->string('color')->nullable();
@@ -27,7 +29,9 @@ return new class extends Migration {
 
             // Medical Personnel
             $table->string('medtech')->nullable();
+            $table->string('mtlicno')->nullable();
             $table->string('pathologist')->nullable();
+            $table->string('ptlicno')->nullable();
 
             // Microscopic Analysis
            $table->decimal('wbc', 10, 2)->nullable();

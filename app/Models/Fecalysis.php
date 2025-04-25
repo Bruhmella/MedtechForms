@@ -12,10 +12,10 @@ class Fecalysis extends Model
 protected $table = 'fecalyses';
 
     protected $fillable = [
-        'Pname', 'Page', 'Psex', 'Poc', 'OR',
+        'Pname', 'Page', 'Psex', 'Poc', 'OR','date',
         'color', 'consistency', 'occult_blood', 'sudan_stain',
         'bacteria', 'yeast', 'fat_globules', 'others',
-        'medtech', 'pathologist', 'wbc', 'rbc'
+        'medtech','mtlicno', 'pathologist','ptlicno', 'wbc', 'rbc'
     ];
 }
 

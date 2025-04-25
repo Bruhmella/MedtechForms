@@ -63,7 +63,7 @@
         <div class="polaroid">
             <img src="{{ asset('img/Fecalysis img.png') }}" style="width:100%">
             <div class="container">
-            <a href="{{ route('Fecalysis.create')}}"><BUTTON>Fecalysis</BUTTON></a>
+            <a href="{{ route('fecalysis.create')}}"><BUTTON>Fecalysis</BUTTON></a>
         </div>
     </div>
 

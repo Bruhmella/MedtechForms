@@ -44,6 +44,7 @@ class FecalysisController extends Controller
         // Validate input
         $request->validate([
             'patient_id' => 'required|exists:patients,id',
+            'date' => 'nullable|string',
             'color' => 'nullable|string',
             'consistency' => 'nullable|string',
             'occult_blood' => 'nullable|string',
@@ -56,9 +57,9 @@ class FecalysisController extends Controller
             'rbc' => 'nullable|numeric',
             'requested_by' => 'nullable|string',
             'medtech' => 'nullable|string',
-            'medtech_licno' => 'nullable|string',
+            'mtlicno' => 'nullable|string',
             'pathologist' => 'nullable|string',
-            'pathologist_licno' => 'nullable|string',
+            'ptlicno' => 'nullable|string',
         ]);
 
         // Debugging: Log all request data
@@ -66,10 +67,10 @@ class FecalysisController extends Controller
 
         // Fetch selected MedTech and Pathologist
         $medtech = $request->medtech ?? 'Not Assigned';
-        $medtechLicNo = $request->medtech_licno ?? '';
+        $medtechLicNo = $request->mtlicno ?? '';
 
         $pathologist = $request->pathologist ?? 'Not Assigned';
-        $pathologistLicNo = $request->pathologist_licno ?? '';
+        $pathologistLicNo = $request->ptlicno ?? '';
 
         \Log::info('MedTech: ' . $medtech . ' | LicNo: ' . $medtechLicNo);
         \Log::info('Pathologist: ' . $pathologist . ' | LicNo: ' . $pathologistLicNo);
@@ -84,6 +85,7 @@ class FecalysisController extends Controller
             'Page' => $patient->Page,
             'Psex' => $patient->Psex,
             'Poc' => $patient->Poc,
+            'date' => $request->date,
             'color' => $request->color,
             'consistency' => $request->consistency,
             'occult_blood' => $request->occult_blood,
@@ -97,12 +99,12 @@ class FecalysisController extends Controller
             'date' => $request->date,
             'requested_by' => $request->requested_by,
             'medtech' => $medtech,
-            'medtech_licno' => $medtechLicNo,
+            'mtlicno' => $medtechLicNo,
             'pathologist' => $pathologist,
-            'pathologist_licno' => $pathologistLicNo,
+            'ptlicno' => $pathologistLicNo,
         ]);
 
-        return redirect()->route('Fecalysis.create')->with('success', 'Data saved successfully.');
+        return redirect()->route('fecalysis.create')->with('success', 'Data saved successfully.');
     }
 
     private function generateOrNumber($latestRecord)
@@ -116,5 +118,20 @@ class FecalysisController extends Controller
         }
 
         return "FC" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
+    }
+    public function search()
+    {
+        $user = session('user');
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please log in first.');
+        }
+        
+        $data = fecalysis::where('OR', request('OR'))->first();
+
+        return view('FecalysisSearch', [
+            'data' => $data,
+            'user' => $user
+        ]);
     }
 }

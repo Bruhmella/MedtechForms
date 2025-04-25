@@ -99,8 +99,9 @@ Route::get('/logout', function () {
 })->name('logout');
 
 
-Route::get('/Fecalysis/create', [FecalysisController::class, 'create'])->name('Fecalysis.create');
+Route::get('/Fecalysis/create', [FecalysisController::class, 'create'])->name('fecalysis.create');
 Route::post('/fecalysis/store', [FecalysisController::class, 'store'])->name('fecalysis.store');
+Route::get('/fecalysis/search', [FecalysisController::class, 'search'])->name('fecalysis.search');
 
 Route::get('/Hematology/create', [HematologyController::class, 'create'])->name('hematology.create');
 Route::post('/Hematology/store', [HematologyController::class, 'store'])->name('hematology.store');

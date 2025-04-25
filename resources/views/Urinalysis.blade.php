@@ -149,7 +149,7 @@
                         @endforeach
                     </select>
                     </label>
-                    <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
+                    <p>AC#: <input type="text" id="ac" readonly name="Poc"></p>
                     <p>Age: <input type="text" id="age" readonly name="Page"></p>
                     <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
                 </div>
@@ -310,7 +310,8 @@
              <h3>Medical Technologist:</h3>
                 @if($medtech)
                     <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+
                 @elseif($pathologist)
                     <select id="medtechDropdown" name="medtech">
                         <option value="">Select a MedTech</option> <!-- Default option -->
@@ -320,14 +321,17 @@
                             </option>
                         @endforeach
                     </select>
-                    <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
+                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
                 @endif
             </div>
             <div class="table-like-section">
+
                 <h3>Pathologist:</h3>
+
                 @if($pathologist)
                     <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
                     <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+
                 @elseif($medtech)
                     <select id="pathologistDropdown" name="pathologist">
                         <option value="">Select a Pathologist</option> <!-- Default option -->
@@ -335,9 +339,13 @@
                             <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
                                 {{ $pathologist->fname . ' ' . $pathologist->lname }}
                             </option>
+
                         @endforeach
+
                     </select>
-                    <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
+
+                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
+                     <!-- LicNo textbox -->
                 @endif
             </div>
         </div>

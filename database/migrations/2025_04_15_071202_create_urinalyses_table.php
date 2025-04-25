@@ -14,6 +14,7 @@ return new class extends Migration
             $table->integer('Page')->nullable();
             $table->string('Psex')->nullable();
             $table->string('Poc')->nullable(); // Place of Origin
+            $table->string('date')->nullable();
             $table->string('OR')->nullable();
             $table->string('Reqby')->nullable();
 
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->string('glucose')->nullable();
             $table->string('ketones')->nullable();
             $table->string('bilirubin')->nullable();
-            $table->string('pregnancy')->nullable();
+            $table->string('pregnancy')->nullable(); 
             $table->string('others')->nullable();
             
             // Microscopic Examination
@@ -52,7 +53,9 @@ return new class extends Migration
             $table->decimal('rbc2', 10, 2)->nullable();
 
             $table->string('medtech')->nullable();
+            $table->string('mtlicno')->nullable();
             $table->string('pathologist')->nullable();
+            $table->string('ptlicno')->nullable();
             $table->timestamps();
         });
     }

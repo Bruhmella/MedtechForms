@@ -41,6 +41,7 @@ class UrinalysisController extends Controller
 
      public function store(Request $request)
     {
+       
         // Validate input
         $request->validate([
             'patient_id' => 'required|exists:patients,id',
@@ -78,7 +79,9 @@ class UrinalysisController extends Controller
             'rbc2'=>'nullable|numeric',
             
             'medtech' => 'nullable|string',
+            'mtlicno' => 'nullable|string',
             'pathologist' => 'nullable|string',
+            'ptlicno' => 'nullable|string',
         ]);
 
         // Fetch patient details
@@ -124,7 +127,9 @@ class UrinalysisController extends Controller
             'rbc2'=> $request->rbc2,
 
             'medtech' => $request->medtech,
+            'mtlicno' => $request->mtlicno,
             'pathologist' => $request->pathologist,
+            'ptlicno' => $request->ptlicno,
         ]);
 
         return redirect()->route('urinalysis.create')->with('success', 'Data saved successfully.');

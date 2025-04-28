@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Fecalysis Form</title>
+    <title>Fecalysis - Search</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         h1, h3 {
@@ -157,7 +157,7 @@
                 <div class="form-row2">
                     <p>Date: <input type="text" readonly id="date" name="date" value="{{ $data->date ?? '' }}" ></p>
                     <p>OR#: <input type="text" readonly id="date" name="OR" value="{{ $data->OR ?? '' }}"></p>
-                    <p>Requested by: <input type="text" readonly name="requested_by" value="{{ $data->Reqby ?? '' }}"></p>
+                    <p>Requested by: <input type="text" readonly name="Reqby" value="{{ $data->Reqby ?? '' }}"></p>
                 </div>
             </div>
             <br>
@@ -167,24 +167,24 @@
                 <h3 style="text-align: center">Consistency</h3>
                     <div class="form-group">
                         <label for="color">Color:</label>
-                        <input type="text" readonly name="color" class="form-control">
+                        <input type="text" readonly name="color" class="form-control" value="{{ $data->color ?? '' }}">
                     </div>
 
                     <div class="form-group">
                         <label for="consistency">Consistency:</label>
-                        <input type="text" readonly name="consistency" class="form-control">
+                        <input type="text" readonly name="consistency" value="{{ $data->consistency ?? '' }}" class="form-control">
                     </div>
                 </div>
                 <div class="table-like2-section">
                 <h3 style="text-align: center">Miscellaneous</h3>
                     <div class="form-group">
                         <label for="occult_blood">Occult Blood:</label>
-                        <input type="text" readonly name="occult_blood" class="form-control">
+                        <input type="text" readonly name="occult_blood" value="{{ $data->occult_blood ?? '' }}" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="sudan_stain">Sudan Stain:</label>
-                        <input type="text" readonly name="sudan_stain" class="form-control">
+                        <input type="text" readonly name="sudan_stain" value="{{ $data->sudan_stain ?? '' }}" class="form-control">
                     </div>
                 </div>
                 <div class="table-like2-section">
@@ -192,30 +192,30 @@
                     <div class="form-group">
                         <label for="wbc">WBC:</label>
                         <div class="form-subgroup">
-                            <input type="number" name="wbc" class="form-control" step="any" min="0"
+                            <input type="number" name="wbc" class="form-control" value="{{ $data->wbc ?? '' }}" step="any" min="0"
                              pattern="^\d+(\.\d+)?$">
                             <p>/hpf</p>
                         </div>
                         <label for="yeast">Yeast:</label>
-                        <input type="text" readonly name="yeast" class="form-control">
+                        <input type="text" readonly name="yeast" value="{{ $data->yeast ?? '' }}" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="rbc">RBC:</label>
                         <div class="form-subgroup">
-                            <input type="number" name="rbc" class="form-control" step="any" min="0" pattern="^\d+(\.\d+)?$">
+                            <input type="number" name="rbc" class="form-control" value="{{ $data->rbc ?? '' }}" step="any" min="0" pattern="^\d+(\.\d+)?$">
                             <p>/hpf</p>
                         </div>
                         <label for="fat_globules">Fat Globules:</label>
-                        <input type="text" readonly name="fat_globules" class="form-control">
+                        <input type="text" readonly name="fat_globules" value="{{ $data->fat_globules ?? '' }}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bacteria">Bacteria:</label>
-                        <input type="text" readonly name="bacteria" class="form-control">
+                        <input type="text" readonly name="bacteria" value="{{ $data->bacteria ?? '' }}" class="form-control">
                     </div>
                     <div class="form-group2">
                         <label for="others">Others:</label>
-                        <textarea type="text" readonly name="others" rows="4" cols="50" class="form-control"></textarea>
+                        <textarea type="text" readonly name="others" value="{{ $data->others ?? '' }}" rows="4" cols="50" class="form-control"></textarea>
                     </div>
                 </div>
             </div>

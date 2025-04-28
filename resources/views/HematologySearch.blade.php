@@ -104,12 +104,22 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h3 style="text-align: center;">Hematology Form</h3>
+    <h3 style="text-align: center;">Hematology Form - Search</h3>
+
     <p>
-  This is for creating new hematology form data.
-  If you want to search existing data,
-  <a href="{{ route('hematology.search') }}">click here</a>
+  This is for searching the hematology form.
+  If you want to create new data,
+  <a href="{{ route('hematology.create') }}">click here</a>
 </p>
+
+<form method="GET" action="{{ route('hematology.search') }}">
+    <h5>Enter OR# Here:</h5> 
+    <input type="text" name="OR" value="{{ request('OR') }}">
+    <button type="submit">Search</button>
+    <a href="{{ route('hematology.search') }}" class="btn btn-primary">Clear search Data</a>
+
+</form>
+
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -129,27 +139,15 @@
             @csrf <!-- CSRF Token -->
             <div class="innercontainer">
                 <div class="form-row">
-                <label for="patientSelect">Name:
-                <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
-                    <option value="">-- Select a Patient --</option>
-                    @foreach ($patients as $patient)
-                        <option value="{{ $patient->id }}" 
-                                data-ac="{{ $patient->Poc ?? '' }}"
-                                data-age="{{ $patient->Page ?? '' }}" 
-                                data-sex="{{ $patient->Psex ?? '' }}">
-                            {{ $patient->Pname }}
-                        </option>
-                    @endforeach
-                </select>
-                </label>
-                <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" class="form-control" oninput="fillByAC()"></p>
-                <p>Age: <input type="text" id="age" class="form-control" readonly></p>
-                <p>Sex: <input type="text" id="sex" class="form-control" readonly></p>
+                    <p>Name: <input type="text" readonly value="{{ $data->Pname ?? '' }}" ></p>
+                    <p>AC#: <input type="text" readonly id="ac" value="{{ $data->Poc ?? '' }}"></p>
+                    <p>Age: <input type="text" readonly id="age" value="{{ $data->Page ?? '' }}" ></p>
+                    <p>Sex: <input type="text" readonly id="sex" value="{{ $data->Psex ?? '' }}" ></p>
                 </div>
                 <div class="form-row2">
-                <p>Date: <input type="date" id="date" name="date" class="form-control" readonly></p>
-                <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" class="form-control" readonly></p>
-                <p>Requested by: <input type="text" name="Reqby" placeholder="Enter requester name" class="form-control"></p>
+                    <p>Date: <input type="text" readonly id="date" name="date" value="{{ $data->date ?? '' }}" ></p>
+                    <p>OR#: <input type="text" readonly name="OR" value="{{ $data->OR ?? '' }}"></p>
+                    <p>Requested by: <input type="text" readonly name="Reqby" value="{{ $data->Reqby ?? '' }}"></p>
                 </div>
             </div>
             <!-- Hematology Fields -->
@@ -162,7 +160,7 @@
                     </div>
                     <div class="form-group">
                         <label for="hemogoblin">Hemoglobin:</label>
-                        <input type="number" name="hemogoblin" step="0.01" class="form-control">
+                        <input type="number" name="hemogoblin" step="0.01" value="{{ $data->hemogoblin ?? '' }}" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">140 - 180 g/L</p>
@@ -173,7 +171,7 @@
 
                     <div class="form-group">
                         <label for="hematocrit">Hematocrit:</label>
-                        <input type="number" name="hematocrit" step="0.01" class="form-control">
+                        <input type="number" name="hematocrit" step="0.01" value="{{ $data->hematocrit ?? '' }}" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">0.40 - 0.54 vol. %</p>
@@ -184,13 +182,13 @@
 
                     <div class="form-group">
                         <label for="rbc">RBC:</label>
-                        <input type="number" name="rbc" step="0.01" class="form-control">
+                        <input type="number" name="rbc" step="0.01" value="{{ $data->rbc ?? '' }}"class="form-control">
                         <p style="font-size: 10px">4.0 - 6.0 x M/cu mm</p>
                     </div>
 
                     <div class="form-group">
                         <label for="wbc">WBC:</label>
-                        <input type="number" name="wbc" step="0.01" class="form-control">
+                        <input type="number" name="wbc" step="0.01" value="{{ $data->wbc ?? '' }}" class="form-control">
                         <p style="font-size: 10px">4,000 - 12,000 / cu mm</p>
                     </div>
                 <div class="tablelabel">
@@ -198,67 +196,67 @@
                 </div>
                     <div class="form-group">
                         <label for="segmenters">Segmenters:</label>
-                        <input type="number" name="segmenters" step="0.01" class="form-control">
+                        <input type="number" name="segmenters" step="0.01" value="{{ $data->segmenters ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.50 - 0.70</p>
                     </div>
 
                     <div class="form-group">
                         <label for="band">Band:</label>
-                        <input type="number" name="band" step="0.01" class="form-control">
+                        <input type="number" name="band" value="{{ $data->band ?? '' }}" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.00 - 0.05</p>
                     </div>
 
                     <div class="form-group">
                         <label for="lymphocyte">Lymphocyte:</label>
-                        <input type="number" name="lymphocyte" step="0.01" class="form-control">
+                        <input type="number" name="lymphocyte" value="{{ $data->lymphocyte ?? '' }}" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.18 - 0.42</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Monocyte">Monocyte:</label>
-                        <input type="number" name="Monocyte" step="0.01" class="form-control">
+                        <input type="number" name="Monocyte" step="0.01" value="{{ $data->Monocyte ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.02 - 0.11</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Eosinophil">Eosinophil:</label>
-                        <input type="number" name="Eosinophil" step="0.01" class="form-control">
+                        <input type="number" name="Eosinophil" step="0.01" value="{{ $data->Eosinophil ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.01 - 0.03</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Basophil">Basophil:</label>
-                        <input type="number" name="Basophil" step="0.01" class="form-control">
+                        <input type="number" name="Basophil" step="0.01" value="{{ $data->Basophil ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Metamyelocyte">Metamyelocyte:</label>
-                        <input type="number" name="Metamyelocyte" step="0.01" class="form-control">
+                        <input type="number" name="Metamyelocyte" step="0.01" value="{{ $data->Metamyelocyte ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Myelocyte">Myelocyte:</label>
-                        <input type="number" name="Myelocyte" step="0.01" class="form-control">
+                        <input type="number" name="Myelocyte" step="0.01" value="{{ $data->Myelocyte ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Blast_Cell">Blast Cell:</label>
-                        <input type="number" name="Blast_Cell" step="0.01" class="form-control">
+                        <input type="number" name="Blast_Cell" step="0.01" value="{{ $data->Blast_Cell ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="platelet">Platelet Count:</label>
-                        <input type="number" name="platelet" step="0.01" class="form-control">
+                        <input type="number" name="platelet" step="0.01" value="{{ $data->platelet ?? '' }}" class="form-control">
                         <p style="font-size: 10px">15,000 - 450,000 x cu mm</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Reticulocyte">Reticulocyte Count:</label>
-                        <input type="number" name="Reticulocyte" step="0.01" class="form-control">
+                        <input type="number" name="Reticulocyte" step="0.01" value="{{ $data->Reticulocyte ?? '' }}" class="form-control">
                         <p style="font-size: 10px">0.50 - 1.5%</p>
                     </div>
                 </div>
@@ -270,17 +268,17 @@
                     </div>
                     <div class="form-group">
                         <label for="BLOOD_TYPING">Blood Typing:</label>
-                        <input type="text" name="BLOOD_TYPING" class="form-control">
+                        <input type="text" name="BLOOD_TYPING" value="{{ $data->BLOOD_TYPING ?? '' }}" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="rh_factor">Rh Factor:</label>
-                        <input type="text" name="rh_factor" class="form-control">
+                        <input type="text" name="rh_factor" value="{{ $data->rh_factor ?? '' }}" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="esr">ESR:</label>
-                        <input type="number" name="esr" step="0.01" class="form-control">
+                        <input type="number" name="esr" step="0.01" value="{{ $data->esr ?? '' }}" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">0 - 15 mm/hr</p>
@@ -291,125 +289,38 @@
 
                     <div class="form-group">
                         <label for="clotting_time">Clotting Time:</label>
-                        <input type="number" name="clotting_time" step="0.01" class="form-control">
+                        <input type="number" name="clotting_time" step="0.01" value="{{ $data->clotting_time ?? '' }}" class="form-control">
                         <p style="font-size: 10px">2 - 8 minutes</p>
                     </div>
 
                     <div class="form-group">
                         <label for="bleeding_time">Bleeding Time:</label>
-                        <input type="number" name="bleeding_time" step="0.01" class="form-control">
+                        <input type="number" name="bleeding_time" step="0.01"  value="{{ $data->bleeding_time ?? '' }}"class="form-control">
                         <p style="font-size: 10px">1 - 5 minutes</p>
                     </div>
                 </div>
             </div>
             <br>
-        <div class="table-like">
-            <div class="table-like-section">
-             <h3>Medical Technologist:</h3>
-                @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+            <div class="table-like">
+                <div class="table-like-section">
+                    <h3>Medical Technologist:</h3>
+    
+        <input type="text" readonly   name="medtech" value="{{ $data->medtech ?? '' }}">
+    
+        <input type="text" readonly   id="medtechLicNo" value="{{ $data->mtlicno ?? '' }}"  />   
+</div>
 
-                @elseif($pathologist)
-                    <select id="medtechDropdown" name="medtech">
-                        <option value="">Select a MedTech</option> <!-- Default option -->
-                        @foreach($medtechs as $medtech)
-                            <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
-                                {{ $medtech->fname . ' ' . $medtech->lname }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
-                @endif
-            </div>
-            <div class="table-like-section">
+<!-- Pathologist -->
+<div class="table-like-section">
+    <h3>Pathologist:</h3>
 
-                <h3>Pathologist:</h3>
-
-                @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
-
-                @elseif($medtech)
-                    <select id="pathologistDropdown" name="pathologist">
-                        <option value="">Select a Pathologist</option> <!-- Default option -->
-                        @foreach($pathologists as $pathologist)
-                            <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
-                                {{ $pathologist->fname . ' ' . $pathologist->lname }}
-                            </option>
-
-                        @endforeach
-
-                    </select>
-
-                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
-                     <!-- LicNo textbox -->
-                @endif
-            </div>
-        </div>
-    </div>
+        <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
+        <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
+</div>
+</form>
     <div class="center">
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">print</button>
     </div>
-    </form>
-    <script>
-        function fillPatientData() {
-            let patientSelect = document.getElementById('patientSelect');
-            let selectedOption = patientSelect.options[patientSelect.selectedIndex];
-
-            if (selectedOption.value === "") {
-                document.getElementById('ac').value = "";
-                document.getElementById('age').value = "";
-                document.getElementById('sex').value = "";
-                return;
-            }
-
-            let ac = selectedOption.getAttribute('data-ac') || ''; 
-            let age = selectedOption.getAttribute('data-age') || ''; 
-            let sex = selectedOption.getAttribute('data-sex') || ''; 
-
-            document.getElementById('ac').value = ac;
-            document.getElementById('age').value = age;
-            document.getElementById('sex').value = sex;
-            document.getElementById('date').value = new Date().toISOString().split('T')[0]; 
-        }
-
-        document.getElementById('pathologistDropdown')?.addEventListener('change', function() {
-            let selectedOption = this.options[this.selectedIndex];
-            document.getElementById('pathologistLicNo').value = selectedOption.dataset.licno || '';
-        });
-
-        document.getElementById('medtechDropdown')?.addEventListener('change', function() {
-            let selectedOption = this.options[this.selectedIndex];
-            document.getElementById('medtechLicNo').value = selectedOption.dataset.licno || '';
-        });
-
-        window.addEventListener('load', function() {
-            if (document.getElementById('medtechDropdown')) {
-                var medtechDropdown = document.getElementById('medtechDropdown');
-                if (medtechDropdown.selectedIndex >= 0) {
-                    var selectedOption = medtechDropdown.options[medtechDropdown.selectedIndex];
-                    var licNo = selectedOption.getAttribute('data-licno');
-                    document.getElementById('medtechLicNo').value = licNo;
-                }
-            }
-
-            if (document.getElementById('pathologistDropdown')) {
-                var pathologistDropdown = document.getElementById('pathologistDropdown');
-                if (pathologistDropdown.selectedIndex >= 0) {
-                    var selectedOption = pathologistDropdown.options[pathologistDropdown.selectedIndex];
-                    var licNo = selectedOption.getAttribute('data-licno');
-                    document.getElementById('pathologistLicNo').value = licNo;
-                }
-            }
-        });
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-    }
-
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-    }
-    </script>
+    
 </body>
 </html>

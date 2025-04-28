@@ -105,9 +105,11 @@ Route::get('/fecalysis/search', [FecalysisController::class, 'search'])->name('f
 
 Route::get('/Hematology/create', [HematologyController::class, 'create'])->name('hematology.create');
 Route::post('/Hematology/store', [HematologyController::class, 'store'])->name('hematology.store');
+Route::get('/Hematology/search', [HematologyController::class, 'search'])->name('hematology.search');
 
 Route::get('/Chemistry/create', [ChemistryController::class, 'create'])->name('chemistry.create');
 Route::post('/Chsmistry/store', [ChemistryController::class, 'store'])->name('chemistry.store');
+Route::get('/Chemistry/search', [ChemistryController::class, 'search'])->name('chemistry.search');
 
 Route::get('/rbs/create', [RbsController::class, 'create'])->name('rbs.create');
 Route::post('/rbs/store', [RbsController::class, 'store'])->name('rbs.store');

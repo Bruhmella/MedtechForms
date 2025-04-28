@@ -43,6 +43,7 @@ class FecalysisController extends Controller
     {
         // Validate input
         $request->validate([
+            'Reqby' => 'nullable|string',
             'patient_id' => 'required|exists:patients,id',
             'date' => 'nullable|string',
             'color' => 'nullable|string',
@@ -87,6 +88,7 @@ class FecalysisController extends Controller
             'Poc' => $patient->Poc,
             'date' => $request->date,
             'color' => $request->color,
+            'Reqby' => $request->Reqby,
             'consistency' => $request->consistency,
             'occult_blood' => $request->occult_blood,
             'sudan_stain' => $request->sudan_stain,

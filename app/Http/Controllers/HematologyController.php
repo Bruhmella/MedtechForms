@@ -45,6 +45,8 @@ class HematologyController extends Controller
         $request->validate([
             'patient_id' => 'required|exists:patients,id',
             'OR' => 'nullable|string',
+            'date' => 'nullable|string',
+            'Reqby' => 'nullable|string',
             'hemogoblin' => 'nullable|numeric',
             'hematocrit' => 'nullable|numeric',
             'rbc' => 'nullable|numeric',
@@ -66,7 +68,9 @@ class HematologyController extends Controller
             'clotting_time' => 'nullable|numeric',
             'bleeding_time' => 'nullable|numeric',
             'medtech' => 'nullable|string',
+            'mtlicno' => 'nullable|string',
             'pathologist' => 'nullable|string',
+            'ptlicno' => 'nullable|string',
         ]);
 
         // Fetch patient details
@@ -79,6 +83,8 @@ class HematologyController extends Controller
             'Page' => $patient->Page,
             'Psex' => $patient->Psex,
             'Poc' => $patient->Poc,
+            'date' => $request->date,
+            'Reqby' => $request->Reqby,
             'hemogoblin' => $request->hemogoblin,
             'hematocrit' => $request->hematocrit,
             'rbc' => $request->rbc,
@@ -95,12 +101,14 @@ class HematologyController extends Controller
             'platelet' => $request->platelet,
             'Reticulocyte' => $request->Reticulocyte,
             'BLOOD_TYPING' => $request->BLOOD_TYPING,
-'rh_factor' => $request->rh_factor,
+            'rh_factor' => $request->rh_factor,
             'esr' => $request->esr,
             'clotting_time' => $request->clotting_time,
             'bleeding_time' => $request->bleeding_time,
             'medtech' => $request->medtech,
+            'mtlicno' => $request->mtlicno,
             'pathologist' => $request->pathologist,
+            'ptlicno' => $request->ptlicno,
         ]);
 
         return redirect()->route('hematology.create')->with('success', 'Data saved successfully.');
@@ -117,5 +125,21 @@ class HematologyController extends Controller
         }
 
         return "HM" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
+    }
+
+    public function search()
+    {
+        $user = session('user');
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please log in first.');
+        }
+        
+        $data = hematology::where('OR', request('OR'))->first();
+
+        return view('HematologySearch', [
+            'data' => $data,
+            'user' => $user
+        ]);
     }
 }

@@ -46,6 +46,7 @@ class ChemistryController extends Controller
             'patient_id' => 'required|exists:patients,id',
             'OR' => 'nullable|string',
             'Reqby' => 'nullable|string',
+            'date' => 'nullable|string',
             'glucose' => 'nullable|numeric',
             'urea_nitrogen' => 'nullable|numeric',
             'creatine' => 'nullable|numeric',
@@ -73,7 +74,10 @@ class ChemistryController extends Controller
             'others' =>'nullable|string',
             'remarks' =>'nullable|string',
             'medtech' => 'nullable|string',
+            'mtlicno' => 'nullable|string',
             'pathologist' => 'nullable|string',
+            'ptlicno' => 'nullable|string',
+
         ]);
 
         // Fetch patient details
@@ -87,6 +91,7 @@ class ChemistryController extends Controller
             'Psex' => $patient->Psex,
             'Poc' => $patient->Poc,
             'Reqby' => $request->Reqby,
+            'date' => $request->date,
             'glucose' => $request->glucose,
             'urea_nitrogen' => $request->urea_nitrogen,
             'creatine' => $request->creatine,
@@ -114,7 +119,9 @@ class ChemistryController extends Controller
             'others' => $request->others,  // ✅ Added this
             'remarks' => $request->remarks, // ✅ Added this
             'medtech' => $request->medtech,
+            'mtlicno' => $request->mtlicno,
             'pathologist' => $request->pathologist,
+            'ptlicno' => $request->ptlicno,
         ]);
 
         return redirect()->route('chemistry.create')->with('success', 'Data saved successfully.');
@@ -132,4 +139,21 @@ class ChemistryController extends Controller
 
         return "CH" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
+
+    public function search()
+    {
+        $user = session('user');
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please log in first.');
+        }
+        
+        $data = chemistry::where('OR', request('OR'))->first();
+
+        return view('ChemistrySearch', [
+            'data' => $data,
+            'user' => $user
+        ]);
+    }
+
 }

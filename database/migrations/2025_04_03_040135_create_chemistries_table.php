@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('Poc')->nullable(); // Place of Origin
             $table->string('OR')->nullable();
             $table->string('Reqby')->nullable();
+            $table->string('date')->nullable();
             $table->float('glucose')->nullable();
             $table->float('urea_nitrogen')->nullable();
             $table->float('creatine')->nullable();
@@ -42,7 +43,9 @@ return new class extends Migration {
             $table->string('others')->nullable();
             $table->string('remarks')->nullable();
             $table->string('medtech')->nullable();
+            $table->string('mtlicno')->nullable();
             $table->string('pathologist')->nullable();
+            $table->string('ptlicno')->nullable();
             $table->timestamps();
         });
     }

@@ -290,3 +290,27 @@ Form report: "Fecalysis - search"
 Other changes:
 	❓ started adding autofill function for fecalysis - WIP
 
+changelog 4-28-25
+BACK END PROGRESS REPORT:
+	Page last worked on: chemistry - creation
+	System Progress: 73% completed
+	❌ System Testing
+Form report: "fecalysis - search"
+	✅ functionality fully established - page now works as intended
+	✅ ready for printing
+Form report: "hematology - search"
+	✅ functionality fully established - page now works as intended
+	✅ ready for printing
+Form report: "chemistry - creation"
+	✅ changed form to be compatible with search function
+Form report: "Chemistry - search"
+	✅ established basic functionality and routing
+
+changelog 4-29-25
+BACK END PROGRESS REPORT:
+	Page last worked on: chemistry - search
+	System Progress: 73% completed
+	❌ System Testing
+Form report: "Chemistry - search"
+	✅ autofill function done - ready for printing
+

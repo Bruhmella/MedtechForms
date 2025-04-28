@@ -18,6 +18,8 @@ class CreateHematologiesTable extends Migration
             $table->string('Poc')->nullable();
             $table->string('OR')->nullable();  // Assuming this is related to OR (Operation Room or another term)
             // Hematology-related fields
+            $table->string('date')->nullable();
+            $table->string('Reqby')->nullable();
             $table->decimal('hemogoblin', 5, 2)->nullable();
             $table->decimal('hematocrit', 5, 2)->nullable();
             $table->decimal('rbc', 5, 2)->nullable();
@@ -39,7 +41,9 @@ class CreateHematologiesTable extends Migration
             $table->decimal('clotting_time', 5, 2)->nullable();
             $table->decimal('bleeding_time', 5, 2)->nullable();
             $table->string('medtech')->nullable();
+            $table->string('mtlicno')->nullable();
             $table->string('pathologist')->nullable();
+            $table->string('ptlicno')->nullable();
             $table->timestamps();
             
             // Foreign key relationship

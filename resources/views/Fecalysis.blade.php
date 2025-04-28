@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Fecalysis Form</title>
+    <title>Fecalysis - Creation</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         h1, h3 {
@@ -162,7 +162,7 @@
                 <div class="form-row2">
                     <p>Date: <input type="date" id="date" name="date" readonly></p>
                     <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
-                    <p>Requested by: <input type="text" name="requested_by" placeholder="Enter requester name"></p>
+                    <p>Requested by: <input type="text" name="Reqby" placeholder="Enter requester name"></p>
                 </div>
             </div>
             <br>

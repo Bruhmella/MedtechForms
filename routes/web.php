@@ -113,6 +113,7 @@ Route::get('/Chemistry/search', [ChemistryController::class, 'search'])->name('c
 
 Route::get('/rbs/create', [RbsController::class, 'create'])->name('rbs.create');
 Route::post('/rbs/store', [RbsController::class, 'store'])->name('rbs.store');
+Route::get('/rbs/search', [RbsController::class, 'search'])->name('rbs.search');
 
 Route::get('/hba1c/create', [Hba1cController::class, 'create'])->name('hba1c.create');
 Route::post('/hba1c/store', [Hba1cController::class, 'store'])->name('hba1c.store');

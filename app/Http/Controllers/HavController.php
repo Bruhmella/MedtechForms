@@ -52,7 +52,9 @@ class HavController extends Controller
             'result1' =>'nullable|string',
             
             'medtech' => 'nullable|string',
+            'mtlicno' => 'nullable|string',
             'pathologist' => 'nullable|string',
+            'ptlicno' => 'nullable|string',
         ]);
 
         // Fetch patient details
@@ -73,7 +75,9 @@ class HavController extends Controller
             'result1' => $request->result1,
 
             'medtech' => $request->medtech,
+            'mtlicno' => $request->mtlicno,
             'pathologist' => $request->pathologist,
+            'ptlicno' => $request->ptlicno,
         ]);
 
         return redirect()->route('hav.create')->with('success', 'Data saved successfully.');

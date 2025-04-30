@@ -351,7 +351,6 @@
 <!-- Pathologist -->
 <div class="table-like-section">
     <h3>Pathologist:</h3>
-
         <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
         <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
 </div>

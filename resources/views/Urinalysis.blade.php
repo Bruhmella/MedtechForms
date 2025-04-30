@@ -305,6 +305,7 @@
             </div>
         </div>
         <br>
+<!--start here-->
         <div class="table-like">
             <div class="table-like-section">
              <h3>Medical Technologist:</h3>
@@ -354,6 +355,7 @@
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
     </form>
+<!-- end here -->
 <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');

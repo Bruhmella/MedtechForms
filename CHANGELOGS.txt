@@ -314,3 +314,13 @@ BACK END PROGRESS REPORT:
 Form report: "Chemistry - search"
 	✅ autofill function done - ready for printing
 
+changelog 4-30-25
+BACK END PROGRESS REPORT:
+	Page last worked on: rbs - search
+	System Progress: 75% completed
+	❌ System Testing
+Form report: "Chemistry - search"
+	✅ autofill function done - ready for printing
+Form report: "rbs - search"
+	✅ autofill function done - ready for printing
+	✅ routes on this page done - users can now come and go to this page freely

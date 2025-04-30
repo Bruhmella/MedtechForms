@@ -114,6 +114,11 @@
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
     <h3 style="text-align:center">RBS Form</h3>
+    <p>
+  This is for data creation of the RBS form.
+  If you want to search for existing RBS form data,
+  <a href="{{ route('rbs.search') }}">click here</a>
+</p>
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -180,54 +185,66 @@
                             <p>3.8 - 6.9</p>
                         </div>
                         <div class="form-group">
-                            <input type="number" name="result" step="0.01" class="form-control">
+                            <input type="number" name="result2" step="0.01" class="form-control">
                             <p>mmol/L</p>
                             <p>68.4 - 124.2</p>
                         </div>
                     </div>
                 </div>
             </div>
+<!--start here-->
         <div class="table-like">
             <div class="table-like-section">
-            <h3>Medical Technologist:</h3>
-            @if($medtech)
-                <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                <input type="text" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
-            @elseif($pathologist)
-                <select id="medtechDropdown" name="medtech">
-                    <option value="">Select a MedTech</option> <!-- Default option -->
-                    @foreach($medtechs as $medtech)
-                        <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
-                            {{ $medtech->fname . ' ' . $medtech->lname }}
-                        </option>
-                    @endforeach
-                </select>
-                <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
-            @endif
+             <h3>Medical Technologist:</h3>
+                @if($medtech)
+                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+
+                @elseif($pathologist)
+                    <select id="medtechDropdown" name="medtech">
+                        <option value="">Select a MedTech</option> <!-- Default option -->
+                        @foreach($medtechs as $medtech)
+                            <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
+                                {{ $medtech->fname . ' ' . $medtech->lname }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
+                @endif
             </div>
             <div class="table-like-section">
-            <h3>Pathologist:</h3>
-            @if($pathologist)
-                <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
-            @elseif($medtech)
-                <select id="pathologistDropdown" name="pathologist">
-                    <option value="">Select a Pathologist</option> <!-- Default option -->
-                    @foreach($pathologists as $pathologist)
-                        <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
-                            {{ $pathologist->fname . ' ' . $pathologist->lname }}
-                        </option>
-                    @endforeach
-                </select>
-                <input type="text" id="pathologistLicNo" value="" readonly /> <!-- LicNo textbox -->
-            @endif
+
+                <h3>Pathologist:</h3>
+
+                @if($pathologist)
+                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+
+                @elseif($medtech)
+                    <select id="pathologistDropdown" name="pathologist">
+                        <option value="">Select a Pathologist</option> <!-- Default option -->
+                        @foreach($pathologists as $pathologist)
+                            <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
+                                {{ $pathologist->fname . ' ' . $pathologist->lname }}
+                            </option>
+
+                        @endforeach
+
+                    </select>
+
+                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
+                     <!-- LicNo textbox -->
+                @endif
             </div>
         </div>
-        </form>
     </div>
     <div class="center">
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </form>
+<!-- end here -->
+    </div>
+
     <script>
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');

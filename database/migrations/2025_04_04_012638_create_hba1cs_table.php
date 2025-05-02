@@ -16,9 +16,14 @@ return new class extends Migration
             $table->string('Poc')->nullable(); // Place of Origin
             $table->string('OR')->nullable();
             $table->string('Reqby')->nullable();
-            $table->float('result')->nullable();
+            $table->string('date')->nullable();
+            $table->string('test')->nullable();
+            $table->string('result')->nullable();
+            $table->string('unit')->nullable();
             $table->string('medtech')->nullable();
+            $table->string('mtlicno')->nullable();
             $table->string('pathologist')->nullable();
+            $table->string('ptlicno')->nullable();
             $table->timestamps();
         });
     }

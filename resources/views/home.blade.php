@@ -91,21 +91,14 @@
     <div class="polaroid">
             <img src="{{ asset('img/HBA1c img.png') }}" style="width:100%">
             <div class="container">
-            <a href="{{ route('hba1c.create')}}"><BUTTON>HbA1c</BUTTON></a>
-        </div>
-    </div>
-
-    <div class="polaroid">
-            <img src="{{ asset('img/Thyroid img.png') }}" style="width:100%">
-            <div class="container">
-            <a href="{{ route('thyroid.create')}}"><BUTTON>Thyroid</BUTTON></a>
+            <a href="{{ route('hba1c.create')}}"><BUTTON>Miscellaneous 1</BUTTON></a>
         </div>
     </div>
 
     <div class="polaroid">
             <img src="{{ asset('img/HBsAg img.png') }}" style="width:100%">
             <div class="container">
-            <a href="{{ route('hbsag.create')}}"><BUTTON>HBSAG</BUTTON></a>
+            <a href="{{ route('hbsag.create')}}"><BUTTON>Miscellaneous 2</BUTTON></a>
         </div>
     </div>
 

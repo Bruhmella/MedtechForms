@@ -41,32 +41,57 @@ class Hba1cController extends Controller
 
      public function store(Request $request)
     {
-        // Validate input
-        $request->validate([
-            'patient_id' => 'required|exists:patients,id',
-            'OR' => 'nullable|string',
-            'Reqby' => 'nullable|string',
-            'result' =>'nullable|string',
-            
-            'medtech' => 'nullable|string',
-            'pathologist' => 'nullable|string',
-        ]);
+$request->validate([
+    'patient_id' => 'required|exists:patients,id',
+    'OR' => 'nullable|string',
+    'Reqby' => 'nullable|string',
+    'date' => 'nullable|string',
+
+    'test' => 'required|array|min:1|max:3',
+    'test.*' => 'nullable|string',
+
+    'result' => 'required|array|min:1|max:3',
+    'result.*' => 'nullable|numeric',
+
+    'unit' => 'required|array|min:1|max:3',
+    'unit.*' => 'nullable|string',
+
+
+    'medtech' => 'nullable|string',
+    'mtlicno' => 'nullable|string',
+    'pathologist' => 'nullable|string',
+    'ptlicno' => 'nullable|string',
+]);
+
 
         // Fetch patient details
-        $patient = BasicPatData::findOrFail($request->patient_id);
+$patient = BasicPatData::findOrFail($request->patient_id);
 
-        // Store data in hba1c table
-        hba1c::create([
-            'OR' => $request->OR,
-            'Pname' => $patient->Pname,
-            'Page' => $patient->Page,
-            'Psex' => $patient->Psex,
-            'Poc' => $patient->Poc,
-            'Reqby' => $request->Reqby,
-            'result' => $request->result,  // ✅ Added this, // ✅ Added this
-            'medtech' => $request->medtech,
-            'pathologist' => $request->pathologist,
-        ]);
+for ($i = 0; $i <= count($request->result); $i++) {
+    // Skip empty rows
+    if (empty($request->test[$i]) && empty($request->result[$i]) && empty($request->unit[$i])) {
+        continue;
+    }
+
+    hba1c::create([
+        'OR' => $request->OR,
+        'Pname' => $patient->Pname,
+        'Page' => $patient->Page,
+        'Psex' => $patient->Psex,
+        'Poc' => $patient->Poc,
+        'Reqby' => $request->Reqby,
+        'date' => $request->date,
+
+        'test' => $request->test[$i],
+        'result' => $request->result[$i],
+        'unit' => $request->unit[$i],
+
+        'medtech' => $request->medtech,
+        'mtlicno' => $request->mtlicno,
+        'pathologist' => $request->pathologist,
+        'ptlicno' => $request->ptlicno,
+    ]);
+}
 
         return redirect()->route('hba1c.create')->with('success', 'Data saved successfully.');
     }
@@ -76,12 +101,27 @@ class Hba1cController extends Controller
         $datePart = now()->format('mdY'); // MMDDYYYY format
         $lastNumber = 1;
 
-        if ($latestRecord && isset($latestRecord->OR) && preg_match("/^HBA1C$datePart(\d{4})$/", $latestRecord->OR, $matches)) {
+        if ($latestRecord && isset($latestRecord->OR) && preg_match("/^MISC1$datePart(\d{4})$/", $latestRecord->OR, $matches)) {
             // Extract last 4-digit number and increment
             $lastNumber = (int) $matches[1] + 1;
         }
 
-        return "HBA1C" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
+        return "MISC1" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
+    }
+    public function search()
+    {
+        $user = session('user');
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please log in first.');
+        }
+        
+        $data = hba1c::where('OR', request('OR'))->first();
+
+        return view('hba1csearch', [
+            'data' => $data,
+            'user' => $user
+        ]);
     }
 
 

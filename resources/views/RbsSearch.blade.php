@@ -116,8 +116,8 @@
 <!--start here-->
  <h3>RBS Form - Search</h3>
 <p>
-  This is for data search of the RBS form.
-  If you want to create for existing RBS data,
+  This is for data search of the form.
+  If you want to create new data,
   <a href="{{ route('rbs.create') }}">click here</a>
 
 </p>

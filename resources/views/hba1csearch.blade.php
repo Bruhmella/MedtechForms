@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Miscellaneous form 1 - Creation</title>
+    <title>Miscellaneous form 1 - Search</title>
     <link href="{{ asset('css/w3editable.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
@@ -105,14 +105,23 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
-    <h2 style="text-align:center;">Miscellaneous Form 1 - Creation</h2>
-
-    <p>
-  This is for data creation of the form.
-  If you want to search for existing data,
-  <a href="{{ route('hba1c.search') }}">click here</a>
+   <!--start here-->
+ <h3>Miscellaneous Form 1 - Search</h3>
+<p>
+  This is for data search of the form.
+  If you want to create new data,
+  <a href="{{ route('hba1c.create') }}">click here</a>
 
 </p>
+
+<form method="GET" action="{{ route('hba1c.search') }}">
+    <h5>Enter OR# Here:</h5> 
+    <input type="text" name="OR" value="{{ request('OR') }}">
+    <button type="submit">Search</button>
+    <a href="{{ route('hba1c.search') }}" class="btn btn-primary">Clear search Data</a>
+
+</form>
+<!--end here-->
 
     <div class="container">
         <div class="topcontainer">
@@ -130,34 +139,28 @@
         </div>
         <form action="{{ route('hba1c.store') }}" method="POST">
             @csrf 
-            <div class="innercontainer">
+<!--start here-->
+           <div class="innercontainer">
                 <div class="form-row">
-                    <label for="patientSelect">Name:
-                    <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
-                        <option value="">-- Select a Patient --</option>
-                        @foreach ($patients as $patient)
-                            <option value="{{ $patient->id }}" 
-                                    data-ac="{{ $patient->Poc ?? '' }}"
-                                    data-age="{{ $patient->Page ?? '' }}" 
-                                    data-sex="{{ $patient->Psex ?? '' }}">
-                                {{ $patient->Pname }}
-                            </option>
-                           @endforeach
-                    </select>
-                    </label>
-                    <p>AC#: <input type="text" id="ac" readonly placeholder="Enter Account Number" name="Poc"></p>
-                    <p>Age: <input type="text" id="age" readonly name="Page"></p>
-                    <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                <p>Name: <input type="text" readonly  name="patient_name" value="{{ $data->Pname ?? '' }}"> </p>
+
+                <p>AC#: <input type="text" readonly   id="ac" name="Poc" value="{{ $data->Poc ?? '' }}"></p>
+
+                <p>Age: <input type="text" readonly   id="age"  name="Page" value="{{ $data->Page ?? '' }}"></p>
+
+                <p>Sex: <input type="text" readonly   id="sex"  name="Psex" value="{{ $data->Psex ?? '' }}"></p>
+
                 </div>
                 <div class="form-row2">
-                    <p>Date: <input type="date" id="date" name="date" readonly></p>
-                    <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-                    <div class="form-group2">
+                    <p>Date: <input type="text" readonly id="date" name="date" value="{{ $data->date ?? '' }}"></p>
+                    <p>OR:<input type="text" readonly   id="orNumber" name="OR" value="{{ $data->OR ?? '' }}" > </p>
+
+
+                    <div class="form-group">
                         <label for="Reqby">Requested By:</label>
-                        <input type="text" name="Reqby" class="form-control">
-                    </div>
-                </div>
+                        <input type="text" readonly   name="Reqby" class="form-control" value="{{ $data->Reqby ?? '' }}">               
             </div>
+<!--end here-->
             <br>
             <div class="table-like2">
                 <div class="table-like2-section">
@@ -166,8 +169,64 @@
                         <h3>Result</h3>
                         <h3>Unit</h3>
                     </div>
-                    <div class="form-group row-entry">
-                        <select id="myDropdown" name="test[]" required>
+                    <div class="form-group">
+                        <select id="myDropdown" name="test[]">
+            <option value="">--Select--</option>
+<option value="HBsAg">HBsAg</option>
+<option value="Anti-HIV 1">Anti-HIV 1</option>
+<option value="Anti-HIV 2">Anti-HIV 2</option>
+<option value="RPR">RPR</option>
+<option value="Anti-HBs">Anti-HBs</option>
+<option value="HAV">HAV</option>
+<option value="Denguo Duo">Denguo Duo</option>
+<option value="Dengue NS1">Dengue NS1</option>
+<option value="HCV">HCV</option>
+<option value="Thyroid">Thyroid</option>
+                        </select>
+                        <input type="text" name="result[]" class="form-control">
+                        <input type="text" name="unit[]" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" onclick="addRow()">Add Row</button>
+
+            <br>
+<!-- start copy here -->
+       <div class="table-like">
+
+            <div class="table-like-section">
+    <h3>Medical Technologist:</h3>
+    
+        <input type="text" readonly   name="medtech" value="{{ $data->medtech ?? '' }}">
+    
+        <input type="text" readonly   id="medtechLicNo" value="{{ $data->mtlicno ?? '' }}"  />   
+</div>
+
+<div class="table-like-section">
+    <h3>Pathologist:</h3>
+        <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
+        <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
+</div>
+</form>
+    <div class="center">
+    <button type="submit" class="btn btn-primary">print</button>
+    </div>
+
+ <!-- end here -->
+
+<script>
+function addRow() {
+    const rows = document.querySelectorAll('.row-entry');  // All rows added
+    if (rows.length >= 2) {
+        alert('You can only have a maximum of 3 rows.');
+        return;  // Stop adding a new row
+    }
+
+    const container = document.createElement('div');
+    container.classList.add('form-group', 'row-entry');
+    container.innerHTML = `
+        <select name="test[]">
             <option value="">--Select--</option>
             <option value="HBsAg">HBsAg</option>
             <option value="Anti-HIV 1">Anti-HIV 1</option>
@@ -179,103 +238,18 @@
             <option value="Dengue NS1">Dengue NS1</option>
             <option value="HCV">HCV</option>
             <option value="Thyroid">Thyroid</option>
-                        </select>
-                        <input type="text" name="result[]" class="form-control">
-                        <input type="text" name="unit[]" class="form-control">
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" onclick="addRow()">Add Row</button>
-
-            <br>
-<!--start here-->
-        <div class="table-like">
-            <div class="table-like-section">
-             <h3>Medical Technologist:</h3>
-                @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
-
-                @elseif($pathologist)
-                    <select id="medtechDropdown" name="medtech">
-                        <option value="">Select a MedTech</option> <!-- Default option -->
-                        @foreach($medtechs as $medtech)
-                            <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
-                                {{ $medtech->fname . ' ' . $medtech->lname }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
-                @endif
-            </div>
-            <div class="table-like-section">
-
-                <h3>Pathologist:</h3>
-
-                @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
-
-                @elseif($medtech)
-                    <select id="pathologistDropdown" name="pathologist">
-                        <option value="">Select a Pathologist</option> <!-- Default option -->
-                        @foreach($pathologists as $pathologist)
-                            <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
-                                {{ $pathologist->fname . ' ' . $pathologist->lname }}
-                            </option>
-
-                        @endforeach
-
-                    </select>
-
-                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
-                     <!-- LicNo textbox -->
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="center">
-    <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-    </form>
-<!-- end here -->
-
-<script>
-        function addRow() {
-            const rows = document.querySelectorAll('.row-entry');  // All rows added
-            if (rows.length >= 3) {
-                alert('You can only have a maximum of 3 rows.');
-                return;  // Stop adding a new row
-            }
-
-            const container = document.createElement('div');
-            container.classList.add('form-group', 'row-entry');
-            container.innerHTML = `
-                <select name="test[]">
-                    <option value="">--Select--</option>
-                    <option value="HBsAg">HBsAg</option>
-                    <option value="Anti-HIV 1">Anti-HIV 1</option>
-                    <option value="Anti-HIV 2">Anti-HIV 2</option>
-                    <option value="RPR">RPR</option>
-                    <option value="Anti-HBs">Anti-HBs</option>
-                    <option value="HAV">HAV</option>
-                    <option value="Denguo Duo">Denguo Duo</option>
-                    <option value="Dengue NS1">Dengue NS1</option>
-                    <option value="HCV">HCV</option>
-                    <option value="Thyroid">Thyroid</option>
-                </select>
-                <input type="text" name="result[]" class="form-control">
-                <input type="text" name="unit[]" class="form-control">
-                <button type="button" onclick="removeRow(this)">Remove</button>
-            `;
-            document.querySelector('.table-like2-section').appendChild(container);
-        }
+        </select>
+        <input type="text" name="result[]" class="form-control">
+        <input type="text" name="unit[]" class="form-control">
+        <button type="button" onclick="removeRow(this)">Remove</button>
+    `;
+    document.querySelector('.table-like2-section').appendChild(container);
+}
 
 
-        function removeRow(button) {
-            button.parentNode.remove();
-        }
+function removeRow(button) {
+    button.parentNode.remove();
+}
 
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');

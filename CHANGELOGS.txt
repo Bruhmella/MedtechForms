@@ -324,3 +324,19 @@ Form report: "Chemistry - search"
 Form report: "rbs - search"
 	✅ autofill function done - ready for printing
 	✅ routes on this page done - users can now come and go to this page freely
+
+changelog 5-2-25
+BACK END PROGRESS REPORT:
+	Page last worked on: Hba1c - creation (renamed as miscellaneous)
+	System Progress: 80% completed
+	❌ System Testing
+Form report: "miscellaneous 1 - creation"
+	✅ renamed Hba1c to miscellaneous
+	✅ added a logic where users can add new rows for multiple test/s
+	✅ changed form to accommodate for other tests (made multiple textboxes)
+	✅ added requested options (combined forms) as dropdown as requested
+	✅ fixed an issue where the data inputs are not uploaded unless all 3 rows has input
+Form report: "miscellaneous 1 - search"
+	✅ started development
+Other changes:
+	❓ Due to system constraints, users may only add up to 2 more rows on data creation since it wouldn't upload more

@@ -117,6 +117,8 @@ Route::get('/rbs/search', [RbsController::class, 'search'])->name('rbs.search');
 
 Route::get('/hba1c/create', [Hba1cController::class, 'create'])->name('hba1c.create');
 Route::post('/hba1c/store', [Hba1cController::class, 'store'])->name('hba1c.store');
+Route::get('/hba1c/search', [Hba1cController::class, 'search'])->name('hba1c.search');
+
 
 Route::get('/thyroid/create', [ThyroidController::class, 'create'])->name('thyroid.create');
 Route::post('/thyroid/store', [ThyroidController::class, 'store'])->name('thyroid.store');

@@ -93,6 +93,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 5px;
         height: 50px;
         }
     </style>
@@ -101,6 +102,7 @@
     <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
         <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
         <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+        <a href="{{ route('PatDataManage')}}" class="w3-bar-item w3-button">Manage Patient Data</a>
     </div>
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
@@ -115,10 +117,12 @@
 </p>
 
 <form method="GET" action="{{ route('hba1c.search') }}">
-    <h5>Enter OR# Here:</h5> 
-    <input type="text" name="OR" value="{{ request('OR') }}">
-    <button type="submit">Search</button>
-    <a href="{{ route('hba1c.search') }}" class="btn btn-primary">Clear search Data</a>
+    <h5 style="text-align: center;">Enter OR# Here:</h5> 
+    <div class="center">
+        <input type="text" name="OR" value="{{ request('OR') }}">
+        <button type="submit">Search</button>
+        <a href="{{ route('hba1c.search') }}" class="btn btn-primary">Clear search Data</a>
+    </div>
 
 </form>
 <!--end here-->
@@ -139,94 +143,121 @@
         </div>
         <form action="{{ route('hba1c.store') }}" method="POST">
             @csrf 
+@php $first = $data; @endphp
+
+
 <!--start here-->
-           <div class="innercontainer">
-                <div class="form-row">
-                <p>Name: <input type="text" readonly  name="patient_name" value="{{ $data->Pname ?? '' }}"> </p>
-
-                <p>AC#: <input type="text" readonly   id="ac" name="Poc" value="{{ $data->Poc ?? '' }}"></p>
-
-                <p>Age: <input type="text" readonly   id="age"  name="Page" value="{{ $data->Page ?? '' }}"></p>
-
-                <p>Sex: <input type="text" readonly   id="sex"  name="Psex" value="{{ $data->Psex ?? '' }}"></p>
-
-                </div>
-                <div class="form-row2">
-                    <p>Date: <input type="text" readonly id="date" name="date" value="{{ $data->date ?? '' }}"></p>
-                    <p>OR:<input type="text" readonly   id="orNumber" name="OR" value="{{ $data->OR ?? '' }}" > </p>
-
-
-                    <div class="form-group">
-                        <label for="Reqby">Requested By:</label>
-                        <input type="text" readonly   name="Reqby" class="form-control" value="{{ $data->Reqby ?? '' }}">               
-            </div>
+<div class="innercontainer">
+    <div class="form-row">
+        <p>Name: <input type="text" readonly  id="Pname" name="Pname" value="{{ $first->Pname ?? '' }}"> </p>
+        <p>AC#: <input type="text" readonly  id="ac" name="Poc" value="{{ $first->Poc ?? '' }}"></p>
+        <p>Age: <input type="text" readonly  id="age" name="Page" value="{{ $first->Page ?? '' }}"></p>
+        <p>Sex: <input type="text" readonly  id="sex" name="Psex" value="{{ $first->Psex ?? '' }}"></p>
+    </div>
+    <div class="form-row2">
+        <p>Date: <input type="text" readonly  id="date" name="date" value="{{ $first->date ?? '' }}"></p>
+        <p>OR:<input type="text" readonly  id="orNumber" name="OR" value="{{ $first->OR ?? '' }}"> </p>
+        <div class="form-group">
+            <label for="Reqby">Requested By:</label>
+            <input type="text" readonly  name="Reqby" class="form-control" value="{{ $first->Reqby ?? '' }}">
+        </div>
+    </div>
+</div>
 <!--end here-->
+
             <br>
             <div class="table-like2">
-                <div class="table-like2-section">
-                    <div class="form-group">
-                        <h3>Test</h3>
-                        <h3>Result</h3>
-                        <h3>Unit</h3>
-                    </div>
-                    <div class="form-group">
-                        <select id="myDropdown" name="test[]">
-            <option value="">--Select--</option>
-<option value="HBsAg">HBsAg</option>
-<option value="Anti-HIV 1">Anti-HIV 1</option>
-<option value="Anti-HIV 2">Anti-HIV 2</option>
-<option value="RPR">RPR</option>
-<option value="Anti-HBs">Anti-HBs</option>
-<option value="HAV">HAV</option>
-<option value="Denguo Duo">Denguo Duo</option>
-<option value="Dengue NS1">Dengue NS1</option>
-<option value="HCV">HCV</option>
-<option value="Thyroid">Thyroid</option>
-                        </select>
-                        <input type="text" name="result[]" class="form-control">
-                        <input type="text" name="unit[]" class="form-control">
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" onclick="addRow()">Add Row</button>
-
-            <br>
-<!-- start copy here -->
-       <div class="table-like">
-
-            <div class="table-like-section">
-    <h3>Medical Technologist:</h3>
-    
-        <input type="text" readonly   name="medtech" value="{{ $data->medtech ?? '' }}">
-    
-        <input type="text" readonly   id="medtechLicNo" value="{{ $data->mtlicno ?? '' }}"  />   
-</div>
-
-<div class="table-like-section">
-    <h3>Pathologist:</h3>
-        <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
-        <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
-</div>
-</form>
-    <div class="center">
-    <button type="submit" class="btn btn-primary">print</button>
+<div class="table-like2-section">
+    <div class="form-group">
+        <h3>Test</h3>
+        <h3>Result</h3>
+        <h3>Unit</h3>
     </div>
 
- <!-- end here -->
+    @if(!empty($dataRows) && $dataRows->count() > 0)
+        @foreach($dataRows as $test)
+        <div class="form-group row-entry">
+            <select disabled name="test[]">
+                <option value="">--Select--</option>
+                <option value="HBsAg" {{ $test->test === 'HBsAg' ? 'selected' : '' }}>HBsAg</option>
+                <option value="Anti-HIV 1" {{ $test->test === 'Anti-HIV 1' ? 'selected' : '' }}>Anti-HIV 1</option>
+                <option value="Anti-HIV 2" {{ $test->test === 'Anti-HIV 2' ? 'selected' : '' }}>Anti-HIV 2</option>
+                <option value="RPR" {{ $test->test === 'RPR' ? 'selected' : '' }}>RPR</option>
+                <option value="Anti-HBs" {{ $test->test === 'Anti-HBs' ? 'selected' : '' }}>Anti-HBs</option>
+                <option value="HAV" {{ $test->test === 'HAV' ? 'selected' : '' }}>HAV</option>
+                <option value="Denguo Duo" {{ $test->test === 'Denguo Duo' ? 'selected' : '' }}>Denguo Duo</option>
+                <option value="Dengue NS1" {{ $test->test === 'Dengue NS1' ? 'selected' : '' }}>Dengue NS1</option>
+                <option value="HCV" {{ $test->test === 'HCV' ? 'selected' : '' }}>HCV</option>
+                <option value="Thyroid" {{ $test->test === 'Thyroid' ? 'selected' : '' }}>Thyroid</option>
+            </select>
+            <input type="text" readonly name="result[]" class="form-control" value="{{ $test->result }}">
+            <input type="text" readonly name="unit[]" class="form-control" value="{{ $test->unit }}">
+        </div>
+        @endforeach
+    @else
+        <div class="form-group row-entry">
+            <select disabled name="test[]">
+                <option value="">--Select--</option>
+                <option value="HBsAg">HBsAg</option>
+                <option value="Anti-HIV 1">Anti-HIV 1</option>
+                <option value="Anti-HIV 2">Anti-HIV 2</option>
+                <option value="RPR">RPR</option>
+                <option value="Anti-HBs">Anti-HBs</option>
+                <option value="HAV">HAV</option>
+                <option value="Denguo Duo">Denguo Duo</option>
+                <option value="Dengue NS1">Dengue NS1</option>
+                <option value="HCV">HCV</option>
+                <option value="Thyroid">Thyroid</option>
+            </select>
+            <input type="text" readonly name="result[]" class="form-control">
+            <input type="text" readonly name="unit[]" class="form-control">
+
+        </div>
+    @endif
+</div>
+
+            </div>
+
+           
+
+            <br>
+@php $first = $data; @endphp
+
+
+<!-- start copy here -->
+<div class="table-like">
+    <div class="table-like-section">
+        <h3>Medical Technologist:</h3>
+        <input type="text" readonly  name="medtech" value="{{ $first->medtech ?? '' }}">
+        <input type="text" readonly  id="medtechLicNo" value="{{ $first->mtlicno ?? '' }}" />
+    </div>
+
+    <div class="table-like-section">
+        <h3>Pathologist:</h3>
+        <input type="text" readonly  name="pathologist" value="{{ $first->pathologist ?? '' }}" />
+        <input type="text" readonly  id="pathologistLicNo" value="{{ $first->ptlicno ?? '' }}" />
+    </div>
+</div>
+</div>
+</form>
+<div class="center">
+    <button type="submit" class="btn btn-primary">print</button>
+</div>
+<!-- end here -->
+
 
 <script>
 function addRow() {
-    const rows = document.querySelectorAll('.row-entry');  // All rows added
-    if (rows.length >= 2) {
+    const rows = document.querySelectorAll('.row-entry');
+    if (rows.length >= 3) {
         alert('You can only have a maximum of 3 rows.');
-        return;  // Stop adding a new row
+        return;
     }
 
     const container = document.createElement('div');
     container.classList.add('form-group', 'row-entry');
     container.innerHTML = `
-        <select name="test[]">
+        <select disabled name="test[]">
             <option value="">--Select--</option>
             <option value="HBsAg">HBsAg</option>
             <option value="Anti-HIV 1">Anti-HIV 1</option>
@@ -239,17 +270,12 @@ function addRow() {
             <option value="HCV">HCV</option>
             <option value="Thyroid">Thyroid</option>
         </select>
-        <input type="text" name="result[]" class="form-control">
-        <input type="text" name="unit[]" class="form-control">
-        <button type="button" onclick="removeRow(this)">Remove</button>
+        <input type="text" readonly name="result[]" class="form-control">
+        <input type="text" readonly name="unit[]" class="form-control">
     `;
     document.querySelector('.table-like2-section').appendChild(container);
 }
 
-
-function removeRow(button) {
-    button.parentNode.remove();
-}
 
         function fillPatientData() {
             let patientSelect = document.getElementById('patientSelect');

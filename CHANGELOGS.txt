@@ -338,5 +338,18 @@ Form report: "miscellaneous 1 - creation"
 	✅ fixed an issue where the data inputs are not uploaded unless all 3 rows has input
 Form report: "miscellaneous 1 - search"
 	✅ started development
+	❗ currently fixing an issue where autofill may mess up the row creation on search
 Other changes:
 	❓ Due to system constraints, users may only add up to 2 more rows on data creation since it wouldn't upload more
+
+changelog 5-5-25
+BACK END PROGRESS REPORT:
+	Page last worked on: miscellaneous 1 - Search
+	System Progress: 82% completed
+	❌ System Testing
+Form report: "miscellaneous 1 - search"
+	✅ Established logic where users can use OR to automatically fill data
+	✅ rows are automatically created based on how many was made during data creation
+	✅ removed user ability to re-edit data on search
+Other changes:
+	❓ removed "add row" and "remove" row function on search page

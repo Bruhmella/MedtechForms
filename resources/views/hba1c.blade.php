@@ -101,6 +101,7 @@
     <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
         <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
         <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+        <a href="{{ route('PatDataManage')}}" class="w3-bar-item w3-button">Manage Patient Data</a>
     </div>
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
@@ -186,7 +187,7 @@
                 </div>
             </div>
 
-            <button type="button" onclick="addRow()">Add Row</button>
+            <button type="button" class="btn btn-success" onclick="addRow()">Add Row</button>
 
             <br>
 <!--start here-->
@@ -267,7 +268,7 @@
                 </select>
                 <input type="text" name="result[]" class="form-control">
                 <input type="text" name="unit[]" class="form-control">
-                <button type="button" onclick="removeRow(this)">Remove</button>
+                <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
             `;
             document.querySelector('.table-like2-section').appendChild(container);
         }

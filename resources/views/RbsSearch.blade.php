@@ -101,6 +101,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 5px;
         height: 50px;
         }
     </style>
@@ -109,6 +110,7 @@
     <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
         <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
         <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+        <a href="{{ route('PatDataManage')}}" class="w3-bar-item w3-button">Manage Patient Data</a>
     </div>
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
@@ -123,10 +125,12 @@
 </p>
 
 <form method="GET" action="{{ route('rbs.search') }}">
-    <h5>Enter OR# Here:</h5> 
-    <input type="text" name="OR" value="{{ request('OR') }}">
-    <button type="submit">Search</button>
-    <a href="{{ route('rbs.search') }}" class="btn btn-primary">Clear search Data</a>
+    <h5 style="text-align: center;">Enter OR# Here:</h5> 
+    <div class="center">
+        <input type="text" name="OR" value="{{ request('OR') }}">
+        <button type="submit" class="btn btn-info">Search</button>
+        <a href="{{ route('rbs.search') }}" class="btn btn-primary">Clear search Data</a>
+    </div>
 
 </form>
 <!--end here-->
@@ -149,23 +153,19 @@
 <!--start here-->
            <div class="innercontainer">
                 <div class="form-row">
-                <p>Name: <input type="text" readonly  name="patient_name" value="{{ $data->Pname ?? '' }}"> </p>
-
-                <p>AC#: <input type="text" readonly   id="ac" name="Poc" value="{{ $data->Poc ?? '' }}"></p>
-
-                <p>Age: <input type="text" readonly   id="age"  name="Page" value="{{ $data->Page ?? '' }}"></p>
-
-                <p>Sex: <input type="text" readonly   id="sex"  name="Psex" value="{{ $data->Psex ?? '' }}"></p>
-
+                    <p>Name: <input type="text" readonly  name="patient_name" value="{{ $data->Pname ?? '' }}"> </p>
+                    <p>AC#: <input type="text" readonly   id="ac" name="Poc" value="{{ $data->Poc ?? '' }}"></p>
+                    <p>Age: <input type="text" readonly   id="age"  name="Page" value="{{ $data->Page ?? '' }}"></p>
+                    <p>Sex: <input type="text" readonly   id="sex"  name="Psex" value="{{ $data->Psex ?? '' }}"></p>
                 </div>
                 <div class="form-row2">
                     <p>Date: <input type="text" readonly id="date" name="date" value="{{ $data->date ?? '' }}"></p>
                     <p>OR:<input type="text" readonly   id="orNumber" name="OR" value="{{ $data->OR ?? '' }}" > </p>
-
-
                     <div class="form-group">
                         <label for="Reqby">Requested By:</label>
-                        <input type="text" readonly   name="Reqby" class="form-control" value="{{ $data->Reqby ?? '' }}">               
+                        <input type="text" readonly   name="Reqby" class="form-control" value="{{ $data->Reqby ?? '' }}">
+                    </div>
+                </div>               
             </div>
 <!--end here-->
             <div class="table-like2">
@@ -202,27 +202,39 @@
                     </div>
                 </div>
             </div>
+        <br>
 <!-- start copy here -->
        <div class="table-like">
 
             <div class="table-like-section">
-    <h3>Medical Technologist:</h3>
+                <h3>Medical Technologist:</h3>
     
-        <input type="text" readonly   name="medtech" value="{{ $data->medtech ?? '' }}">
+                <input type="text" readonly   name="medtech" value="{{ $data->medtech ?? '' }}">
     
-        <input type="text" readonly   id="medtechLicNo" value="{{ $data->mtlicno ?? '' }}"  />   
-</div>
+                <input type="text" readonly   id="medtechLicNo" value="{{ $data->mtlicno ?? '' }}"  />   
+            </div>
 
-<div class="table-like-section">
-    <h3>Pathologist:</h3>
-        <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
-        <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
-</div>
+            <div class="table-like-section">
+                <h3>Pathologist:</h3>
+                    <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
+                    <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
+            </div>
+        </div>
+    </div>
 </form>
     <div class="center">
     <button type="submit" class="btn btn-primary">print</button>
     </div>
-
  <!-- end here -->
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+</script>  
+
 </body>
 </html>

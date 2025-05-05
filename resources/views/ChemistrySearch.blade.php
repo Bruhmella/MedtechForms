@@ -91,6 +91,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 5px;
         height: 50px;
         }
     </style>
@@ -99,6 +100,7 @@
     <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
         <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
         <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+        <a href="{{ route('PatDataManage')}}" class="w3-bar-item w3-button">Manage Patient Data</a>
     </div>
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
@@ -110,11 +112,12 @@
   <a href="{{ route('chemistry.create') }}">click here</a>
 </p>
 <form method="GET" action="{{ route('chemistry.search') }}">
-    <h5>Enter OR# Here:</h5> 
-    <input type="text" name="OR" value="{{ request('OR') }}">
-    <button type="submit">Search</button>
-    <a href="{{ route('chemistry.search') }}" class="btn btn-primary">Clear search Data</a>
-
+    <h5 style="text-align: center;">Enter OR# Here:</h5> 
+    <div class="center">
+        <input type="text" name="OR" value="{{ request('OR') }}">
+        <button type="submit" class="btn btn-info">Search</button>
+        <a href="{{ route('chemistry.search') }}" class="btn btn-primary">Clear search Data</a>
+    </div>
 </form>
     <div class="container">
         <div class="topcontainer">
@@ -150,7 +153,9 @@
 
                     <div class="form-group">
                         <label for="Reqby">Requested By:</label>
-                        <input type="text" readonly   name="Reqby" class="form-control" value="{{ $data->Reqby ?? '' }}">                </div>
+                        <input type="text" readonly   name="Reqby" class="form-control" value="{{ $data->Reqby ?? '' }}">
+                    </div>
+                </div>
             </div>
             <!-- Chemistry Fields -->
             <div class="table-like">
@@ -341,22 +346,33 @@
         <div class="table-like">
 
             <div class="table-like-section">
-    <h3>Medical Technologist:</h3>
+            <h3>Medical Technologist:</h3>
     
-        <input type="text" readonly   name="medtech" value="{{ $data->medtech ?? '' }}">
+            <input type="text" readonly   name="medtech" value="{{ $data->medtech ?? '' }}">
     
-        <input type="text" readonly   id="medtechLicNo" value="{{ $data->mtlicno ?? '' }}"  />   
-</div>
+            <input type="text" readonly   id="medtechLicNo" value="{{ $data->mtlicno ?? '' }}"  />   
+            </div>
 
 <!-- Pathologist -->
-<div class="table-like-section">
-    <h3>Pathologist:</h3>
-        <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
-        <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
-</div>
+            <div class="table-like-section">
+            <h3>Pathologist:</h3>
+            <input type="text" readonly   name="pathologist" value="{{ $data->pathologist ?? '' }}" />
+            <input type="text" readonly   id="pathologistLicNo" value="{{ $data->ptlicno ?? '' }}"  />
+            </div>
+        </div>
+    </div>
 </form>
     <div class="center">
     <button type="submit" class="btn btn-primary">print</button>
     </div>
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+</script>  
 </body>
 </html>

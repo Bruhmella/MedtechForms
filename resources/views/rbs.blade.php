@@ -109,6 +109,7 @@
     <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
         <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
         <a href="{{ route('home')}}" class="w3-bar-item w3-button">Home</a>
+        <a href="{{ route('PatDataManage')}}" class="w3-bar-item w3-button">Manage Patient Data</a>
     </div>
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
@@ -135,29 +136,31 @@
         </div>
         <form action="{{ route('rbs.store') }}" method="POST">
             @csrf 
-            
-            <label for="patientSelect">Name:</label>
-            <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
-                <option value="">-- Select a Patient --</option>
-                @foreach ($patients as $patient)
-                    <option value="{{ $patient->id }}" 
-                            data-ac="{{ $patient->Poc ?? '' }}"
-                            data-age="{{ $patient->Page ?? '' }}" 
-                            data-sex="{{ $patient->Psex ?? '' }}">
-                        {{ $patient->Pname }}
-                    </option>
-                @endforeach
-            </select>
-            <div class="form-row">
-            <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
-            <p>Age: <input type="text" id="age" readonly name="Page"></p>
-            <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                <div class="innercontainer">
+                <label for="patientSelect">Name:</label>
+                <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
+                    <option value="">-- Select a Patient --</option>
+                    @foreach ($patients as $patient)
+                        <option value="{{ $patient->id }}" 
+                                data-ac="{{ $patient->Poc ?? '' }}"
+                                data-age="{{ $patient->Page ?? '' }}" 
+                                data-sex="{{ $patient->Psex ?? '' }}">
+                            {{ $patient->Pname }}
+                        </option>
+                    @endforeach
+                </select>
+                <div class="form-row">
+                <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
+                <p>Age: <input type="text" id="age" readonly name="Page"></p>
+                <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                </div>
+                <div class="form-row2">
+                <p>Date: <input type="date" id="date" name="date" readonly></p>
+                <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
+                <p>Requested By: <input type="text" id="Reqby" name="Reqby"></p>
+                </div>
             </div>
-            <div class="form-row2">
-            <p>Date: <input type="date" id="date" name="date" readonly></p>
-            <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-            <p>Requested By: <input type="text" id="Reqby" name="Reqby"></p>
-            </div>
+            <br>
             <div class="table-like2">
                 <div class="table-like-section">
                     <div class="form-group3">
@@ -192,6 +195,7 @@
                     </div>
                 </div>
             </div>
+        <br>
 <!--start here-->
         <div class="table-like">
             <div class="table-like-section">

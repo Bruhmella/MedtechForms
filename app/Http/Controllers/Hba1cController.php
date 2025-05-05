@@ -108,21 +108,29 @@ for ($i = 0; $i <= count($request->result); $i++) {
 
         return "MISC1" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
-    public function search()
-    {
-        $user = session('user');
+    
+public function search()
+{
+    $user = session('user');
 
-        if (!$user) {
-            return redirect()->route('login')->with('error', 'Please log in first.');
-        }
-        
-        $data = hba1c::where('OR', request('OR'))->first();
-
-        return view('hba1csearch', [
-            'data' => $data,
-            'user' => $user
-        ]);
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please log in first.');
     }
+
+    // Fetch main record
+    $data = hba1c::where('OR', request('OR'))->first();
+
+    // Fetch related test rows (assuming table is hba1c_tests and has a foreign key 'OR')
+    $dataRows = hba1c::where('OR', request('OR'))->get();
+
+    return view('hba1csearch', [
+        'data' => $data,
+        'dataRows' => $dataRows,
+        'user' => $user
+    ]);
+}
+
+
 
 
 }

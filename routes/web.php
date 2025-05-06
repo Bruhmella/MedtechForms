@@ -125,6 +125,7 @@ Route::post('/thyroid/store', [ThyroidController::class, 'store'])->name('thyroi
 
 Route::get('/hbsag/create', [HbsagController::class, 'create'])->name('hbsag.create');
 Route::post('/hbsag/store', [HbsagController::class, 'store'])->name('hbsag.store');
+Route::get('/hbsag/search', [HbsagController::class, 'search'])->name('hbsag.search');
 
 Route::get('/tropi/create', [TropiController::class, 'create'])->name('tropi.create');
 Route::post('/tropi/store', [TropiController::class, 'store'])->name('tropi.store');

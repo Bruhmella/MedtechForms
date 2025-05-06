@@ -92,7 +92,14 @@
     <div class="w3-teal">
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
- <h3 style="text-align:center;">Hbsag Form</h3>
+
+ <h2 style="text-align:center;">Miscellaneous Form 2 - Creation</h2>
+    <p>
+  This is for data creation of the form.
+  If you want to search for existing data,
+  <a href="{{ route('hbsag.search') }}">click here</a>
+</p>
+
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
@@ -124,7 +131,7 @@
                         @endforeach
                     </select>
                     </label>
-                    <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
+                    <p>AC#: <input type="text" id="ac" readonly placeholder="Enter Account Number" name="Poc"></p>
                     <p>Age: <input type="text" id="age" readonly name="Page"></p>
                     <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
                 </div>

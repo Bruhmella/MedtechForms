@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('Poc')->nullable(); // Place of Origin
             $table->string('OR')->nullable();
             $table->string('Reqby')->nullable();
+            $table->string('date')->nullable();
 
             $table->string('exam')->nullable();
             $table->string('kit')->nullable();
@@ -23,7 +24,9 @@ return new class extends Migration
             $table->string('result')->nullable();
 
             $table->string('medtech')->nullable();
+            $table->string('mtlicno')->nullable();
             $table->string('pathologist')->nullable();
+            $table->string('ptlicno')->nullable();
             $table->timestamps();
         });
     }

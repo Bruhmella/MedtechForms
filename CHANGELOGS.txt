@@ -351,5 +351,17 @@ Form report: "miscellaneous 1 - search"
 	✅ Established logic where users can use OR to automatically fill data
 	✅ rows are automatically created based on how many was made during data creation
 	✅ removed user ability to re-edit data on search
+Form report: "miscellaneous 2 - creation"
+	✅ renamed from "hbsag" to miscellaneous 2
+	✅ established route from creation to search
 Other changes:
-	❓ removed "add row" and "remove" row function on search page
+	❓ removed "add row" and "remove" row function on search page on miscellaneous 1 - search
+
+changelog 5-5-25
+BACK END PROGRESS REPORT:
+	Page last worked on: miscellaneous 2 - creation
+	System Progress: 85% completed
+	❌ System Testing
+Form report: "home"
+	✅ temporarily Deleted miscellaneous 1 form route - file still will be there to preserve logic
+	✅ miscellaneous 1&2 are now only 1 form together - 1 template will be followed

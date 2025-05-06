@@ -46,14 +46,26 @@ class HbsagController extends Controller
             'patient_id' => 'required|exists:patients,id',
             'OR' => 'nullable|string',
             'Reqby' => 'nullable|string',
+            'date' => 'nullable|string',
 
-            'exam' =>'nullable|string',
-            'kit' =>'nullable|string',
-            'lotno' =>'nullable|string',
-            'result' =>'nullable|string',
+        //'test' => 'required|array|min:1|max:3',
+        //'test.*' => 'nullable|string',
+            'exam' =>'required|array|min:1|max:3',
+            'exam.*' => 'nullable|string',
+
+            'kit' => 'required|array|min:1|max:3',
+            'kit.*' =>'nullable|string',
+
+            'lotno' =>'required|array|min:1|max:3',
+            'lotno.*' =>'nullable|string',
+
+            'result' => 'required|array|min:1|max:3',
+            'result.*' =>'nullable|string',
             
             'medtech' => 'nullable|string',
+            'mtlicno' => 'nullable|string',
             'pathologist' => 'nullable|string',
+            'ptlicno' => 'nullable|string',
         ]);
 
         // Fetch patient details
@@ -67,12 +79,18 @@ class HbsagController extends Controller
             'Psex' => $patient->Psex,
             'Poc' => $patient->Poc,
             'Reqby' => $request->Reqby,
-            'exam' => $request->exam,
-            'kit' => $request->kit,
-            'lotno' => $request->lotno,  
-            'result' => $request->result, 
+            'date' => $request->date,
+
+            //'test' => $request->test[$i],
+            'exam' => $request->exam[$i],
+            'kit' => $request->kit[$i],
+            'lotno' => $request->lotno[$i],  
+            'result' => $request->result[$i], 
+
             'medtech' => $request->medtech,
+            'mtlicno' => $request->mtlicno,
             'pathologist' => $request->pathologist,
+            'ptlicno' => $request->ptlicno,
         ]);
 
         return redirect()->route('hbsag.create')->with('success', 'Data saved successfully.');
@@ -90,6 +108,26 @@ class HbsagController extends Controller
 
         return "HBS" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
+    public function search()
+{
+    $user = session('user');
+
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please log in first.');
+    }
+
+    // Fetch main record
+    $data = hbsag::where('OR', request('OR'))->first();
+
+    // Fetch related test rows (assuming table is hba1c_tests and has a foreign key 'OR')
+    $dataRows = hbsag::where('OR', request('OR'))->get();
+
+    return view('hbsagsearch', [
+        'data' => $data,
+        'dataRows' => $dataRows,
+        'user' => $user
+    ]);
+}
 
 
 }

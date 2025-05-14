@@ -34,6 +34,11 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -108,7 +113,7 @@
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
    <!--start here-->
- <h3>Miscellaneous Form 1 - Search</h3>
+ <h3 style="text-align: center;">Miscellaneous Form 1 - Search</h3>
 <p>
   This is for data search of the form.
   If you want to create new data,
@@ -120,7 +125,7 @@
     <h5 style="text-align: center;">Enter OR# Here:</h5> 
     <div class="center">
         <input type="text" name="OR" value="{{ request('OR') }}">
-        <button type="submit">Search</button>
+        <button type="submit" class="btn btn-info">Search</button>
         <a href="{{ route('hba1c.search') }}" class="btn btn-primary">Clear search Data</a>
     </div>
 

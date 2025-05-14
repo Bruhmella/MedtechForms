@@ -27,6 +27,7 @@
  	display: flex;
 	align-items: center;
 	justify-content: center;
+    background-color: white;
 	}
     .center {
     display: flex;
@@ -46,7 +47,7 @@
     </div>
     <h1 style="text-align: center;">Edit Patient Data</h1>
     <!---manage patient data---->
-<a href="{{ route('PatDataManage')}}"><button>Back</button></a>
+<a href="{{ route('PatDataManage')}}"><button class="btn btn-primary">Back</button></a>
 <div class="outerborder">
 <div class="border">
     <form action="{{ route('update_patient', ['id' => $patient->id]) }}" method="POST">

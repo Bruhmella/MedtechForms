@@ -51,11 +51,10 @@ $request->validate([
     'test.*' => 'nullable|string',
 
     'result' => 'required|array|min:1|max:3',
-    'result.*' => 'nullable|numeric',
+    'result.*' => 'nullable|string',
 
     'unit' => 'required|array|min:1|max:3',
     'unit.*' => 'nullable|string',
-
 
     'medtech' => 'nullable|string',
     'mtlicno' => 'nullable|string',
@@ -67,7 +66,7 @@ $request->validate([
         // Fetch patient details
 $patient = BasicPatData::findOrFail($request->patient_id);
 
-for ($i = 0; $i <= count($request->result); $i++) {
+for ($i = 0; $i < count($request->result); $i++) {
     // Skip empty rows
     if (empty($request->test[$i]) && empty($request->result[$i]) && empty($request->unit[$i])) {
         continue;
@@ -90,23 +89,24 @@ for ($i = 0; $i <= count($request->result); $i++) {
         'mtlicno' => $request->mtlicno,
         'pathologist' => $request->pathologist,
         'ptlicno' => $request->ptlicno,
+
     ]);
 }
-
         return redirect()->route('hba1c.create')->with('success', 'Data saved successfully.');
     }
+
 
     private function generateOrNumber($latestRecord)
     {
         $datePart = now()->format('mdY'); // MMDDYYYY format
         $lastNumber = 1;
 
-        if ($latestRecord && isset($latestRecord->OR) && preg_match("/^MISC1$datePart(\d{4})$/", $latestRecord->OR, $matches)) {
+        if ($latestRecord && isset($latestRecord->OR) && preg_match("/^MISC$datePart(\d{4})$/", $latestRecord->OR, $matches)) {
             // Extract last 4-digit number and increment
             $lastNumber = (int) $matches[1] + 1;
         }
 
-        return "MISC1" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
+        return "MISC" . $datePart . str_pad($lastNumber, 4, '0', STR_PAD_LEFT);
     }
     
 public function search()

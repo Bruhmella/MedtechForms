@@ -37,6 +37,11 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -79,7 +84,7 @@
         }
         .form-group{
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Label and input */
+        grid-template-columns: 1fr 1fr 1fr; /* Label and input */
         gap: 5px;
         margin-bottom: 3px;
         }

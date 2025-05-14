@@ -37,6 +37,11 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -216,10 +221,10 @@
                         <label for="bacteria">Bacteria:</label>
                         <input type="text" readonly name="bacteria" value="{{ $data->bacteria ?? '' }}" class="form-control">
                     </div>
-                    <div class="form-group2">
-                        <label for="others">Others:</label>
-                        <textarea type="text" readonly name="others" value="{{ $data->others ?? '' }}" rows="4" cols="50" class="form-control"></textarea>
-                    </div>
+<div class="form-group2">
+    <label for="others">Others:</label>
+    <textarea readonly name="others" rows="4" cols="50" class="form-control">{{ $data->others ?? '' }}</textarea>
+</div>
                 </div>
             </div>
         <br>

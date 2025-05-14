@@ -262,6 +262,7 @@
             </div>
             <div class="table-like-section">  
                 <!-- Additional Tests -->
+                <h3 style="text-align: center">Crystals</h3>
                 <div class="form-group">
                     <label for="au">Amorphous Urates:</label>
                     <input type="text" readonly  name="au" class="form-control" value="{{ $data->au ?? '' }}">
@@ -289,6 +290,7 @@
             </div>
             <div class="table-like-section">
                 <!-- Casts -->
+                <h3 style="text-align: center">Casts</h3>
                 <div class="form-group">
                     <label for="hyaline">Hyaline Casts:</label>
                     <input type="number" readonly step="0.01" name="hyaline" class="form-control" value="{{ $data->hyaline ?? '' }}">

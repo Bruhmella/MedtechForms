@@ -22,6 +22,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    background-color: white;
     }
     .outerborder {
 	width: 600px;
@@ -48,12 +49,12 @@
         <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
     </div>
 <h1 style="text-align: center;">Add Patient Data</h1>
-<a href="{{ route('PatDataManage')}}"><button>Back</button></a>
+<a href="{{ route('PatDataManage')}}"><button class="btn btn-primary">Back</button></a>
 <div class="outerborder">
     <div class="border">
         <form action="{{ route('store_patient') }}" method="POST">
             @csrf
-
+            <br>
             <p>Full Name: </p>
             <input type="text" name="Pname" placeholder="Enter name here" required>
 

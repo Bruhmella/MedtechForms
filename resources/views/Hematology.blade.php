@@ -37,6 +37,11 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -79,7 +84,7 @@
         }
         .form-group{
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Label and input */
+        grid-template-columns: 1fr 1fr 1fr; /* Label and input */
         gap: 5px;
         margin-bottom: 3px;
         }
@@ -114,10 +119,10 @@
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
-            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            <img src="{{ asset('img/Picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
             </div>
             <div class="toptext">
-            <h1>Far Eastern University - Cavite</h1>
+            <h1>FAR EASTERN COLLEGE – SILANG, INC.</h1>
             <p>Metrogate, Silang Estates, Silang, Cavite<br>
             Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
@@ -143,14 +148,14 @@
                     @endforeach
                 </select>
                 </label>
-                <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="ac" class="form-control" oninput="fillByAC()"></p>
-                <p>Age: <input type="text" id="age" class="form-control" readonly></p>
-                <p>Sex: <input type="text" id="sex" class="form-control" readonly></p>
+                <p>AC#: <input type="text" required id="ac" placeholder="Enter Account Number" name="ac" class="form-control" oninput="fillByAC()"></p>
+                <p>Age: <input type="text" required id="age" class="form-control" readonly></p>
+                <p>Sex: <input type="text" required id="sex" class="form-control" readonly></p>
                 </div>
                 <div class="form-row2">
                 <p>Date: <input type="date" id="date" name="date" class="form-control" readonly></p>
-                <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" class="form-control" readonly></p>
-                <p>Requested by: <input type="text" name="Reqby" placeholder="Enter requester name" class="form-control"></p>
+                <p>OR#: <input type="text" required id="orNumber" name="OR" value="{{ $orNumber }}" class="form-control" readonly></p>
+                <p>Requested by: <input type="text" required name="Reqby" placeholder="Enter requester name" class="form-control"></p>
                 </div>
             </div>
             <!-- Hematology Fields -->
@@ -163,7 +168,7 @@
                     </div>
                     <div class="form-group">
                         <label for="hemogoblin">Hemoglobin:</label>
-                        <input type="number" name="hemogoblin" step="0.01" class="form-control">
+                        <input type="number" required name="hemogoblin" step="0.01" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">140 - 180 g/L</p>
@@ -174,7 +179,7 @@
 
                     <div class="form-group">
                         <label for="hematocrit">Hematocrit:</label>
-                        <input type="number" name="hematocrit" step="0.01" class="form-control">
+                        <input type="number" required name="hematocrit" step="0.01" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">0.40 - 0.54 vol. %</p>
@@ -185,13 +190,13 @@
 
                     <div class="form-group">
                         <label for="rbc">RBC:</label>
-                        <input type="number" name="rbc" step="0.01" class="form-control">
+                        <input type="number" required name="rbc" step="0.01" class="form-control">
                         <p style="font-size: 10px">4.0 - 6.0 x M/cu mm</p>
                     </div>
 
                     <div class="form-group">
                         <label for="wbc">WBC:</label>
-                        <input type="number" name="wbc" step="0.01" class="form-control">
+                        <input type="number" required name="wbc" step="0.01" class="form-control">
                         <p style="font-size: 10px">4,000 - 12,000 / cu mm</p>
                     </div>
                 <div class="tablelabel">
@@ -199,67 +204,67 @@
                 </div>
                     <div class="form-group">
                         <label for="segmenters">Segmenters:</label>
-                        <input type="number" name="segmenters" step="0.01" class="form-control">
+                        <input type="number" required name="segmenters" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.50 - 0.70</p>
                     </div>
 
                     <div class="form-group">
                         <label for="band">Band:</label>
-                        <input type="number" name="band" step="0.01" class="form-control">
+                        <input type="number" required name="band" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.00 - 0.05</p>
                     </div>
 
                     <div class="form-group">
                         <label for="lymphocyte">Lymphocyte:</label>
-                        <input type="number" name="lymphocyte" step="0.01" class="form-control">
+                        <input type="number" required name="lymphocyte" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.18 - 0.42</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Monocyte">Monocyte:</label>
-                        <input type="number" name="Monocyte" step="0.01" class="form-control">
+                        <input type="number" required name="Monocyte" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.02 - 0.11</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Eosinophil">Eosinophil:</label>
-                        <input type="number" name="Eosinophil" step="0.01" class="form-control">
+                        <input type="number" required name="Eosinophil" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.01 - 0.03</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Basophil">Basophil:</label>
-                        <input type="number" name="Basophil" step="0.01" class="form-control">
+                        <input type="number" required name="Basophil" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Metamyelocyte">Metamyelocyte:</label>
-                        <input type="number" name="Metamyelocyte" step="0.01" class="form-control">
+                        <input type="number" required name="Metamyelocyte" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Myelocyte">Myelocyte:</label>
-                        <input type="number" name="Myelocyte" step="0.01" class="form-control">
+                        <input type="number" required name="Myelocyte" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Blast_Cell">Blast Cell:</label>
-                        <input type="number" name="Blast_Cell" step="0.01" class="form-control">
+                        <input type="number" required name="Blast_Cell" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.00</p>
                     </div>
 
                     <div class="form-group">
                         <label for="platelet">Platelet Count:</label>
-                        <input type="number" name="platelet" step="0.01" class="form-control">
+                        <input type="number" required name="platelet" step="0.01" class="form-control">
                         <p style="font-size: 10px">15,000 - 450,000 x cu mm</p>
                     </div>
 
                     <div class="form-group">
                         <label for="Reticulocyte">Reticulocyte Count:</label>
-                        <input type="number" name="Reticulocyte" step="0.01" class="form-control">
+                        <input type="number" required name="Reticulocyte" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.50 - 1.5%</p>
                     </div>
                 </div>
@@ -271,17 +276,17 @@
                     </div>
                     <div class="form-group">
                         <label for="BLOOD_TYPING">Blood Typing:</label>
-                        <input type="text" name="BLOOD_TYPING" class="form-control">
+                        <input type="text" required name="BLOOD_TYPING" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="rh_factor">Rh Factor:</label>
-                        <input type="text" name="rh_factor" class="form-control">
+                        <input type="text" required name="rh_factor" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="esr">ESR:</label>
-                        <input type="number" name="esr" step="0.01" class="form-control">
+                        <input type="number" required name="esr" step="0.01" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">0 - 15 mm/hr</p>
@@ -292,13 +297,13 @@
 
                     <div class="form-group">
                         <label for="clotting_time">Clotting Time:</label>
-                        <input type="number" name="clotting_time" step="0.01" class="form-control">
+                        <input type="number" required name="clotting_time" step="0.01" class="form-control">
                         <p style="font-size: 10px">2 - 8 minutes</p>
                     </div>
 
                     <div class="form-group">
                         <label for="bleeding_time">Bleeding Time:</label>
-                        <input type="number" name="bleeding_time" step="0.01" class="form-control">
+                        <input type="number" required name="bleeding_time" step="0.01" class="form-control">
                         <p style="font-size: 10px">1 - 5 minutes</p>
                     </div>
                 </div>
@@ -308,8 +313,8 @@
             <div class="table-like-section">
              <h3>Medical Technologist:</h3>
                 @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                    <input type="text" required name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
 
                 @elseif($pathologist)
                     <select id="medtechDropdown" name="medtech">
@@ -320,7 +325,7 @@
                             </option>
                         @endforeach
                     </select>
-                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
+                    <input type="text" required id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
                 @endif
             </div>
             <div class="table-like-section">
@@ -328,8 +333,8 @@
                 <h3>Pathologist:</h3>
 
                 @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                    <input type="text" required id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
 
                 @elseif($medtech)
                     <select id="pathologistDropdown" name="pathologist">
@@ -343,7 +348,7 @@
 
                     </select>
 
-                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
+                    <input type="text" required id="pathologistLicNo" readonly name="ptlicno" />
                      <!-- LicNo textbox -->
                 @endif
             </div>

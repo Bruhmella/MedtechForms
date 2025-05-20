@@ -122,10 +122,10 @@
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
-            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            <img src="{{ asset('img/Picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
             </div>
             <div class="toptext">
-            <h1>Far Eastern University - Cavite</h1>
+            <h1>FAR EASTERN COLLEGE – SILANG, INC.</h1>
             <p>Metrogate, Silang Estates, Silang, Cavite<br>
             Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
@@ -150,17 +150,17 @@
                         @endforeach
                     </select>
                     </label>
-                    <p>AC#: <input type="text" id="ac" readonly name="Poc"></p>
-                    <p>Age: <input type="text" id="age" readonly name="Page"></p>
-                    <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                    <p>AC#: <input type="text" required id="ac" readonly name="Poc"></p>
+                    <p>Age: <input type="text" required id="age" readonly name="Page"></p>
+                    <p>Sex: <input type="text" required id="sex" readonly name="Psex"></p>
                 </div>
                 <div class="form-row2">
                     <p>Date: <input type="date" id="date" name="date" readonly></p>
-                    <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
+                    <p>OR#: <input type="text" required id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
 
                     <div class="form-group">
                         <label for="Reqby">Requested By:</label>
-                        <input type="text" name="Reqby" class="form-control">
+                        <input type="text" required name="Reqby" class="form-control">
                     </div>
                 </div>
             </div>
@@ -171,22 +171,22 @@
                 <h3 style="text-align: center">Physical Characteristics</h3>
                 <div class="form-group">
                     <label for="color">Color:</label>
-                    <input type="text" name="color" class="form-control" value="{{ old('color') }}">
+                    <input type="text" required name="color" class="form-control" value="{{ old('color') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="transparency">Transparency:</label>
-                    <input type="text" name="transparency" class="form-control" value="{{ old('transparency') }}">
+                    <input type="text" required name="transparency" class="form-control" value="{{ old('transparency') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="ph">pH:</label>
-                    <input type="text" name="ph" class="form-control" value="{{ old('ph') }}">
+                    <input type="text" required name="ph" class="form-control" value="{{ old('ph') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="gravity">Specific Gravity:</label>
-                    <input type="text" name="gravity" class="form-control" value="{{ old('gravity') }}">
+                    <input type="text" required name="gravity" class="form-control" value="{{ old('gravity') }}">
                 </div>
             </div>
             <div class="table-like-section">                
@@ -194,29 +194,29 @@
                 <h3 style="text-align: center">Microscopic Findings</h3>
                 <div class="form-group2">
                     <label for="rbc">RBC (cells/uL):</label>
-                    <input type="number" step="0.01" name="rbc" class="form-control" value="{{ old('rbc') }}">
+                    <input type="number" required step="0.01" name="rbc" class="form-control" value="{{ old('rbc') }}">
                     <p>/hpf</p>
                 </div>
 
                 <div class="form-group2">
                     <label for="wbc">WBC (cells/uL):</label>
-                    <input type="number" step="0.01" name="wbc" class="form-control" value="{{ old('wbc') }}">
+                    <input type="number" required step="0.01" name="wbc" class="form-control" value="{{ old('wbc') }}">
                     <p>/hpf</p>
                 </div>
 
                 <div class="form-group">
                     <label for="sec">Squamous Epithelial Cells:</label>
-                    <input type="text" name="sec" class="form-control" value="{{ old('sec') }}">
+                    <input type="text" required name="sec" class="form-control" value="{{ old('sec') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="mucus">Mucus:</label>
-                    <input type="text" name="mucus" class="form-control" value="{{ old('mucus') }}">
+                    <input type="text" required name="mucus" class="form-control" value="{{ old('mucus') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="bacteria">Bacteria:</label>
-                    <input type="text" name="bacteria" class="form-control" value="{{ old('bacteria') }}">
+                    <input type="text" required name="bacteria" class="form-control" value="{{ old('bacteria') }}">
                 </div>
             </div>
         </div>
@@ -227,81 +227,83 @@
                 <h3 style="text-align: center">Chemical Test</h3>
                 <div class="form-group">
                     <label for="protein">Protein:</label>
-                    <input type="text" name="protein" class="form-control" value="{{ old('protein') }}">
+                    <input type="text" required name="protein" class="form-control" value="{{ old('protein') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="glucose">Glucose:</label>
-                    <input type="text" name="glucose" class="form-control" value="{{ old('glucose') }}">
+                    <input type="text" required name="glucose" class="form-control" value="{{ old('glucose') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="ketones">Ketones:</label>
-                    <input type="text" name="ketones" class="form-control" value="{{ old('ketones') }}">
+                    <input type="text" required name="ketones" class="form-control" value="{{ old('ketones') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="bilirubin">Bilirubin:</label>
-                    <input type="text" name="bilirubin" class="form-control" value="{{ old('bilirubin') }}">
+                    <input type="text" required name="bilirubin" class="form-control" value="{{ old('bilirubin') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="pregnancy">Pregnancy Test:</label>
-                    <input type="text" name="pregnancy" class="form-control" value="{{ old('pregnancy') }}">
+                    <input type="text" required name="pregnancy" class="form-control" value="{{ old('pregnancy') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="others">Others:</label>
-                    <input type="text" name="others" class="form-control" value="{{ old('others') }}">
+                    <input type="text" required name="others" class="form-control" value="{{ old('others') }}">
                 </div>
             </div>
             <div class="table-like-section">  
                 <!-- Additional Tests -->
+                <h3 style="text-align: center">Crystals</h3>
                 <div class="form-group">
                     <label for="au">Amorphous Urates:</label>
-                    <input type="text" name="au" class="form-control" value="{{ old('au') }}">
+                    <input type="text" required name="au" class="form-control" value="{{ old('au') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="ap">Amorphous Phosphates:</label>
-                    <input type="text" name="ap" class="form-control" value="{{ old('ap') }}">
+                    <input type="text" required name="ap" class="form-control" value="{{ old('ap') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="ua">Uric Acid:</label>
-                    <input type="text" name="ua" class="form-control" value="{{ old('ua') }}">
+                    <input type="text" required name="ua" class="form-control" value="{{ old('ua') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="co">Calcium Oxalate:</label>
-                    <input type="text" name="co" class="form-control" value="{{ old('co') }}">
+                    <input type="text" required name="co" class="form-control" value="{{ old('co') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="tp">Triple Phosphates:</label>
-                    <input type="text" name="tp" class="form-control" value="{{ old('tp') }}">
+                    <input type="text" required name="tp" class="form-control" value="{{ old('tp') }}">
                 </div>
             </div>
             <div class="table-like-section">
                 <!-- Casts -->
+                <h3 style="text-align: center">Casts</h3>
                 <div class="form-group">
                     <label for="hyaline">Hyaline Casts:</label>
-                    <input type="number" step="0.01" name="hyaline" class="form-control" value="{{ old('hyaline') }}">
+                    <input type="number" required step="0.01" name="hyaline" class="form-control" value="{{ old('hyaline') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="granular">Granular Casts:</label>
-                    <input type="number" step="0.01" name="granular" class="form-control" value="{{ old('granular') }}">
+                    <input type="number" required step="0.01" name="granular" class="form-control" value="{{ old('granular') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="wbc2">WBC Casts:</label>
-                    <input type="number" step="0.01" name="wbc2" class="form-control" value="{{ old('wbc2') }}">
+                    <input type="number" required step="0.01" name="wbc2" class="form-control" value="{{ old('wbc2') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="rbc2">RBC Casts:</label>
-                    <input type="number" step="0.01" name="rbc2" class="form-control" value="{{ old('rbc2') }}">
+                    <input type="number" required step="0.01" name="rbc2" class="form-control" value="{{ old('rbc2') }}">
                 </div>
             </div>
         </div>
@@ -311,8 +313,8 @@
             <div class="table-like-section">
              <h3>Medical Technologist:</h3>
                 @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                    <input type="text" required name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
 
                 @elseif($pathologist)
                     <select id="medtechDropdown" name="medtech">
@@ -323,7 +325,7 @@
                             </option>
                         @endforeach
                     </select>
-                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
+                    <input type="text" required id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
                 @endif
             </div>
             <div class="table-like-section">
@@ -331,8 +333,8 @@
                 <h3>Pathologist:</h3>
 
                 @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                    <input type="text" required id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
 
                 @elseif($medtech)
                     <select id="pathologistDropdown" name="pathologist">
@@ -346,7 +348,7 @@
 
                     </select>
 
-                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
+                    <input type="text" required id="pathologistLicNo" readonly name="ptlicno" />
                      <!-- LicNo textbox -->
                 @endif
             </div>

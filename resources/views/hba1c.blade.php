@@ -34,6 +34,11 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -118,10 +123,10 @@
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
-            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            <img src="{{ asset('img/Picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
             </div>
             <div class="toptext">
-            <h1>Far Eastern University - Cavite</h1>
+            <h1>FAR EASTERN COLLEGE – SILANG, INC.</h1>
             <p>Metrogate, Silang Estates, Silang, Cavite<br>
             Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
@@ -134,7 +139,7 @@
             <div class="innercontainer">
                 <div class="form-row">
                     <label for="patientSelect">Name:
-                    <select id="patientSelect" name="patient_id" onchange="fillPatientData()">
+                    <select required id="patientSelect" name="patient_id" onchange="fillPatientData()">
                         <option value="">-- Select a Patient --</option>
                         @foreach ($patients as $patient)
                             <option value="{{ $patient->id }}" 
@@ -146,16 +151,16 @@
                            @endforeach
                     </select>
                     </label>
-                    <p>AC#: <input type="text" id="ac" readonly placeholder="Enter Account Number" name="Poc"></p>
-                    <p>Age: <input type="text" id="age" readonly name="Page"></p>
-                    <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                    <p>AC#: <input type="text" required id="ac" readonly placeholder="Enter Account Number" name="Poc"></p>
+                    <p>Age: <input type="text" required id="age" readonly name="Page"></p>
+                    <p>Sex: <input type="text" required id="sex" readonly name="Psex"></p>
                 </div>
                 <div class="form-row2">
                     <p>Date: <input type="date" id="date" name="date" readonly></p>
-                    <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
+                    <p>OR#: <input type="text" required id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
                     <div class="form-group2">
                         <label for="Reqby">Requested By:</label>
-                        <input type="text" name="Reqby" class="form-control">
+                        <input type="text" required name="Reqby" class="form-control">
                     </div>
                 </div>
             </div>
@@ -168,7 +173,7 @@
                         <h3>Unit</h3>
                     </div>
                     <div class="form-group row-entry">
-                        <select id="myDropdown" name="test[]" required>
+                        <select required id="myDropdown" name="test[]">
             <option value="">--Select--</option>
             <option value="HBsAg">HBsAg</option>
             <option value="Anti-HIV 1">Anti-HIV 1</option>
@@ -180,9 +185,18 @@
             <option value="Dengue NS1">Dengue NS1</option>
             <option value="HCV">HCV</option>
             <option value="Thyroid">Thyroid</option>
+            <option value="HBsAG">HBsAG</option>
+            <option value="TROP">TROP</option>
+            <option value="S. Typhi">S. Typhi</option>
+            <option value="Anti-Hav">Anti-Hav</option>
+            <option value="Anti-Tp">Anti-Tp</option>
                         </select>
-                        <input type="text" name="result[]" class="form-control">
-                        <input type="text" name="unit[]" class="form-control">
+                        <select required name="result[]">
+  <option value="">--Select--</option>
+  <option value="Reactive">Reactive</option>
+  <option value="Non-Reactive">Non-Reactive</option>
+</select>
+                        <input type="text" required name="unit[]" class="form-control">
                     </div>
                 </div>
             </div>
@@ -195,11 +209,11 @@
             <div class="table-like-section">
              <h3>Medical Technologist:</h3>
                 @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                    <input type="text" required name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
 
                 @elseif($pathologist)
-                    <select id="medtechDropdown" name="medtech">
+                    <select required id="medtechDropdown" name="medtech">
                         <option value="">Select a MedTech</option> <!-- Default option -->
                         @foreach($medtechs as $medtech)
                             <option value="{{ $medtech->fname . ' ' . $medtech->lname }}" data-licno="{{ $medtech->LicNo }}">
@@ -207,7 +221,7 @@
                             </option>
                         @endforeach
                     </select>
-                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
+                    <input type="text" required id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
                 @endif
             </div>
             <div class="table-like-section">
@@ -215,11 +229,11 @@
                 <h3>Pathologist:</h3>
 
                 @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                    <input type="text" required id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
 
                 @elseif($medtech)
-                    <select id="pathologistDropdown" name="pathologist">
+                    <select required id="pathologistDropdown" name="pathologist">
                         <option value="">Select a Pathologist</option> <!-- Default option -->
                         @foreach($pathologists as $pathologist)
                             <option value="{{ $pathologist->fname . ' ' . $pathologist->lname }}" data-licno="{{ $pathologist->LicNo }}">
@@ -230,7 +244,7 @@
 
                     </select>
 
-                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
+                    <input type="text" required id="pathologistLicNo" readonly name="ptlicno" />
                      <!-- LicNo textbox -->
                 @endif
             </div>
@@ -238,6 +252,7 @@
     </div>
     <div class="center">
     <button type="submit" class="btn btn-primary">Submit</button>
+
     </div>
     </form>
 <!-- end here -->
@@ -253,21 +268,30 @@
             const container = document.createElement('div');
             container.classList.add('form-group', 'row-entry');
             container.innerHTML = `
-                <select name="test[]">
-                    <option value="">--Select--</option>
-                    <option value="HBsAg">HBsAg</option>
-                    <option value="Anti-HIV 1">Anti-HIV 1</option>
-                    <option value="Anti-HIV 2">Anti-HIV 2</option>
-                    <option value="RPR">RPR</option>
-                    <option value="Anti-HBs">Anti-HBs</option>
-                    <option value="HAV">HAV</option>
-                    <option value="Denguo Duo">Denguo Duo</option>
-                    <option value="Dengue NS1">Dengue NS1</option>
-                    <option value="HCV">HCV</option>
-                    <option value="Thyroid">Thyroid</option>
-                </select>
-                <input type="text" name="result[]" class="form-control">
-                <input type="text" name="unit[]" class="form-control">
+                 <select required id="myDropdown" name="test[]">
+            <option value="">--Select--</option>
+            <option value="HBsAg">HBsAg</option>
+            <option value="Anti-HIV 1">Anti-HIV 1</option>
+            <option value="Anti-HIV 2">Anti-HIV 2</option>
+            <option value="RPR">RPR</option>
+            <option value="Anti-HBs">Anti-HBs</option>
+            <option value="HAV">HAV</option>
+            <option value="Denguo Duo">Denguo Duo</option>
+            <option value="Dengue NS1">Dengue NS1</option>
+            <option value="HCV">HCV</option>
+            <option value="Thyroid">Thyroid</option>
+            <option value="HBsAG">HBsAG</option>
+            <option value="TROP">TROP</option>
+            <option value="S. Typhi">S. Typhi</option>
+            <option value="Anti-Hav">Anti-Hav</option>
+            <option value="Anti-Tp">Anti-Tp</option>
+                        </select>
+                        <select required name="result[]">
+  <option value="">--Select--</option>
+  <option value="Reactive">Reactive</option>
+  <option value="Non-Reactive">Non-Reactive</option>
+</select>
+                        <input type="text" required name="unit[]" class="form-control">
                 <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
             `;
             document.querySelector('.table-like2-section').appendChild(container);

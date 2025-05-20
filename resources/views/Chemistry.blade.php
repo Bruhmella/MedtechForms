@@ -37,6 +37,11 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: flex;
         margin-bottom: 5px;
@@ -113,10 +118,10 @@
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
-            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            <img src="{{ asset('img/Picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
             </div>
             <div class="toptext">
-            <h1>Far Eastern University - Cavite</h1>
+            <h1>FAR EASTERN COLLEGE – SILANG, INC.</h1>
             <p>Metrogate, Silang Estates, Silang, Cavite<br>
             Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
@@ -141,14 +146,14 @@
                     @endforeach
                 </select>
                 </label>
-                <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
-                <p>Age: <input type="text" id="age" readonly name="Page"></p>
-                <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                <p>AC#: <input type="text" required id="ac" placeholder="Enter Account Number" name="Poc"></p>
+                <p>Age: <input type="text" required id="age" readonly name="Page"></p>
+                <p>Sex: <input type="text" required id="sex" readonly name="Psex"></p>
                 </div>
                 <div class="form-row2">
                 <p>Date: <input type="date" id="date" name="date" readonly></p>
-                <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-                <p>Requested by: <input type="text" id="Reqby" name="Reqby"></p>
+                <p>OR#: <input type="text" required id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
+                <p>Requested by: <input type="text" required id="Reqby" name="Reqby"></p>
                 </div>
             </div>
             <!-- Chemistry Fields -->
@@ -161,19 +166,19 @@
                     </div>
                     <div class="form-group">
                         <label for="glucose">Glucose:</label>
-                        <input type="number" name="glucose" step="0.01" class="form-control">
+                        <input type="number" required name="glucose" step="0.01" class="form-control">
                         <p style="font-size: 10px">4.2 - 6.4 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="urea_nitrogen">Urea Nitrogen:</label>
-                        <input type="number" name="urea_nitrogen" step="0.01" class="form-control">
+                        <input type="number" required name="urea_nitrogen" step="0.01" class="form-control">
                         <p style="font-size: 10px">1.6 - 8.3 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="creatine">Creatine:</label>
-                        <input type="number" name="creatine" step="0.01" class="form-control">
+                        <input type="number" required name="creatine" step="0.01" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">62 - 124 umol/L</p>
@@ -184,7 +189,7 @@
 
                     <div class="form-group">
                         <label for="uric_acid">Uric Acid:</label>
-                        <input type="number" name="uric_acid" step="0.01" class="form-control">
+                        <input type="number" required name="uric_acid" step="0.01" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">203 - 417 umol/L</p>
@@ -195,19 +200,19 @@
 
                     <div class="form-group">
                         <label for="total_cholesterol">Total Cholesterol:</label>
-                        <input type="number" name="total_cholesterol" step="0.01" class="form-control">
+                        <input type="number" required name="total_cholesterol" step="0.01" class="form-control">
                         <p style="font-size: 10px">< 5.14 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="triglyceride">Triglyceride:</label>
-                        <input type="number" name="triglyceride" step="0.01" class="form-control">
+                        <input type="number" required name="triglyceride" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.45 - 1.86 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="hdl">HDL:</label>
-                        <input type="number" name="hdl" step="0.01" class="form-control">
+                        <input type="number" required name="hdl" step="0.01" class="form-control">
                         <div class="genderdifference">
                             <p style="font-size: 10px">Male:</p>
                             <p style="font-size: 10px">> 1.42 mmol/L</p>
@@ -218,31 +223,31 @@
 
                     <div class="form-group">
                         <label for="ldl">LDL:</label>
-                        <input type="number" name="ldl" step="0.01" class="form-control">
+                        <input type="number" required name="ldl" step="0.01" class="form-control">
                         <p style="font-size: 10px">1.72 - 4.63 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="vldl">VLDL:</label>
-                        <input type="number" name="vldl" step="0.01" class="form-control">
+                        <input type="number" required name="vldl" step="0.01" class="form-control">
                         <p style="font-size: 10px">0.0 - 1.04 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="ratio">Ratio:</label>
-                        <input type="number" name="ratio" step="0.01" class="form-control">
+                        <input type="number" required name="ratio" step="0.01" class="form-control">
                         <p style="font-size: 10px">LESS THAN 4.0</p>
                     </div>
 
                     <div class="form-group">
                         <label for="ast">SGOT (AST):</label>
-                        <input type="number" name="ast" step="0.01" class="form-control">
+                        <input type="number" required name="ast" step="0.01" class="form-control">
                         <p style="font-size: 10px">UP TO 40 U/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="alt">SGOT (ALT):</label>
-                        <input type="number" name="alt" step="0.01" class="form-control">
+                        <input type="number" required name="alt" step="0.01" class="form-control">
                         <p style="font-size: 10px">UP TO 30 U/L</p>
                     </div>
                 </div>
@@ -254,85 +259,85 @@
                     </div>
                     <div class="form-group">
                         <label for="sodium">Sodium:</label>
-                        <input type="number" name="sodium" step="0.01" class="form-control">
+                        <input type="number" required name="sodium" step="0.01" class="form-control">
                         <p style="font-size: 10px">135 - 148 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="potassium">Potassium:</label>
-                        <input type="number" name="potassium" step="0.01" class="form-control">
+                        <input type="number" required name="potassium" step="0.01" class="form-control">
                         <p style="font-size: 10px">3.5 - 5.3 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="chloride">Chloride:</label>
-                        <input type="number" name="chloride" step="0.01" class="form-control">
+                        <input type="number" required name="chloride" step="0.01" class="form-control">
                         <p style="font-size: 10px">98 - 107 mmol/L</p>
                     </div>
 
 
                     <div class="form-group">
                         <label for="ionized_calcium">Ionized calcium:</label>
-                        <input type="number" name="ionized_calcium" step="0.01" class="form-control">
+                        <input type="number" required name="ionized_calcium" step="0.01" class="form-control">
                         <p style="font-size: 10px">98 - 107 mmol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="protein">Protein:</label>
-                        <input type="number" name="protein" step="0.01" class="form-control">
+                        <input type="number" required name="protein" step="0.01" class="form-control">
                         <p style="font-size: 10px">65 - 83 g/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="albumin">Albumin:</label>
-                        <input type="number" name="albumin" step="0.01" class="form-control">
+                        <input type="number" required name="albumin" step="0.01" class="form-control">
                         <p style="font-size: 10px">35 - 50 g/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="globulin">Globulin:</label>
-                        <input type="number" name="globulin" step="0.01" class="form-control">
+                        <input type="number" required name="globulin" step="0.01" class="form-control">
                         <p style="font-size: 10px">23 - 35 g/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="ag_ratio">A/G Ratio:</label>
-                        <input type="number" name="ag_ratio" step="0.01" class="form-control">
+                        <input type="number" required name="ag_ratio" step="0.01" class="form-control">
                         <p style="font-size: 10px">1.3 - 3:1</p>
                     </div>
 
                     <div class="form-group">
                         <label for="alkaline">Alkaline Phosphatase:</label>
-                        <input type="number" name="alkaline" step="0.01" class="form-control">
+                        <input type="number" required name="alkaline" step="0.01" class="form-control">
                         <p style="font-size: 10px">30 - 90 U/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="bilirubin">Bilirubin:</label>
-                        <input type="number" name="bilirubin" step="0.01" class="form-control">
+                        <input type="number" required name="bilirubin" step="0.01" class="form-control">
                         <p style="font-size: 10px">3 - 17 umol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="b2">Indirect Bilirubin:</label>
-                        <input type="number" name="b2" step="0.01" class="form-control">
+                        <input type="number" required name="b2" step="0.01" class="form-control">
                         <p style="font-size: 10px">0 - 3 umol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="b1">Direct Bilirubin:</label>
-                        <input type="number" name="b1" step="0.01" class="form-control">
+                        <input type="number" required name="b1" step="0.01" class="form-control">
                         <p style="font-size: 10px">3 - 14 umol/L</p>
                     </div>
 
                     <div class="form-group">
                         <label for="others">Others:</label>
-                        <textarea type="text" name="others" rows="4" cols="50"></textarea>
+                        <textarea type="text" required name="others" rows="4" cols="50"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="remarks">Remarks:</label>
-                        <input type="text" name="remarks" class="form-control">
+                        <input type="text" required name="remarks" class="form-control">
                 </div>
             </div>
         </div>
@@ -341,8 +346,8 @@
             <div class="table-like-section">
              <h3>Medical Technologist:</h3>
                 @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                    <input type="text" required name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
 
                 @elseif($pathologist)
                     <select id="medtechDropdown" name="medtech">
@@ -353,7 +358,7 @@
                             </option>
                         @endforeach
                     </select>
-                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
+                    <input type="text" required id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
                 @endif
             </div>
             <div class="table-like-section">
@@ -361,8 +366,8 @@
                 <h3>Pathologist:</h3>
 
                 @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                    <input type="text" required id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
 
                 @elseif($medtech)
                     <select id="pathologistDropdown" name="pathologist">
@@ -376,7 +381,7 @@
 
                     </select>
 
-                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
+                    <input type="text" required id="pathologistLicNo" readonly name="ptlicno" />
                      <!-- LicNo textbox -->
                 @endif
             </div>

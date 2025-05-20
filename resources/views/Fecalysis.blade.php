@@ -37,6 +37,11 @@
         padding: 20px;
         background-color:#ffffff;
         }
+        .innercontainer {
+        width: auto;
+        margin: auto auto;
+        border: 1px solid #000;
+        }
         .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -128,10 +133,10 @@
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
-            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            <img src="{{ asset('img/Picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
             </div>
             <div class="toptext">
-            <h1>Far Eastern University - Cavite</h1>
+            <h1>FAR EASTERN COLLEGE – SILANG, INC.</h1>
             <p>Metrogate, Silang Estates, Silang, Cavite<br>
             Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
@@ -156,14 +161,14 @@
                         @endforeach
                     </select>
                     </label>
-                    <p>AC#: <input type="text" id="ac" readonly name="ac" oninput="fillByAC()"></p>
-                    <p>Age: <input type="text" id="age" readonly></p>
-                    <p>Sex: <input type="text" id="sex" readonly></p>
+                    <p>AC#: <input type="text" required id="ac" readonly name="ac" oninput="fillByAC()"></p>
+                    <p>Age: <input type="text" required id="age" readonly></p>
+                    <p>Sex: <input type="text" required id="sex" readonly></p>
                 </div>
                 <div class="form-row2">
                     <p>Date: <input type="date" id="date" name="date" readonly></p>
-                    <p>OR#: <input type="text" id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
-                    <p>Requested by: <input type="text" name="Reqby" placeholder="Enter requester name"></p>
+                    <p>OR#: <input type="text" required id="orNumber" name="or" value="{{ $orNumber }}" readonly></p>
+                    <p>Requested by: <input type="text" required name="Reqby" placeholder="Enter requester name"></p>
                 </div>
             </div>
             <br>
@@ -173,24 +178,24 @@
                 <h3 style="text-align: center">Consistency</h3>
                     <div class="form-group">
                         <label for="color">Color:</label>
-                        <input type="text" name="color" class="form-control">
+                        <input type="text" required name="color" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="consistency">Consistency:</label>
-                        <input type="text" name="consistency" class="form-control">
+                        <input type="text" required name="consistency" class="form-control">
                     </div>
                 </div>
                 <div class="table-like2-section">
                 <h3 style="text-align: center">Miscellaneous</h3>
                     <div class="form-group">
                         <label for="occult_blood">Occult Blood:</label>
-                        <input type="text" name="occult_blood" class="form-control">
+                        <input type="text" required name="occult_blood" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="sudan_stain">Sudan Stain:</label>
-                        <input type="text" name="sudan_stain" class="form-control">
+                        <input type="text" required name="sudan_stain" class="form-control">
                     </div>
                 </div>
                 <div class="table-like2-section">
@@ -198,29 +203,29 @@
                     <div class="form-group">
                         <label for="wbc">WBC:</label>
                         <div class="form-subgroup">
-                            <input type="number" name="wbc" class="form-control" step="any" min="0" placeholder="Enter WBC count" pattern="^\d+(\.\d+)?$">
+                            <input type="number" required name="wbc" class="form-control" step="any" min="0" placeholder="Enter WBC count" pattern="^\d+(\.\d+)?$">
                             <p>/hpf</p>
                         </div>
                         <label for="yeast">Yeast:</label>
-                        <input type="text" name="yeast" class="form-control">
+                        <input type="text" required name="yeast" class="form-control">
                     </div>
 
                     <div class="form-group">
                         <label for="rbc">RBC:</label>
                         <div class="form-subgroup">
-                            <input type="number" name="rbc" class="form-control" step="any" min="0" placeholder="Enter RBC count" pattern="^\d+(\.\d+)?$">
+                            <input type="number" required name="rbc" class="form-control" step="any" min="0" placeholder="Enter RBC count" pattern="^\d+(\.\d+)?$">
                             <p>/hpf</p>
                         </div>
                         <label for="fat_globules">Fat Globules:</label>
-                        <input type="text" name="fat_globules" class="form-control">
+                        <input type="text" required name="fat_globules" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="bacteria">Bacteria:</label>
-                        <input type="text" name="bacteria" class="form-control">
+                        <input type="text" required name="bacteria" class="form-control">
                     </div>
                     <div class="form-group2">
                         <label for="others">Others:</label>
-                        <textarea type="text" name="others" rows="4" cols="50" class="form-control"></textarea>
+                        <textarea type="text" required name="others" rows="4" cols="50" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
@@ -230,8 +235,8 @@
             <h3>Medical Technologist:</h3>
 
             @if($medtech)
-                <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                <input type="text" id="medtechLicNo" name="mtlicno" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                <input type="text" required name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                <input type="text" required id="medtechLicNo" name="mtlicno" value="{{ $medtech->LicNo ?? '' }}" readonly />
             @elseif($pathologist)
                 <select id="medtechDropdown" name="medtech">
                     <option value="">Select a MedTech</option> <!-- Default option -->
@@ -241,7 +246,7 @@
                         </option>
                     @endforeach
                 </select>
-                <input type="text" id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
+                <input type="text" required id="medtechLicNo" value="" readonly /> <!-- LicNo textbox -->
             @endif
             </div>
             <div class="table-like-section">
@@ -249,8 +254,8 @@
             <h3>Pathologist:</h3>
 
             @if($pathologist)
-                <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+                <input type="text" required name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                <input type="text" required id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
             @elseif($medtech)
                 <select id="pathologistDropdown" name="pathologist">
                     <option value="">Select a Pathologist</option> <!-- Default option -->
@@ -260,7 +265,7 @@
                         </option>
                     @endforeach
                 </select>
-                <input type="text" id="pathologistLicNo" value="" readonly name="ptlicno" /> <!-- LicNo textbox -->
+                <input type="text" required id="pathologistLicNo" value="" readonly name="ptlicno" /> <!-- LicNo textbox -->
             @endif
             </div>
         </div>

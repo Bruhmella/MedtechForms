@@ -123,10 +123,10 @@
     <div class="container">
         <div class="topcontainer">
             <div class="leftimage">
-            <img src="{{ asset('img/picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
+            <img src="{{ asset('img/Picture1.png') }}" style="scale: 80%;width: 135px; justify-content: center;">
             </div>
             <div class="toptext">
-            <h1>Far Eastern University - Cavite</h1>
+            <h1>FAR EASTERN COLLEGE – SILANG, INC.</h1>
             <p>Metrogate, Silang Estates, Silang, Cavite<br>
             Contact No(s): 123-456-789 | 098-765-432</p>
             </div>
@@ -150,14 +150,14 @@
                     @endforeach
                 </select>
                 <div class="form-row">
-                <p>AC#: <input type="text" id="ac" placeholder="Enter Account Number" name="Poc"></p>
-                <p>Age: <input type="text" id="age" readonly name="Page"></p>
-                <p>Sex: <input type="text" id="sex" readonly name="Psex"></p>
+                <p>AC#: <input type="text" required id="ac" placeholder="Enter Account Number" name="Poc"></p>
+                <p>Age: <input type="text" required id="age" readonly name="Page"></p>
+                <p>Sex: <input type="text" required id="sex" readonly name="Psex"></p>
                 </div>
                 <div class="form-row2">
                 <p>Date: <input type="date" id="date" name="date" readonly></p>
-                <p>OR#: <input type="text" id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
-                <p>Requested By: <input type="text" id="Reqby" name="Reqby"></p>
+                <p>OR#: <input type="text" required id="orNumber" name="OR" value="{{ $orNumber }}" readonly></p>
+                <p>Requested By: <input type="text" required id="Reqby" name="Reqby"></p>
                 </div>
             </div>
             <br>
@@ -183,12 +183,12 @@
                     <div class="form-group">
                         <p>RBS</p>
                         <div class="form-group">
-                            <input type="number" name="result" step="0.01" class="form-control">
+                            <input type="number" required name="result" step="0.01" class="form-control">
                             <p>mmol/L</p>
                             <p>3.8 - 6.9</p>
                         </div>
                         <div class="form-group">
-                            <input type="number" name="result2" step="0.01" class="form-control">
+                            <input type="number" required name="result2" step="0.01" class="form-control">
                             <p>mmol/L</p>
                             <p>68.4 - 124.2</p>
                         </div>
@@ -201,8 +201,8 @@
             <div class="table-like-section">
              <h3>Medical Technologist:</h3>
                 @if($medtech)
-                    <input type="text" name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
-                    <input type="text" name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="medtech" value="{{ $medtech->fname . ' ' . $medtech->lname ?? '' }}" />
+                    <input type="text" required name="mtlicno" id="medtechLicNo" value="{{ $medtech->LicNo ?? '' }}" readonly />
 
                 @elseif($pathologist)
                     <select id="medtechDropdown" name="medtech">
@@ -213,7 +213,7 @@
                             </option>
                         @endforeach
                     </select>
-                    <input type="text" id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
+                    <input type="text" required id="medtechLicNo" name="mtlicno" readonly /><!-- LicNo textbox -->
                 @endif
             </div>
             <div class="table-like-section">
@@ -221,8 +221,8 @@
                 <h3>Pathologist:</h3>
 
                 @if($pathologist)
-                    <input type="text" name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
-                    <input type="text" id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
+                    <input type="text" required name="pathologist" value="{{ $pathologist->fname . ' ' . $pathologist->lname ?? '' }}" />
+                    <input type="text" required id="pathologistLicNo" value="{{ $pathologist->LicNo ?? '' }}" readonly />
 
                 @elseif($medtech)
                     <select id="pathologistDropdown" name="pathologist">
@@ -236,7 +236,7 @@
 
                     </select>
 
-                    <input type="text" id="pathologistLicNo" readonly name="ptlicno" />
+                    <input type="text" required id="pathologistLicNo" readonly name="ptlicno" />
                      <!-- LicNo textbox -->
                 @endif
             </div>
